@@ -1,0 +1,13 @@
+{
+    "name": "ArdumowerControlCenter",
+    "version": "0.0.1",
+    "description": "App",
+    "dependencies": {
+        "serialport": "latest",
+		"socket.io": "latest",
+		"usb": "latest",
+		"socket.io": "latest",		
+		"request": "latest"
+    },
+    "author": "A. Grau"
+}

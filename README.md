@@ -1,7 +1,7 @@
 # Ardumower Control Center
 
 ## Description
-Control application for the arumower open source robotic lawn mower (HW+SW reference platform)
+Control application for the ardumower open source robotic lawn mower (HW+SW reference platform)
 
 ## Project site
 http://www.ardumower.de

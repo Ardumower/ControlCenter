@@ -1,0 +1,6 @@
+{
+  "appName": "AdumowerControlCenter",
+  "port": 8080,
+  "publicPath": "public",
+  "resourcePath": "resources"
+}

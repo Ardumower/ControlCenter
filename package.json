@@ -4,6 +4,7 @@
   "description": "App",
   "author": "A. Grau, V. Kuehn",
   "dependencies": {
+    "express": "^4.14.0",
     "request": "^2.79.0",
     "serialport": "^4.0.7",
     "socket.io": "^1.7.2",

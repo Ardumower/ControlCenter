@@ -3,79 +3,11 @@
    <head>    
     <title>Ardumower Control Center</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>	
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <style>
-	body {
-		margin       :  0px;
-		padding      :  0px;
-		font-size    : 12px;
-         }
-	.ui-menu { 
-		width		 : 100px; 		
-		position	 : absolute;
-		left		 : 1100px;
-        top			 : 40px;
-		}		 
-	#rtxData {
-		float        :  left;
-		margin-left  :  100px;
-		margin-right :  auto;
-		width        :  470px;
-	}
-
-	#gPanel{
-		float        :  left;
-		margin-left  :  100px;
-		margin-right :  auto;
-		width        :  470px;
-	}
-
-	h2{
-		text-align   :  center;
-	}
-	
-	#term{
-	  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
-	  font-size: 11px;
-	}
-
-	#btnHolder, #sliderTxt{
-		text-align   :  center;
-	}
-	
-	.error {
-	  color :#F00;
-	}
-	
-	.canvas {	  	  
-	  background-color : #EEE;
-	}
-
-	#cameraImage {	  	  
-	  background-color : #EEE;
-	}
-	
-	#camera {
-	  position	 : absolute;
-	  left		 : 540px;
-      top			 : 50px;	  
-	}	
-	
-	.stopbutton {
-	   float: right;	   
-	   background-color: #f00;	   
-	   color : #FFF;
-	}
-	
-	.btn {		
-	}
-	
-    </style>
-
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="http://smoothiecharts.org/smoothie.js"></script>
+  <link href="/stylesheets/controlcenter.css" rel="stylesheet"/>
+	<script src="/javascripts/jquery/jquery-3.1.1.js"></script>
+	<script src="/javascripts/jquery/jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script src="/javascripts/socket.io/socket.io-1.4.5.js"></script>
+	<script src="/javascripts/smoothie.js"></script>
     
     <script>
 

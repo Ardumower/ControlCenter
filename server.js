@@ -194,18 +194,8 @@ function startAndroidClientSocket(){
 }	
 	
 
-function startServer(route,handle,debug)
+function startServer(httpServer,debug)
 {
-	function onRequest(request, response) { 
-		var pathname = url.parse(request.url).pathname; 
-		console.log("Request for " + pathname + " received");
-		var content = route(handle,pathname,response,request,debug);
-	}
-	
-	var httpServer = http.createServer(onRequest).listen(8080, function() {
-		console.log("Server listening at: http://localhost:8080");
-	}); 
-	
 	try{
 		config = require('./uploads/config.json');
 	} catch (e){

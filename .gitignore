@@ -66,3 +66,6 @@ jspm_packages
 
 # Output of 'npm pack'
 .tgz
+
+#Control Center generated
+/uploads

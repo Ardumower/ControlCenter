@@ -1,11 +1,10 @@
 var fs      =  require('fs');
 var util       =  require('util');
 var server  =  require('./server');
-var formidable  =  require('formidable');
 var url         =   require("url");
 
-function sendInterface(response,request) {    
-  var pathname = url.parse(request.url).pathname; 
+function sendInterface(response,request) {
+  var pathname = url.parse(request.url).pathname;
   if (pathname == '/') pathname = '/webpage/main.html';
   //console.log(pathname);
   //console.log("Request handler 'webpage' was called.");
@@ -19,4 +18,3 @@ function sendInterface(response,request) {
 
 
 exports.sendInterface = sendInterface;
-

@@ -1,18 +1,20 @@
 // Ardumower Control Center
-var fs          =   require('fs');
-var request 	=	require('request');
-var http        =   require('http');
-var net 		= 	require('net');
-var socketio    =   require('socket.io');
-var android	    =   require('./android');
-//var io 			= 	require('socket.io-client');
-var url         =   require("url");
-var serialPort 	= 	require("serialport");
-var sys 		= 	require('sys')
-var exec 		= 	require('child_process').exec;
-var spawn 		= 	require('child_process').spawn;
+var android	    = require('./android');
+var fs          = require('fs');
+var http        = require('http');
+var net 		= require('net');
+var path        = require('path');
+var request 	= require('request');
+var serialPort 	= require("serialport");
+var socketio    = require('socket.io');
+var sys 		= require('sys')
+var url         = require("url");
 //var webcam	    = 	require( "node-webcam" );
 
+var exec 		= require('child_process').exec;
+var spawn 		= require('child_process').spawn;
+
+const sep          = path.sep;
 
 var socketServer;
 var socketClientAndroid;
@@ -21,64 +23,8 @@ var satMapFileName = "";
 var i = 0;
 var cam;
 
-
-var state = {
-	server: {
-		connections: 0,
-	},
-	robot: {
-		pos: {x: 10, y: 10},  
-		orientation: 0,		
-		inside: false,
-		motorLeft:0,
-		motorRight: 0,
-	},
-	ranging: [ 0,0,0 ],
-	android: {						
-	}
-};
-
-
-var config = { 
-	demoMode: true,
-	arduino: {
-		//port: '/dev/ttyS0',
-		port: '//./COM23',
-	},
-	android: {
-		enable: true,				
-		accessory: false,
-		server: '192.168.2.102',
-		port: 8080,
-	},
-	camera: {
-		enable: true,
-		url: 'http://raspberrypi.local',		
-	},
-	map: {
-		width: 40,
-		height: 40,
-		zoom: 20,
-		centerLat: 52.267312,		
-		centerLon: 8.609331,
-		meterPerPixel: 0,
-	},
-	chargingStation: {
-		pos: {x: 1, y: 10},		
-	},
-	satellites: { 		
-		positions: {
-			0:	{x: 2, 	y: 2, 	z: 0},
-			1:	{x: 22,	y: 22,	z: 0}, 
-			2:	{x: 22,	y:  2,	z: 0},
-		},
-	},
-	perimeter: [	{x:1, 	y:1}, 
-					{x:25,	y:1}, 
-					{x:25,	y:20}, 
-					{x:1,	y:20} ],
-};	
-
+var config = require(__dirname + sep + 'resources' + sep + 'config.json');
+var state  = require(__dirname + sep + 'resources' + sep + 'state.json');
 
 // rescale to -PI..+PI			
 function scalePI(v)

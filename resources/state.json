@@ -1,0 +1,14 @@
+{	
+	"server": {
+		"connections": 0
+	},
+	"robot": {
+		"pos": {"x": 10, "y": 10},  
+		"orientation": 0,		
+		"inside": false,
+		"motorLeft":0,
+		"motorRight": 0
+	},
+	"ranging": [ 0,0,0 ],
+	"android": {}
+}

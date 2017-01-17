@@ -2,5 +2,46 @@
   "appName": "AdumowerControlCenter",
   "port": 8080,
   "publicPath": "public",
-  "resourcePath": "resources"
+  "resourcePath": "resources",
+  "demoMode": true,
+  "arduino": {
+		"port": "//./COM23",
+		"portX": "/dev/ttyS0"
+	},
+	"android": {
+		"enable": true,				
+		"accessory": false,
+		"server": "192.168.2.102",
+		"port": 8080
+	},
+	"camera": {
+		"enable": true,
+		"url": "http://raspberrypi.local"		
+	},
+	"map": {
+		"width": 40,
+		"height": 40,
+		"zoom": 20,
+		"centerLat": 52.267312,		
+		"centerLon": 8.609331,
+		"meterPerPixel": 0
+	},
+	"chargingStation": {
+		"pos": {
+			"x": 1,
+			"y": 10
+			}
+	},
+	"satellites": { 		
+		"positions": {
+			"0":	{"x": 2, 	"y": 2, 	"z": 0},
+			"1":	{"x": 22,	"y": 22,	"z": 0}, 
+			"2":	{"x": 22,	"y":  2,	"z": 0}
+		}
+	},
+	"perimeter": [	{"x":1, 	"y":1}, 
+					{"x":25,	"y":1}, 
+					{"x":25,	"y":20}, 
+					{"x":1,		"y":20}
+				]
 }

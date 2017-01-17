@@ -2,6 +2,7 @@
 
 ## Description
 Control application for the ardumower open source robotic lawn mower (HW+SW reference platform)
+Demo video: https://www.youtube.com/watch?v=JCyqrt7CBqY
 
 ## Project site
 http://www.ardumower.de

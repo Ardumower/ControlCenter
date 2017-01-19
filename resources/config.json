@@ -9,7 +9,7 @@
 		"portX": "/dev/ttyS0"
 	},
 	"android": {
-		"enable": true,				
+		"enable": false,				
 		"accessory": false,
 		"server": "192.168.2.102",
 		"port": 8080

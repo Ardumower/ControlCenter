@@ -8,7 +8,7 @@ const path         	= require('path');
 const sep          = path.sep;
 
 var server = require("./server");
-var router = require("./route");
+//var router = require("./route");
 
 var debug = false;
 

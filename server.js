@@ -7,7 +7,6 @@ var path        = require('path');
 var request 	= require('request');
 var serialPort 	= require("serialport");
 var socketio    = require('socket.io');
-var sys 		= require('sys')
 var url         = require("url");
 //var webcam	    = 	require( "node-webcam" );
 

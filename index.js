@@ -1,6 +1,8 @@
 "use strict";
 
 const app		    = require('express')();
+const cookieParser 	= require('cookie-parser');
+const debug			= require('debug')('index');
 const express 		= require('express');
 const httpServer   	= require('http').Server(app);
 const path         	= require('path');
@@ -21,16 +23,23 @@ app.get('/', function(req, res){
 	  res.sendFile(publicPath + sep + 'main.html');
 });
 
+//--view engine
+//--do not change this !!------------------------------------------------------
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 httpServer.listen(port, function(){
 	var host = httpServer.address().address
 	var message = ' app listening at http://' + host + ':' + port;
 	console.log(message);
 });
 
-
-console.log('to see debug output set debu=true e.g. on windows set DEBUG=*,-not_this');
 //----------------------------------------------
 server.start(httpServer);
+console.log('to see debug output set debug=true e.g. on windows set DEBUG=*,-not_this');
 
 //==error handlers==============================================================
 

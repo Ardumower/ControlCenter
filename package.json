@@ -1,11 +1,17 @@
 {
   "name": "ArdumowerControlCenter",
   "version": "0.0.1",
-  "description": "App",
+  "description": "ardumower control web app",
   "author": "A. Grau, V. Kuehn",
+  "repository": {
+		"type": "git",
+		"url": "git://github.com/Ardumower/ControlCenter.git"
+  },
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "debug": "^2.6.0",
     "express": "^4.14.0",
+    "jade": "^1.11.0",
     "request": "^2.79.0",
     "serialport": "^4.0.7",
     "socket.io": "^1.7.2",

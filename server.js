@@ -165,12 +165,6 @@ function startAndroidClientSocket(){
 
 function startServer(httpServer,debuggig)
 {
-	try{
-		config = require('./uploads/config.json');
-	} catch (e){
-		console.log('cannot find config file');
-	}
-
 	//serialListener(debuggig);	
 	initSocketIO(httpServer,debuggig);
 	runComputations();

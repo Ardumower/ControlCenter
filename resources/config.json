@@ -3,6 +3,7 @@
   "port": 8080,
   "publicPath": "public",
   "resourcePath": "resources",
+  "debug":	true,
   "demoMode": true,
   "arduino": {
 		"port": "//./COM23",
@@ -43,5 +44,8 @@
 					{"x":25,	"y":1}, 
 					{"x":25,	"y":20}, 
 					{"x":1,		"y":20}
-				]
+				],
+	"uploads": {
+		"dir": "./uploads/"
+	}
 }

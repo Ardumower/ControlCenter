@@ -1,5 +1,7 @@
 // Ardumower Control Center
 var android	    = require('./android');
+var debug       = require('debug')('server');
+var error 		= debug('app:error');
 var fs          = require('fs');
 var http        = require('http');
 var net 		= require('net');
@@ -25,6 +27,8 @@ var cam;
 var config = require(__dirname + sep + 'resources' + sep + 'config.json');
 var state  = require(__dirname + sep + 'resources' + sep + 'state.json');
 
+var debuggig = config.debug;
+
 // rescale to -PI..+PI			
 function scalePI(v)
 {
@@ -46,20 +50,40 @@ function download(uri, filename, callback){
   });
 };
 
+//
+function mkDirOnce (dirPath) {
+  try {
+    fs.statSync(dirPath);
+    debug('createDirectoryOnce found ' + dirPath);
+  } catch(e) {
+    try {
+      fs.mkdirSync(dirPath);
+      debug('createDirectoryOnce created ' + dirPath);
+    }catch(error){
+      error(error);
+    }
+  }
+}
+
 function updateSatMap(){
 	var url = "http://maps.google.com/maps/api/staticmap?center=";    
 	var lat= config.map.centerLat;
 	var lon= config.map.centerLon;
+	var uploads = config.uploads.dir;
+	
 	config.map.meterPerPixel = (Math.cos(lat * Math.PI/180) * 2 * Math.PI * 6378137) / (256 * Math.pow(2, config.map.zoom));
-	console.log("meterPerPixel="+config.map.meterPerPixel);
+	debug("meterPerPixel="+config.map.meterPerPixel);
+	
 	//lat = Math.round(lat / 1000) * 1000;
 	//lon = Math.round(lon / 1000) * 1000;				
 	//url += lat / 10000000.0 + "," + lon / 10000000.0;
 	url += lat + "," + lon;
     url += "&zoom=" + config.map.zoom + "&size=640x640&maptype=satellite&sensor=false";    
-	satMapFileName = './uploads/map_' + lat + '_' + lon + '.png';
+	satMapFileName = uploads + 'map_' + lat + '_' + lon + '.png';
 	console.log("satMapFileName="+satMapFileName);
-	if (fs.existsSync(satMapFileName)) return;	
+	
+	mkDirOnce(uploads);
+	if (fs.existsSync(satMapFileName)) return;
 	download(url, satMapFileName, function(){
 		console.log('download done');			
 	});
@@ -139,7 +163,7 @@ function startAndroidClientSocket(){
 }	
 	
 
-function startServer(httpServer,debug)
+function startServer(httpServer,debuggig)
 {
 	try{
 		config = require('./uploads/config.json');
@@ -147,8 +171,8 @@ function startServer(httpServer,debug)
 		console.log('cannot find config file');
 	}
 
-	//serialListener(debug);	
-	initSocketIO(httpServer,debug);
+	//serialListener(debuggig);	
+	initSocketIO(httpServer,debuggig);
 	runComputations();
 	doBroadcast();	
 	updateSatMap();		
@@ -174,13 +198,13 @@ function sendTerminal(data)
 	socketServer.emit('term',  data);			    
 }
 
-function initSocketIO(httpServer,debug)
+function initSocketIO(httpServer)
 {
 	socketServer = socketio.listen(httpServer);
 	
-	if(debug == false)
+	if(debuggig == false)
 	{
-		socketServer.set('log level', 1); // socket.io debug OFF
+		socketServer.set('log level', 1); // socket.io debuggig OFF
 	}
 	
 	socketServer.on('connect', function() { 
@@ -280,7 +304,7 @@ function flash(){
 	});
 }
 
-function serialListener(debug)
+function serialListener()
 {
 	var receivedData = "";
 

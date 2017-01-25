@@ -39,7 +39,7 @@ httpServer.listen(port, function(){
 
 //----------------------------------------------
 server.start(httpServer);
-console.log('to see more debug output set debug=true e.g. on windows set DEBUG=*,-not_this');
+console.log('to see more debug output on linux export DEBUG=* e.g. on windows set DEBUG=*,-not_this');
 
 //==error handlers==============================================================
 

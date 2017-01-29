@@ -1,5 +1,5 @@
-// Ardumower Control Center
-var android	    = require('./android');
+"use strict";
+
 var debug       = require('debug')('server');
 var error 		= debug('app:error');
 var fs          = require('fs');
@@ -247,7 +247,7 @@ function initSocketIO(httpServer)
 		socket.on('setconfig', function(data){
 			config = data;
 			socketServer.emit('config', config);
-			fs.open("./uploads/config.json", "w", 0755, function(err, fd){
+			fs.open("./uploads/config.json", "w", function(err, fd){
 				if(err)
 				{
 					console.log(err);
@@ -268,7 +268,7 @@ function initSocketIO(httpServer)
 			var name = data['Name'];
 			var size = data['Data'].length;
 			console.log("upload " + name + " " + size);								
-			fs.open("./uploads/" + name, "w", 0755, function(err, fd){
+			fs.open("./uploads/" + name, "w", function(err, fd){
 				if(err)
 				{
 					console.log(err);
@@ -332,6 +332,7 @@ function runComputations(){
 		state.robot.pos.x += Math.cos(state.robot.orientation) * state.robot.speed;
 		state.robot.pos.y += Math.sin(state.robot.orientation) * state.robot.speed;
 	
+		var sat;
 		for (sat in state.ranging){		
 			//console.log(config.satellites.positions[sat]);
 			var pos = config.satellites.positions[sat];		

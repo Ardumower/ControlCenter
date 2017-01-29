@@ -26,7 +26,7 @@ app.get('/', function(req, res){
 //--view engine
 //--do not change this !!------------------------------------------------------
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

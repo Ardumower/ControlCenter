@@ -10,7 +10,6 @@ const path         	= require('path');
 const sep          = path.sep;
 
 var server = require("./server");
-//var router = require("./route");
 
 //---express web server--------------------------------------------------------
 const config = require(__dirname + sep + 'resources' + sep + 'config.json');
@@ -26,7 +25,7 @@ app.get('/', function(req, res){
 //--view engine
 //--do not change this !!------------------------------------------------------
 app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+app.set('view engine', 'jade');
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

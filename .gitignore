@@ -1,5 +1,8 @@
 *.class
 
+#Intelli Jea
+.idea/**
+
 #eclipse Config Files #
 .classpath
 .project

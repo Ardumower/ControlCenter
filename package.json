@@ -16,5 +16,10 @@
     "request": "^2.79.0",
     "serialport": "^4.0.7",
     "socket.io": "^1.7.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    }
   }
 }

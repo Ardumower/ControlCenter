@@ -3,53 +3,58 @@
 const debug       = require('debug')('server');
 const error 		  = debug('app:error');
 const fs          = require('fs');
-const net 		    = require('net');
 const path        = require('path');
 const request 	  = require('request');
 const serialPort 	= require('serialport');
 const socketio    = require('socket.io');
-const url         = require('url');
-//var webcam	    = 	require( "node-webcam" );
+//let webcam	    = 	require( "node-webcam" );
+//let cam;
+const sep     = path.sep;
 
-const exec 		= require('child_process').exec;
-const spawn 		= require('child_process').spawn;
 
-const sep          = path.sep;
+//serial
+let myPort;
 
-var socketServer;
-var socketClientAndroid;
-var sendData  =  '';
-var satMapFileName = '';
-var i = 0;
-var cam;
+//socket
+let socketServer;
+let sendData  =  '';
+let i = 0;
 
-var config = require(__dirname + sep + 'resources' + sep + 'config.json');
-var state  = require(__dirname + sep + 'resources' + sep + 'state.json');
+//satMap
+let satMap = {
+  'width': 40,
+  'height': 40,
+  'zoom': 20,
+  'centerLat': 52.267312,
+  'centerLon': 8.609331,
+  'meterPerPixel': 0
+};
+let satMapFileName = '';
 
-var debuggig = config.debug;
+let config = require(__dirname + sep + 'resources' + sep + 'config.json');
+let state  = require(__dirname + sep + 'resources' + sep + 'state.json');
+
+const debuggig = config.debug;
 
 // rescale to -PI..+PI			
 function scalePI(v)
 {
-  var d = v;
+  let d = v;
   while (d < 0) d+=2*Math.PI;
   while (d >= 2*Math.PI) d-=2*Math.PI;
   if (d >= Math.PI) return (-2*Math.PI+d);
   else if (d < -Math.PI) return (2*Math.PI+d);
   else return d;
 }
-   
 
 function download(uri, filename, callback){
-  request.head(uri, function(err, res, body){
-    console.log('content-type:', res.headers['content-type']);
-    console.log('content-length:', res.headers['content-length']);
-
+  request.head(uri, function(err, res){
+    debug('content-type:', res.headers['content-type']);
+    debug('content-length:', res.headers['content-length']);
     request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
   });
 }
 
-//
 function mkDirOnce (dirPath) {
   try {
     fs.statSync(dirPath);
@@ -58,33 +63,33 @@ function mkDirOnce (dirPath) {
     try {
       fs.mkdirSync(dirPath);
       debug('createDirectoryOnce created ' + dirPath);
-    }catch(error){
-      error(error);
+    }catch(err){
+      error(err);
     }
   }
 }
 
 function updateSatMap(){
-  var url = 'http://maps.google.com/maps/api/staticmap?center=';    
-  var lat= config.map.centerLat;
-  var lon= config.map.centerLon;
-  var uploads = config.uploads.dir;
+  let url = 'http://maps.google.com/maps/api/staticmap?center=';
+  let lat= satMap.centerLat;
+  let lon= satMap.centerLon;
+  let uploads = config.uploads.dir;
 	
-  config.map.meterPerPixel = (Math.cos(lat * Math.PI/180) * 2 * Math.PI * 6378137) / (256 * Math.pow(2, config.map.zoom));
-  debug('meterPerPixel='+config.map.meterPerPixel);
+  satMap.meterPerPixel = (Math.cos(lat * Math.PI/180) * 2 * Math.PI * 6378137) / (256 * Math.pow(2, satMap.zoom));
+  debug('meterPerPixel='+satMap.meterPerPixel);
 	
 	//lat = Math.round(lat / 1000) * 1000;
 	//lon = Math.round(lon / 1000) * 1000;				
 	//url += lat / 10000000.0 + "," + lon / 10000000.0;
   url += lat + ',' + lon;
-  url += '&zoom=' + config.map.zoom + '&size=640x640&maptype=satellite&sensor=false';    
+  url += '&zoom=' + satMap.zoom + '&size=640x640&maptype=satellite&sensor=false';    
   satMapFileName = uploads + 'map_' + lat + '_' + lon + '.png';
-  console.log('satMapFileName='+satMapFileName);
+  debug('satMapFileName='+satMapFileName);
 	
   mkDirOnce(uploads);
   if (fs.existsSync(satMapFileName)) return;
   download(url, satMapFileName, function(){
-    console.log('download done');			
+    debug('download done');			
   });
 }
 
@@ -93,16 +98,6 @@ function updateSatMap(){
 function dist2d(pt1, pt2){
   return Math.sqrt(Math.pow(pt1.x-pt2.x,2)+Math.pow(pt1.y-pt2.y,2));				
 }
-
-// extract Yaw,Pitch,Roll from Quaternion orientation
-function quaternionYawPitchRoll(q){
-  var ypr = {yaw:0, pitch:0, roll:0};
-  ypr.yaw = Math.atan2(2.0*(q.x*q.y + q.w*q.z), q.w*q.w + q.x*q.x - q.y*q.y - q.z*q.z);		
-  ypr.roll = Math.atan2(2.0*(q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z);
-  ypr.pitch = Math.asin(-2.0*(q.x*q.z - q.w*q.y));	
-  return ypr;
-}
-
 
 // checks if point is inside polygon
 // The algorithm is ray-casting to the right. Each iteration of the loop, the test point is checked against
@@ -114,8 +109,8 @@ function quaternionYawPitchRoll(q){
 
 function pnpoly(vertices, test)
 {
-  var i, j, c = 0;
-  var nvert = vertices.length;
+  let i, j, c = 0;
+  let nvert = vertices.length;
   for (i = 0, j = nvert-1; i < nvert; j = i++) {
     if ( ((vertices[i].y>test.y) != (vertices[j].y>test.y)) &&
      (test.x < (vertices[j].x-vertices[i].x) * (test.y-vertices[i].y) / (vertices[j].y-vertices[i].y) + vertices[i].x) )
@@ -124,44 +119,6 @@ function pnpoly(vertices, test)
   return c;
 }
 
-
-function startAndroidClientSocket(){
-  if (config.android.enable){
-    socketClientAndroid = new net.Socket();		
-    socketClientAndroid.connect(config.android.port, config.android.server, function() {
-      console.log('Android connected');						
-      socketClientAndroid.write('{"learn": false, "adf": "Wohnzimmer"}\n');
-    });
-    socketClientAndroid.on('error', function(err){
-      console.log('Android error');
-    });
-    socketClientAndroid.on('close', function(){
-      console.log('Android closed');
-      socketClientAndroid.connect(config.android.port, config.android.server, function() {
-        console.log('Android connected');						
-      });
-    });
-    socketClientAndroid.on('data', function(data) {
-      var s = data.toString('utf8');			
-      if(s.indexOf('\n')!==-1){
-        console.log(s);			
-        s = s.split('\n')[0];
-        state.android = JSON.parse(s);
-        state.robot.pos.x = state.android.pos[0]*15 + 20;
-        state.robot.pos.y = state.android.pos[1]*15 + 20;
-        var q = {x: state.android.ori[0], y: state.android.ori[1], z: state.android.ori[2], w: state.android.ori[3]};
-        var ypr = quaternionYawPitchRoll(q, ypr);
-        state.robot.orientation = ypr.yaw;
-      }
-    });
-		/*console.log('android ' + config.android.server + ':' + config.android.port);
-		socketClientTango = io.connect(config.tango.url);
-		socketClientTango.on('data', function (data) { console.log(data); });*/
-		//socket.emit('private message', { user: 'me', msg: 'whazzzup?' });
-  }
-}	
-	
-
 function startServer(httpServer,debuggig)
 {
 	//serialListener(debuggig);	
@@ -169,12 +126,10 @@ function startServer(httpServer,debuggig)
   runComputations();
   doBroadcast();	
   updateSatMap();		
-  if (config.accessory) android.start(config);
-	  else startAndroidClientSocket();
-	
+
 	//cam = webcam.create( config.camera ); 	
 	//webcam.capture( "my_picture", {}, function() {
-	//	console.log( "Image created!" );
+	//	debug( "Image created!" );
 	//});
 }
 
@@ -201,17 +156,17 @@ function initSocketIO(httpServer)
   }
 	
   socketServer.on('connect', function() { 
-	  state.server.connections++;	  
-	  console.log('connect');
+    state.server.connections++;
+    debug('connect');
   });
 		
   socketServer.on('connection', function (socket) {
-    console.log('user connected ' + state.server.connections);
+    debug('user connected ' + state.server.connections);
     sendSatMap();
 		
     socket.on('disconnect', function() { 
       state.server.connections--;
-      console.log('disconnect');
+      debug('disconnect');
     });	
 	
 		
@@ -220,39 +175,38 @@ function initSocketIO(httpServer)
     });
 		
     socket.on('msg', function(data) {
-      console.log('msg: ' + data);
-      serialPort.write(data);
+      debug('msg: ' + data);
+      myPort.write(data);
     });
 		
     socket.on('buttonval', function(data) {
-      serialPort.write(data.toString());
-      console.log('buttonval: ' + data);
+      myPort.write(data.toString());
+      debug('buttonval: ' + data);
     });
 		
     socket.on('sliderval', function(data) {
-      serialPort.write(data.toString());
-      console.log('sliderval: ' + data);
+      myPort.write(data.toString());
+      debug('sliderval: ' + data);
     });
 		
     socket.on('start', function(data) {
-      serialPort.write(data.toString());
-      console.log('start: ' + data);
+      myPort.write(data.toString());
+      debug('start: ' + data);
     });
 		
-    socket.on('getconfig', function(data){
+    socket.on('getconfig', function(){
       socket.emit('config', config);
     });
 		
     socket.on('setconfig', function(data){
-      config = data;
-      socketServer.emit('config', config);
+      socketServer.emit('config', data);
       fs.open('./uploads/config.json', 'w', function(err, fd){
         if(err)
 				{
-          console.log(err);
+          debug(err);
         } else {
-          fs.write(fd, JSON.stringify(config), null, 'utf8', function(err, Writen){				
-					  fs.close(fd);					  
+          fs.write(fd, JSON.stringify(data), null, 'utf8', function(){
+            fs.close(fd);
           });
         }
       });				
@@ -264,44 +218,30 @@ function initSocketIO(httpServer)
     });
 				
     socket.on('upload', function (data){									
-      var name = data['Name'];
-      var size = data['Data'].length;
-      console.log('upload ' + name + ' ' + size);								
+      let name = data['Name'];
+      let size = data['Data'].length;
+      debug('upload ' + name + ' ' + size);								
       fs.open('./uploads/' + name, 'w', function(err, fd){
         if(err)
 				{
-          console.log(err);
+          error(err);
         } else {
-          fs.write(fd, data['Data'], null, 'Binary', function(err, Writen){				
-					  fs.close(fd);
-					  console.log('upload finished');
-					  flash();
+          fs.write(fd, data['Data'], null, 'Binary', function(){
+            fs.close(fd);
+            debug('upload finished');
+            //flash();
           });
         }				
       });			
     });
-		
-  });
-}
-
-function flash(){
-  console.log('flash ' + config.arduino.port);		
-	//exec("ls -la", puts);			
-	//exec("dir d:\\temp /S", puts);									
-  const cmd = spawn('cmd.exe', ['/c', 'test.bat']);
-  cmd.stdout.setEncoding('utf8');
-  cmd.stdout.on('data', function(data) {
-    var str = data.toString();
-    socketServer.emit('term',  str);	 
-    console.log(str);
   });
 }
 
 function serialListener()
 {
-  var receivedData = '';
+  let receivedData = '';
 
-  serialPort = new SerialPort(config.arduino.port, {
+  myPort = new serialPort(config.arduino.port, {
     parser: serialport.parsers.readline('\n'),
     baudrate    :  19200,
     dataBits    :  8,
@@ -310,32 +250,31 @@ function serialListener()
     flowControl :  false
   });
 
-  serialPort.on('open', function () 
-	{	    
-	    console.log('open serial communication');
-	    
-	    serialPort.on('data', function(data) {				
-      console.log('serial ' + data);
-      var receivedData = data;			
-      socketServer.emit('term',  data);			
-    });			  
+  myPort.on('open', function ()
+	{
+    debug('open serial communication');
+    myPort.on('data', function(data){
+      debug('serial ' + data);
+      let receivedData = data;
+      socketServer.emit('term',  data);
+    });
   });  
 }
 
 function runComputations(){
   if (config.demoMode){
-    state.robot.orientation -= (state.robot.motorLeft - state.robot.motorRight)*0.1;    
+    state.robot.orientation -= (state.robot.motorLeft - state.robot.motorRight)*0.1;
     state.robot.orientation = scalePI(state.robot.orientation);
-    state.robot.speed = (state.robot.motorLeft+state.robot.motorRight)/2.0 * 0.1;			
+    state.robot.speed = (state.robot.motorLeft+state.robot.motorRight)/2.0 * 0.1;
 
     state.robot.pos.x += Math.cos(state.robot.orientation) * state.robot.speed;
     state.robot.pos.y += Math.sin(state.robot.orientation) * state.robot.speed;
 	
-    var sat;
+    let sat;
     for (sat in state.ranging){		
-			//console.log(config.satellites.positions[sat]);
-      var pos = config.satellites.positions[sat];		
-      var d = dist2d(state.robot.pos, pos);
+			//debug(config.satellites.positions[sat]);
+      let pos = config.satellites.positions[sat];		
+      let d = dist2d(state.robot.pos, pos);
 			//state.ranging[sat] = Math.random()*0.2+d;
       state.ranging[sat] = d;
     }				
@@ -346,15 +285,15 @@ function runComputations(){
 
 
 function doBroadcast() {
-			//var receivedData = data;
-			//console.log("doThing");
-  var receivedData = Math.round(Math.random()*100) + 'A.' 
-			             + Math.round(Math.random()*100) + 'B.' 
-						 + Math.round(Math.random()*100) + 'C.' 
-						 + Math.round(Math.random()*100) + 'X.' 
-						 + Math.round(Math.random()*100) + 'Y.' 
-						 + Math.round(Math.random()*100) + 'Z';						 
-			//"14A.44B.92C.4D.87E.4X.1Y.5Z";			
+			//let receivedData = data;
+			//debug("doThing");
+  let receivedData =  Math.round(Math.random()*100) + 'A.'
+                    + Math.round(Math.random()*100) + 'B.'
+                    + Math.round(Math.random()*100) + 'C.'
+                    + Math.round(Math.random()*100) + 'X.'
+                    + Math.round(Math.random()*100) + 'Y.'
+                    + Math.round(Math.random()*100) + 'Z';
+  //"14A.44B.92C.4D.87E.4X.1Y.5Z";
   sendData = receivedData.split('.');  //Split data by '.'
 		
   for(i=0; i<sendData.length; i++)     //transmit the sendData array
@@ -362,7 +301,7 @@ function doBroadcast() {
 					//socketServer.emit('updateData',  {'pollOneValue': sendData[i]});					
   }
 			
-  var c = pnpoly(config.perimeter, state.robot.pos);			
+  let c = pnpoly(config.perimeter, state.robot.pos);			
   state.robot.inside = ((c % 2) == 0);
 			
   socketServer.emit('state', state);
@@ -374,6 +313,5 @@ function doBroadcast() {
 
 
 exports.start = startServer;
-exports.flash = flash;
 exports.sendTerminal = sendTerminal;
 

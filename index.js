@@ -9,13 +9,17 @@ const path          = require('path');
 
 const sep = path.sep;
 
-const server = require('./server');
-
-//---express web server--------------------------------------------------------
-const config    = require(__dirname + sep + 'resources' + sep + 'config.json');
+//---config--------------------------------------------------------------------
+const config      = require(__dirname + sep + 'resources' + sep + 'config.json');
+const jsPath      = config.resourcePath + sep + 'javascrpts';
 const port        = config.port;
 const publicPath  = __dirname + sep + config.publicPath + sep;
 
+//--ardumower module----------------------------------------------------------
+const flash  = require(jsPath + sep + 'flash');
+const server = require('./server');
+
+//---express web server--------------------------------------------------------
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {

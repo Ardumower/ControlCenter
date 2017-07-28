@@ -11,12 +11,12 @@ const sep = path.sep;
 
 //---config--------------------------------------------------------------------
 const config      = require(__dirname + sep + 'resources' + sep + 'config.json');
-const jsPath      = config.resourcePath + sep + 'javascrpts';
+const jsPath      = __dirname  + sep + config.resourcePath + sep + 'javascripts';
 const port        = config.port;
 const publicPath  = __dirname + sep + config.publicPath + sep;
 
 //--ardumower module----------------------------------------------------------
-const flash  = require(jsPath + sep + 'flash');
+const flash  = require(jsPath + sep + 'flash.js');
 const server = require('./server');
 
 //---express web server--------------------------------------------------------

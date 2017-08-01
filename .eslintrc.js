@@ -13,7 +13,7 @@ module.exports = {
         "no-tabs": 0,
         "linebreak-style": [
             "error",
-            "windows"
+            "unix"
         ],
         "quotes": [
             "error",

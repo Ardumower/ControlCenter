@@ -1,17 +1,17 @@
 {
   "appName": "AdumowerControlCenter",
-  "port": 8080,
+  "port": 1080,
   "publicPath": "public",
   "resourcePath": "resources",
   "debug":	true,
-  "demoMode": true,
+  "demoMode": false,
   "arduino": {
-		"port": "//./COM23",
+		"port": "/dev/ttyACM0",
 		"portX": "/dev/ttyS0"
 	},
 	"camera": {
 		"enable": true,
-		"url": "http://raspberrypi.local"		
+		"url": "192.168.178.10:8081"		
 	},
 	"chargingStation": {
 		"pos": {

@@ -361,7 +361,7 @@
 					}
 				}
 				$('#config').val( JSON.stringify(data, null, 2) );			  			  
-				drawMap();
+				//drawMap();
 			});
 	
 			iosocket.on('term', function(data)
@@ -384,7 +384,7 @@
 			  state = data;
 			  //console.log(JSON.stringify(state));			  
 			  ping();
-			  drawMap();
+			 // drawMap();
 			});
 							
 			iosocket.on('updateData', function (recievedData) 
@@ -811,10 +811,12 @@
 	   
 	    <div id="tabs-1">		   
 		   <span>
+			   <!--
 		     <canvas id="map" class="canvas" width="500" height="500">
 		       Your browser needs to support canvas for this to work!
 		     </canvas>		     						 
-			 Map: <span id="mapText"></span> 			 
+			 Map: <span id="mapText"></span> 
+			 -->			 
 			 <span id="camera">
 				<img id="cameraImage" width="320" height="240"/>
 				<br>
@@ -826,6 +828,7 @@
 			 <span id="steerText"></span> 			 			 
 		   </span>		   
 		   <br>
+		   <!--
 		   Layers visible: 
 		   <input id="checkSatMap" type="checkbox" checked="checked"><label for="checkSatMap">Satellite map</label>		   
 		   <input id="checkSatellites" type="checkbox" checked="checked"><label for="checkSatellites">Satellites</label>
@@ -838,6 +841,7 @@
 			<input type="button" id="clearpoints" value="Clear" 
 				onclick="if (confirm('Delete perimeter?')) clearPoints();"/>					   
 		   <br>
+		   -->
 		   Commands
 			<input type="button" id="mow" value="Mow" onclick="mow()"/>			
 			<input type="button" id="drivehome" value="Drive home" onclick="driveHome()"/>

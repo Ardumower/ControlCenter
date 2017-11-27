@@ -121,11 +121,11 @@ function pnpoly(vertices, test)
 
 function startServer(httpServer,debuggig)
 {
-	//serialListener(debuggig);	
+	serialListener(debuggig);	
   initSocketIO(httpServer,debuggig);
   runComputations();
   doBroadcast();	
-  updateSatMap();		
+ // updateSatMap();		
 
 	//cam = webcam.create( config.camera ); 	
 	//webcam.capture( "my_picture", {}, function() {
@@ -162,7 +162,7 @@ function initSocketIO(httpServer)
 		
   socketServer.on('connection', function (socket) {
     debug('user connected ' + state.server.connections);
-    sendSatMap();
+   // sendSatMap();
 		
     socket.on('disconnect', function() { 
       state.server.connections--;
@@ -242,7 +242,7 @@ function serialListener()
   let receivedData = '';
 
   myPort = new serialPort(config.arduino.port, {
-    parser: serialport.parsers.readline('\n'),
+    parser: serialPort.parsers.readline('\n'),
     baudrate    :  19200,
     dataBits    :  8,
     parity      : 'none',

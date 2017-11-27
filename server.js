@@ -175,21 +175,25 @@ function initSocketIO(httpServer)
     });
 		
     socket.on('msg', function(data) {
+      if (config.demoMode == true) { return; }
       debug('msg: ' + data);
       myPort.write(data);
     });
 		
     socket.on('buttonval', function(data) {
+      if (config.demoMode == true) { return; }
       myPort.write(data.toString());
       debug('buttonval: ' + data);
     });
 		
     socket.on('sliderval', function(data) {
+      if (config.demoMode == true) { return; }
       myPort.write(data.toString());
       debug('sliderval: ' + data);
     });
 		
     socket.on('start', function(data) {
+     if (config.demoMode == true) { return; }
       myPort.write(data.toString());
       debug('start: ' + data);
     });
@@ -239,6 +243,9 @@ function initSocketIO(httpServer)
 
 function serialListener()
 {
+  if (config.demoMode == true) {
+     return;  // no serial communication if in debug mode
+  }
   let receivedData = '';
 
   myPort = new serialPort(config.arduino.port, {

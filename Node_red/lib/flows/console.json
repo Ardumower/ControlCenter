@@ -1,0 +1,78 @@
+[
+    {
+        "id": "647f75f.512830c",
+        "type": "join",
+        "z": "f0ea67f7.9523a",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "<br>",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "x": 294,
+        "y": 145,
+        "wires": [
+            [
+                "18d75dfa.bcaae2"
+            ]
+        ]
+    },
+    {
+        "id": "f1012b4e.74b0d8",
+        "type": "ui_template",
+        "z": "f0ea67f7.9523a",
+        "group": "ed6e0a8a.c521d",
+        "name": "",
+        "order": 0,
+        "width": "20",
+        "height": "10",
+        "format": "<div id=\"console\" ng-bind-html=\"msg.payload\"></div>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 658,
+        "y": 110,
+        "wires": [
+            [
+                "647f75f.512830c"
+            ]
+        ]
+    },
+    {
+        "id": "18d75dfa.bcaae2",
+        "type": "function",
+        "z": "f0ea67f7.9523a",
+        "name": "TrimConsole",
+        "func": "var length = msg.payload.toString().length;\nvar keeplength = 10000;\n\nif (length > keeplength ){\n    var begin = length - keeplength;\n    \n    msg.payload = msg.payload.toString().substring(begin);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 466,
+        "y": 160,
+        "wires": [
+            [
+                "f1012b4e.74b0d8"
+            ]
+        ]
+    },
+    {
+        "id": "ed6e0a8a.c521d",
+        "type": "ui_group",
+        "z": "f0ea67f7.9523a",
+        "name": "Default",
+        "tab": "f930ec3a.b76c9",
+        "disp": true,
+        "width": "20"
+    },
+    {
+        "id": "f930ec3a.b76c9",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard"
+    }
+]

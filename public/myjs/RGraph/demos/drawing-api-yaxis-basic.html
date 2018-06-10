@@ -1,0 +1,213 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.drawing.yaxis.js" ></script>
+
+    <title>RGraph demo: Examples of the drawing API y axis</title>
+    
+    
+    <meta name="description" content="An example of the drawing API Y axis object" />
+     
+
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+        
+    <h1>Examples of the drawing API Y axis</h1>
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+
+    <script>
+        new RGraph.Drawing.YAxis({
+            id: 'cvs',
+            x: 50,
+            options: {
+                max: 100,
+                
+                tooltips: ['Hurrah'],
+                textAccessiblePointerevents: false
+            }
+        }).draw();
+
+
+
+
+
+
+        new RGraph.Drawing.YAxis({
+            id: 'cvs',
+            x: 100,
+            options: {
+                max: 1000,
+                colors: ['#74cfb9']
+            }
+        }).draw();
+
+
+
+
+
+
+        new RGraph.Drawing.YAxis({
+            id: 'cvs',
+            x: 160,
+            options: {
+                max: 0.001,
+                scaleDecimals: 4,
+                colors: ['blue']
+            }
+        }).draw();
+
+
+
+
+
+
+        new RGraph.Drawing.YAxis({
+            id: 'cvs',
+            x: 250,
+            options: {
+                max: 0.000001,
+                scaleDecimals: 7,
+                xaxispos: 'center',
+                colors: ['green']
+            }
+        }).draw();
+
+
+
+
+
+
+        new RGraph.Drawing.YAxis({
+            id: 'cvs',
+            x: 300,
+            options: {
+                max: 0.1,
+                scaleDecimals: 2,
+                scaleInvert: true,
+                colors: ['red']
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.drawing.yaxis.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Drawing.YAxis({
+        id: 'cvs',
+        x: 50,
+        options: {
+            max: 100,
+            
+            textAccessible: true,
+            textAccessiblePointerevents: false
+        }
+    }).on('click', function (e, obj)
+    {
+        alert('The Y axis has been clicked!');
+    }).on('mousemove', function (e, obj)
+    {
+        return true;
+    }).draw();
+
+
+
+
+
+
+    new RGraph.Drawing.YAxis({
+        id: 'cvs',
+        x: 100,
+        options: {
+            max: 1000,
+            colors: ['#74cfb9']
+        }
+    }).draw();
+
+
+
+
+
+
+    new RGraph.Drawing.YAxis({
+        id: 'cvs',
+        x: 160,
+        options: {
+            max: 0.001,
+            scaleDecimals: 4,
+            colors: ['blue']
+        }
+    }).draw();
+
+
+
+
+
+
+    new RGraph.Drawing.YAxis({
+        id: 'cvs',
+        x: 250,
+        options: {
+            max: 0.000001,
+            scaleDecimals: 7,
+            xaxispos: 'center',
+            colors: ['green']
+        }
+    }).draw();
+
+
+
+
+
+
+    new RGraph.Drawing.YAxis({
+        id: 'cvs',
+        x: 300,
+        options: {
+            max: 0.1,
+            scaleDecimals: 2,
+            scaleInvert: true,
+            colors: ['red']
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+    
+
+
+
+
+
+</body>
+</html>

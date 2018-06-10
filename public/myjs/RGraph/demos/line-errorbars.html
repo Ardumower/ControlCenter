@@ -1,0 +1,96 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.effects.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A Line chart with errorbars</title>
+    
+    
+    <meta name="description" content="A Line chart with errorbars" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+    <h1>A Line chart with errorbars</h1>
+
+    
+    <canvas id="cvs" width="700" height="250">[No canvas support]</canvas>
+    
+    <script>
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: [12,18,10,8,5,4,3,2,14,5,6,9],
+            options: {
+                min: 5,
+                errorbars: [1, [1,5],[5],3,3,3,3,3,3,3,3,3,3],
+                //errorbarsLinewidth: 5,
+                //errorbarsColor: 'red',
+                //errorbarsCapped: true,
+                //errorbarsCappedWidth: 100,
+                hmargin: 15,
+                tickmarks: 'circle',
+                scaleZerostart: true,
+                noxaxis: true,
+                textAccessible: true
+            }                
+        }).draw();
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="700" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var line = new RGraph.Line({
+        id: 'cvs',
+        data: [12,18,10,8,5,4,3,2,14,5,6,9],
+        options: {
+            min: 5,
+            errorbars: [1, [1,5],[5],3,3,3,3,3,3,3,3,3,3],
+            //errorbarsLinewidth: 5,
+            //errorbarsColor: 'red',
+            //errorbarsCapped: true,
+            //errorbarsCappedWidth: 100,
+            hmargin: 15,
+            tickmarks: 'circle',
+            scaleZerostart: true,
+            noxaxis: true,
+            textAccessible: true
+        }                
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

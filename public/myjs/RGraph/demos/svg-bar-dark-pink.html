@@ -1,0 +1,106 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.bar.js" ></script>
+    
+
+    <title>RGraph demo: A pink and blue SVG Bar chart</title>
+    
+    <meta name="description" content="A pink and blue SVG Bar chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>A pink and blue SVG Bar chart</h1>
+    <p>A blue Bar chart that has an offset X axis but also has both of the axes and the background grid turned off. It has a title, subtitle, labelsAbove labels and is using the wave animation effect. The font size of the the text is a little bit smaller than usual too.</p>
+    
+
+    <div style="background-color: black; width: 650px; height: 300px" id="cc"></div>
+
+
+
+    <script>
+        var data = [[45,56],[75,32],[39,47],[34,48],[46,47],[48,52]];
+
+        new RGraph.SVG.Bar({
+            id: 'cc',
+            data: data,
+            options: {
+                grouping: 'grouped',
+                colors: [
+                    'Gradient(white:#ccf:#ccf:#ccf:#ccf)',
+                    'Gradient(white:#faa:#faa:#faa:#faa)'
+                ],
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                textColor: 'white',
+                xaxisLabels: ['2007','2008','2009','2011','2012','2013'],
+                textSize: 16,
+                gutterLeft: 35,
+                gutterBottom: 35,
+                gutterTop: 15,
+                gutterRight: 5
+            }
+        }).wave();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 650px; height: 300px" id="cc"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var data = [[45,56],[75,32],[39,47],[34,48],[46,47],[48,52]];
+
+    new RGraph.SVG.Bar({
+        id: 'cc',
+        data: data,
+        options: {
+            grouping: 'grouped',
+            colors: [
+                'Gradient(white:#ccf:#ccf:#ccf:#ccf)',
+                'Gradient(white:#faa:#faa:#faa:#faa)'
+            ],
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            textColor: 'white',
+            xaxisLabels: ['2007','2008','2009','2011','2012','2013'],
+            textSize: 16,
+            gutterLeft: 35,
+            gutterBottom: 35,
+            gutterTop: 15,
+            gutterRight: 5
+        }
+    }).wave();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

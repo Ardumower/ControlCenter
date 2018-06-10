@@ -1,0 +1,97 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.hbar.js" ></script>
+    
+
+    <title>RGraph demo: stacked horizontal progress bar</title>
+    
+    
+    <meta name="description" content="stacked horizontal progress bar" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>A stacked horizontal progress bar</h1>
+    <p>This is a demo of a Horizontal Bar chart that has been configured to look like a Horizontal Progress Bar. Because the HBar chart supports stacked variants - so does the "Horizontal Progress Bar" This chart doesn't have tooltips but you can enable them if you wish.</p>
+
+    
+    <div style="width: 600px; height: 125px; display: inline-block" id="chart-container"></div>
+
+
+
+        
+
+    <script>
+        new RGraph.SVG.HBar({
+            id: 'chart-container',
+            data: [[36,15,49]],
+            options: {
+                xaxisMax: 100,
+                xaxisUnitsPost: '%',
+                yaxis: false,
+                yaxisLabels: ['Mondays usage'],
+                xaxis: false,
+                backgroundGrid: false,
+                title: 'A stacked HBar chart',
+                vmargin: 10,
+                grouping: 'stacked',
+                colors: ['Gradient(white:red)','Gradient(white:green)','Gradient(white:blue)']
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.hbar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 600px; height: 125px" id="chart-container"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.HBar({
+        id: 'chart-container',
+        data: [[36,15,49]],
+        options: {
+            xaxisMax: 100,
+            xaxisUnitsPost: '%',
+            yaxis: false,
+            yaxisLabels: ['Mondays usage'],
+            xaxis: false,
+            backgroundGrid: false,
+            title: 'A grouped HBar chart',
+            vmargin: 10,
+            grouping: 'stacked',
+            colors: ['Gradient(white:red)','Gradient(white:green)','Gradient(white:blue)']
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

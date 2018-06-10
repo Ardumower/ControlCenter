@@ -1,0 +1,115 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.vprogress.js" ></script>
+    <script src="../libraries/RGraph.semicircularprogress.js" ></script>
+    
+    <title>RGraph demo: An adjustable SemiCircular Progress chart with offset start/end</title>
+    
+    
+    
+    <meta name="description" content="An adjustable SemiCircular Progress chart with offset start/end" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+    <h1>An adjustable SemiCircular Progress chart with offset start/end</h1>
+
+    <canvas id="cvs" width="500" height="300">[No canvas support]</canvas>
+    <canvas id="cvs2" width="100" height="300">[No canvas support]</canvas>
+    
+    <script>
+        var ssp = new RGraph.SemiCircularProgress({
+            id: 'cvs',
+            min: 0,
+            max: 100,
+            value: 86,
+            options: {
+                gutterTop: 10,
+                gutterBottom: 105,
+                gutterLeft: 10,
+                gutterRight: 10,
+                unitsPost: '%',
+                labelsCenterSize: 70,
+                labelsCenterValign: 'center',
+                labelsMinSize: 19,
+                labelsMinOffsetAngle:-0.1,
+                labelsMinOffsetx:0,
+                labelsMinOffsety:0,
+                labelsMaxSize: 19,
+                labelsMaxOffsetAngle:0.1,
+                labelsMaxOffsetx:0,
+                labelsMaxOffsety:0,
+                adjustable: true,
+                textAccessiblePointerevents: false,
+                colors: ['Gradient(white:#0a0)'],
+                anglesStart: RGraph.PI - 0.5,
+                anglesEnd: RGraph.TWOPI + 0.5
+            }
+        }).draw();
+    </script>
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.semicircularprogress.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="500" height="300"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var ssp = new RGraph.SemiCircularProgress({
+        id: 'cvs',
+        min: 0,
+        max: 100,
+        value: 86,
+        options: {
+            gutterTop: 10,
+            gutterBottom: 105,
+            gutterLeft: 10,
+            gutterRight: 10,
+            unitsPost: '%',
+            labelsCenterSize: 70,
+            labelsCenterValign: 'center',
+            labelsMinSize: 19,
+            labelsMinOffsetAngle:-0.1,
+            labelsMinOffsetx:0,
+            labelsMinOffsety:0,
+            labelsMaxSize: 19,
+            labelsMaxOffsetAngle:0.1,
+            labelsMaxOffsetx:0,
+            labelsMaxOffsety:0,
+            adjustable: true,
+            textAccessiblePointerevents: false,
+            colors: ['Gradient(white:#0a0)'],
+            anglesStart: RGraph.PI - 0.5,
+            anglesEnd: RGraph.TWOPI + 0.5
+        }
+    }).grow();
+ &lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

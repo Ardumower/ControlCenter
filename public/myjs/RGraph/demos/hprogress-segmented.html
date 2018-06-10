@@ -1,0 +1,184 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.hprogress.js" ></script>
+    
+    <title>RGraph demo: A segmented HProgress chart</title>
+    
+    
+    
+    <meta name="description" content="A segmented Horizontal Progress Bar" />
+
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <!-- Share buttons -->
+    <p style="float: right">
+        <script>
+            document.write('<a href="" target="_blank" onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u=http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=600,height=368\'); return false"><img src="../images/facebook-large.png" width="200" height="43" alt="Share on Facebook" border="0" title="Visit the RGraph Facebook page" id="facebook_link" /></a>&nbsp;');
+            document.write('<a href="https://twitter.com/_rgraph" target="_blank" onclick="window.open(\'https://twitter.com/intent/tweet?text=Check%20out%20this%20demo%20of%20RGraph:%202D/3D%20JavaScript%20charts%20-%20Free%20and%20Open%20Source%20http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=700,height=400\'); return false"><img src="../images/twitter-large.png" width="200" height="43" alt="Share on Twitter" border="0" title="Mention RGraph on Twitter" id="twitter_link" /></a>');
+        </script>
+    </p>
+
+
+    <h1>A segmented HProgress chart</h1>
+
+    <div style="margin-bottom: 20px">
+        <canvas id="cvs" width="600" height="100">[No canvas support]</canvas>
+    </div>
+    
+    <script>
+        window.onload = function ()
+        {
+            var value = 7;
+
+            var hprogress = new RGraph.HProgress({
+                id: 'cvs',
+                min: 0,
+                max: 10,
+                value: 0,
+                options: {
+                    margin: 7,
+                    colors: ['red','yellow','pink','white'],
+                    strokestyle: 'rgba(0,0,0,0)',
+                    linewidth: 5,
+                    tickmarks: 0,
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    gutterTop: 10,
+                    gutterBottom: 10,
+                    labelsOffsetx: -30,
+                    labelsOffsety: 5,
+                    tickmarksZerostart: false
+                }
+            }).on('beforedraw', function (obj)
+            {
+                obj.context.fillStyle = 'black';
+                obj.context.fillRect(0,0,obj.canvas.width,obj.canvas.height);
+            }).on('draw', function (obj)
+            {
+                var x    = obj.coords[0][0]
+                    y    = obj.coords[0][1],
+                    w    = obj.coords[0][2],
+                    h    = obj.coords[0][3],
+                    pa2  = RGraph.path2,
+                    lw   = 5,
+                    step = 1
+                
+                for (var i=0; i<=10; i+=step) {
+                    
+                    var x2 = obj.getXCoord(i);
+                    
+                    pa2(obj.context, 'lw % ss white sr % % % %', lw, x, y, x2 - x, h);
+                }
+            }).draw();
+            
+            
+            // Increase the represented value - a custom grow effect
+            // that increases the value in whole values
+            for (var i=0; i<=value; ++i) {
+                (function (num)
+                {
+                    setTimeout(function ()
+                    {
+                        hprogress.value = num;
+                        RGraph.redraw();
+                    }, num * 150);
+                })(i)
+            }
+        }
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.hprogress.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="margin-bottom: 20px"&gt;
+    &lt;canvas id="cvs" width="600" height="100"&gt;[No canvas support]&lt;/canvas&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var value = 7;
+
+        var hprogress = new RGraph.HProgress({
+            id: 'cvs',
+            min: 0,
+            max: 10,
+            value: 0,
+            options: {
+                margin: 7,
+                colors: ['red','yellow','pink','white'],
+                strokestyle: 'rgba(0,0,0,0)',
+                linewidth: 5,
+                tickmarks: 0,
+                backgroundColor: 'rgba(0,0,0,0)',
+                gutterTop: 10,
+                gutterBottom: 10,
+                labelsOffsetx: -30,
+                labelsOffsety: 5,
+                tickmarksZerostart: false
+            }
+        }).on('beforedraw', function (obj)
+        {
+            obj.context.fillStyle = 'black';
+            obj.context.fillRect(0,0,obj.canvas.width,obj.canvas.height);
+        }).on('draw', function (obj)
+        {
+            var x    = obj.coords[0][0]
+                y    = obj.coords[0][1],
+                w    = obj.coords[0][2],
+                h    = obj.coords[0][3],
+                pa2  = RGraph.path2,
+                lw   = 5,
+                step = 1
+            
+            for (var i=0; i&lt;=10; i+=step) {
+                
+                var x2 = obj.getXCoord(i);
+                
+                pa2(obj.context, 'lw % ss white sr % % % %', lw, x, y, x2 - x, h);
+            }
+        }).draw();
+        
+        
+        <span>// Increase the represented value - a custom grow effect
+        // that increases the value in whole values</span>
+        for (var i=0; i&lt;=value; ++i) {
+            (function (num)
+            {
+                setTimeout(function ()
+                {
+                    hprogress.value = num;
+                    RGraph.redraw();
+                }, num * 150);
+            })(i)
+        }
+    }
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+</body>
+</html>

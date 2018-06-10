@@ -1,0 +1,121 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.sheets.js" ></script>
+    <script src="../libraries/RGraph.svg.scatter.js" ></script>
+    
+
+    <title>RGraph demo: An SVG Scatter chart using the Google Sheets connector</title>
+    
+    
+    <meta name="description" content="An SVG Scatter chart using the Google Sheets connector" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An SVG Scatter chart using the Google Sheets connector</h1>
+    <p>An example of using the Google sheets connector to retrieve data from a Sheets spreadsheet. The points that are retrieved are combined to from the Scatter chart coordinates.</p>
+
+    
+    <div style="width: 1000px; height: 300px" id="chart-container"></div>
+
+
+
+        
+
+    <script>
+        new RGraph.Sheets('1ncvARBgXaDjzuca9i7Jyep6JTv9kms-bbIzyAxbaT0E', function (sheet)
+        {
+            var data1   = sheet.get('B2:B13'),
+                data2   = sheet.get('C2:C13'),
+                data    = [];
+            
+            // Get the data
+            for (var i=0; i<data1.length; i++) {
+                data.push({x: data1[i], y: data2[i]});
+            }
+
+            new RGraph.SVG.Scatter({
+                id: 'chart-container',
+                data: data,
+                options: {
+                    gutterTop: 50,
+                    textSize: 10,
+                    xaxisLabels: ['Q1','Q2','Q3','Q4'],
+                    yaxis: false,
+                    backgroundGridColor: '#eee',
+                    backgroundGridVlines: false,
+                    backgroundGridBorder: false,
+                    xaxisColor: '#333',
+                    xaxisMax: 50,
+                    title: 'A Scatter chart using the Google Sheets connector'
+                }
+            }).draw();
+        });
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.common.sheets.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.scatter.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 1000px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Sheets('1ncvARBgXaDjzuca9i7Jyep6JTv9kms-bbIzyAxbaT0E', function (sheet)
+    {
+        var data1   = sheet.get('B2:B13'),
+            data2   = sheet.get('C2:C13'),
+            data    = [];
+        
+        <span>// Get the data</span>
+        for (var i=0; i&lt;data1.length; i++) {
+            data.push({x: data1[i], y: data2[i]});
+        }
+
+        new RGraph.SVG.Scatter({
+            id: 'chart-container',
+            data: data,
+            options: {
+                gutterTop: 50,
+                textSize: 10,
+                xaxisLabels: ['Q1','Q2','Q3','Q4'],
+                yaxis: false,
+                backgroundGridColor: '#eee',
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                xaxisColor: '#333',
+                xaxisMax: 50,
+                title: 'A Scatter chart using the Google Sheets connector'
+            }
+        }).draw();
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

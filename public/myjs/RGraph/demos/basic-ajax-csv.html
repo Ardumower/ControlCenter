@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>RGraph demo: A basic example of a CSV/AJAX</title>
+    
+    
+    <meta name="googlebot" content="NOODP">
+    
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <!-- Include the RGraph libraries -->
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+
+    <meta name="robots" content="noindex" />
+
+</head>
+
+<body>
+
+    
+
+    <h1>A basic example of AJAX and CSV data</h1>
+    
+    <p>
+        This is a basic example of using CSV and AJAX. AJAX is used to request the data and it is returned in CSV format. The JSON
+        data is then evaluated and a chart created using it.
+    </p>
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+
+    <script>
+        /**
+        * Ths window.onload function initiates the AJAX request. The AJAX page is: http://www.rgraph.net/getdata.html
+        * If you view this in your browser you'll see that all it does is output a sequence of numbers.
+        */
+        window.onload = function ()
+        {
+            RGraph.AJAX.getCSV('/getdata.html', drawGraph);
+        };
+
+
+
+        /**
+        * This is the AJAX callback function. The AJAX getCSV() converts the strings to numbers for you.
+        */
+        function drawGraph (csv)
+        {
+            // Now draw the chart
+            var line = new RGraph.Line({
+                id: 'cvs',
+                data: csv,
+                options: {
+                    textAccessible: true,
+                    hmargin: 0,
+                    linewidth: 2,
+                    ymax: 100,
+                    numxticks: 9,
+                    gutterLeft: 35,
+                    labels: ['Gary','Rachel','Neil','Martha','Kevin','Craig','John','Peter','Luis','Bert']
+                }
+            }).draw()
+        }
+    </script>
+    
+    <p>
+        <b>Note:</b>
+        In October 2013 a new CSV reader was added to RGraph. It makes reading CSV files much easier. You can read about
+        <a href="https://www.rgraph.net/canvas/docs/csv-file-reader.html">the new CSV reader</a> here.
+    </p>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    <span>/**
+    * Ths window.onload function initiates the AJAX request. The AJAX page is: http://www.rgraph.net/getdata.html
+    * If you view this in your browser you'll see that all it does is output a sequence of numbers.
+    */</span>
+    window.onload = function ()
+    {
+        RGraph.AJAX.getCSV('/getdata.html', drawGraph);
+    };
+
+
+
+    <span>/**
+    * This is the AJAX callback function. The AJAX getCSV() converts the strings to numbers for you.
+    */</span>
+    function drawGraph (csv)
+    {
+        <span>// Now draw the chart</span>
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: csv,
+            options: {
+                textAccessible: true,
+                hmargin: 0,
+                linewidth: 2,
+                ymax: 100,
+                numxticks: 9,
+                    gutterLeft: 35,
+                labels: ['Gary','Rachel','Neil','Martha','Kevin','Craig','John','Peter','Luis','Bert']
+            }
+        }).draw()
+    }
+&lt;/script&gt;
+</pre>
+
+
+    
+</body>
+</html>

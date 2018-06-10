@@ -1,0 +1,123 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.gauge.js" ></script>
+    
+    <title>RGraph demo: Gauge chart Grow effect</title>
+    
+    
+    <meta name="description" content="Gauge chart Grow effect" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>Gauge chart Grow effect</h1>
+
+    <br />
+    <br />
+
+    <canvas id="cvs1" width="300" height="300">[No canvas support]</canvas>
+    <canvas id="cvs2" width="300" height="300">[No canvas support]</canvas>
+    
+    <script>
+        window.onload = function ()
+        {
+            var gauge1 = new RGraph.Gauge({
+                id: 'cvs1',
+                min: 0,
+                max: 100,
+                value: [80,100],
+                options: {
+                    textAccessible: true
+                }
+            }).grow();
+
+            var gauge2 = new RGraph.Gauge({
+                id: 'cvs2',
+                min: 0,
+                max: 100,
+                value: 100,
+                options: {
+                    textAccessible: true
+                }
+            }).grow({frames: 25});
+            
+            
+            setTimeout(function ()
+            {
+                gauge1.value = [10,20];
+                gauge1.grow();
+
+                gauge2.value = 16;
+                gauge2.grow();
+            }, 3500);
+        };
+    </script>
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.gauge.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var gauge1 = new RGraph.Gauge({
+            id: 'cvs1',
+            min: 0,
+            max: 100,
+            value: [80,100],
+            options: {
+                textAccessible: true
+            }
+        }).grow();
+
+        var gauge2 = new RGraph.Gauge({
+            id: 'cvs2',
+            min: 0,
+            max: 100,
+            value: 100,
+            options: {
+                textAccessible: true
+            }
+        }).grow({frames: 25});
+        
+        
+        setTimeout(function ()
+        {
+            gauge1.value = [10,20];
+            gauge1.grow();
+
+            gauge2.value = 16;
+            gauge2.grow();
+        }, 3500);
+    };
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

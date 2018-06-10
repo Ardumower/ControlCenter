@@ -1,0 +1,112 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script type="text/javascript" src="../libraries/RGraph.common.core.js" ></script>
+    <script type="text/javascript" src="../libraries/RGraph.bar.js" ></script>
+    
+    <title>RGraph demo: A Bar chart with a dark background</title>
+    
+    
+    <meta name="description" content="A Bar chart with a dark background" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar chart with a dark background</h1>
+    <p>This is a grouped Bar chart, with two bars per group, which uses a red/blue graduated fill. The background grid has been customised and the background itself is a dark color (so the text has been changed to white). Also the chart is using the Bar chart wave() effect. This grows sequentially from the left hand side with a small delay between each group of bars.</p>
+
+    <canvas id="cvs" width="500" height="250" style="background-color: #333; border-radius: 5px; box-shadow: 2px 2px 2px #999">[No canvas support]</canvas>
+    
+    <script>
+        window.onload = function ()
+        {
+            var data = [[45,56],[75,32],[39,47],[34,48],[46,47],[48,52]];
+
+            new RGraph.Bar({
+                id: 'cvs',
+                data: data,
+                options: {
+                    shadow: false,
+                    strokestyle: 'rgba(0,0,0,0)',
+                    grouping: 'grouped',
+                    colors: ['Gradient(white:#ccf:#ccf:#ccf:#ccf)','Gradient(white:#faa:#faa:#faa:#faa)'],
+                    backgroundGridVlines: false,
+                    backgroundGridBorder: false,
+                    textColor: 'white',
+                    labels: ['2007','2008','2009','2011','2012','2013'],
+                    textAccessible: true,
+                    textSize: 16,
+                    gutterLeft: 35,
+                    gutterBottom: 35,
+                    gutterTop: 15,
+                    gutterRight: 5
+                }
+            }).wave();
+        };
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var data = [[45,56],[75,32],[39,47],[34,48],[46,47],[48,52]];
+
+        new RGraph.Bar({
+            id: 'cvs',
+            data: data,
+            options: {
+                shadow: false,
+                strokestyle: 'rgba(0,0,0,0)',
+                grouping: 'grouped',
+                colors: ['Gradient(white:#ccf:#ccf:#ccf:#ccf)','Gradient(white:#faa:#faa:#faa:#faa)'],
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                textColor: 'white',
+                labels: ['2007','2008','2009','2011','2012','2013'],
+                textAccessible: true,
+                textSize: 16,
+                gutterLeft: 35,
+                gutterBottom: 35,
+                gutterTop: 15,
+                gutterRight: 5
+            }
+        }).wave();
+    };
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+</body>
+</html>

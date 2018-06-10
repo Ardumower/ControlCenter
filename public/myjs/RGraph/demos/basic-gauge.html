@@ -1,0 +1,83 @@
+<!DOCTYPE html >
+<html>
+<head>
+
+    <title>RGraph demo: A basic Gauge chart example</title>
+    
+    
+    <meta name="description" content="A basic example of an RGraph Gauge chart for implementation help. It shows a simple example and there is little happening on the page so the source is easy to navigate." />
+    <meta name="googlebot" content="NOODP">
+    
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <!-- 1/3. Include the RGraph libraries -->
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.gauge.js" ></script>
+
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A basic Gauge charts example</h1>
+
+    <!-- 2/3. This is the canvas that the graph is drawn on -->
+    <canvas id="cvs" width="300" height="300">[No canvas support]</canvas>
+
+    <!--
+        3/3. This creates and displays the graph. As it is here, you can call this from the window.onload event,
+             allowing you to put it in your pages header.
+    -->
+    <script>
+        new RGraph.Gauge({
+            id: 'cvs',
+            min: 0,
+            max: 100,
+            value: 78,
+            options: {
+                textAccessible: true
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.gauge.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="300" height="300"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Gauge({
+        id: 'cvs',
+        min: 0,
+        max: 100,
+        value: 78,
+        options: {
+            textAccessible: true
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+    
+</body>
+</html>

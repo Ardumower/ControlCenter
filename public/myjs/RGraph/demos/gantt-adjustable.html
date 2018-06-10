@@ -1,0 +1,92 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.gantt.js" ></script>
+    
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <title>RGraph demo: An adjustable Gantt chart</title>
+    
+    
+    <meta name="description" content="An adjustable Gantt chart" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <h1>An adjustable Gantt chart</h1>
+    
+    <canvas id="cvs" width="800" height="350">[No canvas support]</canvas>
+
+    <script>
+        var data = [
+            [31, 28, 67, 'Richard'], [0, 28, 50, 'Rachel'], [12, 28, 45, 'Fred'],
+            [59, 14, 0, 'Barney'],   [59, 21, 5, 'Gloria'], [46, 31, 92, 'Paul'],
+            [80, 21, 46, 'Harry'],   [94, 17, 84, 'Shane'], [34, 14, 32, 'Kyle'],
+            [64, 14, 28, 'Cynthia'], [13, 61, 74, 'Mabel'], [84, 31, 16, 'Paul'],
+            [80, 22, 45, 'Kiffen'], [0, 115, 50, 'John']
+        ];
+
+        new RGraph.Gantt({
+            id: 'cvs',
+            data: data,
+            options: {
+                labels: ['January', 'February', 'March', 'April'],
+                xmax: 122,
+                labelsPercent: true,
+                backgroundGridAutofitNumvlines: 4,
+                adjustable: true
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.gantt.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="800" height="350"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var data = [
+        [31, 28, 67, 'Richard'], [0, 28, 50, 'Rachel'], [12, 28, 45, 'Fred'],
+        [59, 14, 0, 'Barney'],   [59, 21, 5, 'Gloria'], [46, 31, 92, 'Paul'],
+        [80, 21, 46, 'Harry'],   [94, 17, 84, 'Shane'], [34, 14, 32, 'Kyle'],
+        [64, 14, 28, 'Cynthia'], [13, 61, 74, 'Mabel'], [84, 31, 16, 'Paul'],
+        [80, 22, 45, 'Kiffen'], [0, 115, 50, 'John']
+    ];
+
+    new RGraph.Gantt({
+        id: 'cvs',
+        data: data,
+        options: {
+            labels: ['January', 'February', 'March', 'April'],
+            xmax: 122,
+            labelsPercent: true,
+            backgroundGridAutofitNumvlines: 4,
+            adjustable: true
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+    
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.rscatter.js" ></script>
+    
+    <title>RGraph demo: An RScatter chart with a joining line</title>
+
+    
+    
+    <meta name="description" content="An RScatter chart with a joining line" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+    <h1>An RScatter chart with a joining line</h1>
+
+    <canvas id="cvs" width="500" height="500">[No canvas support]</canvas>
+    
+    <script>
+        var data = [
+            [15,80],
+            [55,65],
+            [65,45],
+            [84,96],
+            [125,85],
+            [175,78]
+        ];
+
+        new RGraph.Rscatter({
+            id: 'cvs',
+            data: [data],
+            options: {
+                line: true,
+                lineColors: ['red'],
+                unitsPost: 'kj',
+                textAccessible: true
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.rscatter.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="500" height="500"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var data = [];
+
+        for (var i=0; i&lt;360; i+=2) {
+            data.push([i * 2, i, 'red']);
+        }
+
+        var rscatter = new RGraph.Rscatter({
+            id: 'cvs',
+            data: [data],
+            options: {
+                textAccessible: true
+            }
+        }).draw();
+    };
+&lt;/script&gt;
+</pre>
+
+
+    
+
+</body>
+</html>

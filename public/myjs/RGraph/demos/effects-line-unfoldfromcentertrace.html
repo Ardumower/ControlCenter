@@ -1,0 +1,75 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: Line chart UnfoldFromCenterTrace effect</title>
+    
+    
+    
+    <meta name="description" content="Line chart UnfoldFromCenterTrace effect" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+    <h1>Line chart UnfoldFromCenterTrace effect</h1>
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+    
+    <script>
+        window.onload = function ()
+        {
+            var line = new RGraph.Line({
+                id: 'cvs',
+                data: [10,1,10,7,4,9,5,6,3,5],
+                options: {
+                    textAccessible: true
+                }
+            }).unfoldFromCenterTrace()
+        };
+    </script>
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: [10,1,10,7,4,9,5,6,3,5],
+            options: {
+                textAccessible: true
+            }
+        }).unfoldFromCenterTrace()
+    };
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

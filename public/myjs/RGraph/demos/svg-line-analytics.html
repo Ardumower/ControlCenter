@@ -1,0 +1,275 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.key.js" ></script>
+    <script src="../libraries/RGraph.svg.line.js" ></script>
+    
+
+    <title>RGraph demo: A mockup of a Google Analytics style dashboard</title>
+    
+    
+    <meta name="description" content="A mockup of a Google Analytics style dashboard" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>A mockup of a Google Analytics style dashboard</h1>
+    <p>This is a mockup of the Google analytics dashboard with 7 Line charts. It shows one main larger Line chart along with 6 smaller charts that all indicate different metrics. Believe it or not - the data isn't real! There's more code than normal shown below - but that's to be expected.</p>
+
+
+    <style>
+        div#cc1 {
+            width: 600px;
+            height: 200px;
+        }
+
+        div#cc2,
+        div#cc3,
+        div#cc4,
+        div#cc5,
+        div#cc6,
+        div#cc7 {
+            position: relative;
+            float: left;
+            width: 200px;
+            height: 60px;
+            border-right: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <div style="width: 600px; height: 300px">
+        <div id="cc1"></div>
+        <div id="cc2"></div>
+        <div id="cc3"></div>
+        <div id="cc4"></div>
+        <div id="cc5"></div>
+        <div id="cc6"></div>
+        <div id="cc7"></div>
+    </div>
+
+
+
+
+        
+
+    <script>
+        l1 = new RGraph.SVG.Line({
+            id: 'cc1',
+            data: [22,61,64,35,91,59,62,91,124,94,77,196,309,147,102,107,199,36,0,0,0,0,0,0],
+            options: {
+                key: ['Pageviews'],
+                keyColorShape: 'circle',
+                keyTextSize: 10,
+                keyOffsetx: -220,
+                gutterTop: 35,
+                filled: true,
+                tickmarks: 'filledcircle',
+                colors: ['#058DC7'],
+                linewidth: 3,
+                tickmarksStyle: 'filledcircle',
+                filledOpacity:  0.75,
+                filledColors:  ['#E6F4FA'],
+                textSize: 8,
+                yaxis: false,
+                yaxisMax: 400,
+                yaxisLabelsCount: 2,
+                xaxis:false,
+                xaxisLabels: [
+                    '','','','','04:00','',
+                    '','','08:00','','','',
+                    '12:00','','','','16:00','',
+                    '','','20:00','','',''
+                ],
+                backgroundGridBorder: false,
+                backgroundGridVlines: false,
+                backgroundGridHlinesCount: 2
+            }
+        }).draw();
+        
+        RGraph.SVG.GLOBALS.backgroundGrid = false;
+        RGraph.SVG.GLOBALS.gutterLeft     = 15;
+        RGraph.SVG.GLOBALS.gutterRight    = 15;
+        RGraph.SVG.GLOBALS.gutterTop      = 15;
+        RGraph.SVG.GLOBALS.gutterBottom   = 5;
+        RGraph.SVG.GLOBALS.filled         = true;
+        RGraph.SVG.GLOBALS.colors         = ['#058DC7'];
+        RGraph.SVG.GLOBALS.filledColors   = ['#E6F4FA'];
+        RGraph.SVG.GLOBALS.textSize       = 8;
+        RGraph.SVG.GLOBALS.yaxis          = false;
+        RGraph.SVG.GLOBALS.yaxisMax       = 20;
+        RGraph.SVG.GLOBALS.yaxisScale     = false;
+        RGraph.SVG.GLOBALS.xaxis          = false;
+        RGraph.SVG.GLOBALS.backgroundGrid = false;
+        
+        // The smaller charts
+        l2 = new RGraph.SVG.Line({id: 'cc2',data: [4,6,8,5,2,3,5,4,6,7,8,7,8,5,6,8,9,8,0,0,0,0,0,0]}).draw();
+        l3 = new RGraph.SVG.Line({id: 'cc3',data: [1,6,3,5,2,4,5,6,8,7,8,6,8,9,4,7,5,4,0,0,0,0,0,0]}).draw();
+        l4 = new RGraph.SVG.Line({id: 'cc4',data: [3,6,8,4,2,3,8,9,4,6,5,6,7,8,8,8,6,5,0,0,0,0,0,0]}).draw();
+        l5 = new RGraph.SVG.Line({id: 'cc5',data: [2,3,1,0,0,8,7,8,9,1,4,6,3,4,5,2,8,1,0,0,0,0,0,0]}).draw();
+        l6 = new RGraph.SVG.Line({id: 'cc6',data: [1,2,3,4,5,2,3,4,6,3,5,2,3,5,4,2,4,5,0,0,0,0,0,0]}).draw();
+        l7 = new RGraph.SVG.Line({id: 'cc7',data: [4,6,8,5,3,4,5,6,8,4,5,6,3,5,6,7,4,5,0,0,0,0,0,0]}).draw();
+
+        x    = 5;
+        y    = 10;
+        size = 8;
+        RGraph.SVG.text({object: l2, x: x, y: y, text: 'Sessions',size: size});
+        RGraph.SVG.text({object: l3, x: x, y: y, text: 'Users',size: size});
+        RGraph.SVG.text({object: l4, x: x, y: y, text: 'Pageviews',size: size});
+        RGraph.SVG.text({object: l5, x: x, y: y, text: 'Pages/Session',size: size});
+        RGraph.SVG.text({object: l6, x: x, y: y, text: 'Avg session duration',size: size});
+        RGraph.SVG.text({object: l7, x: x, y: y, text: 'Bounce rate',size: size});
+
+        y    = 30;
+        size = 16;
+        RGraph.SVG.text({object: l2, x: x, y: y, text: '527',size: size});
+        RGraph.SVG.text({object: l3, x: x, y: y, text: '444',size: size});
+        RGraph.SVG.text({object: l4, x: x, y: y, text: '2178',size: size});
+        RGraph.SVG.text({object: l5, x: x, y: y, text: '4.13',size: size});
+        RGraph.SVG.text({object: l6, x: x, y: y, text: '00:03:55',size: size});
+        RGraph.SVG.text({object: l7, x: x, y: y, text: '60.91%',size: size});
+    </script>
+
+
+
+    <div style="clear: both"></div>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.common.key.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;style&gt;
+    div#cc1 {
+        width: 600px;
+        height: 200px;
+    }
+
+    div#cc2,
+    div#cc3,
+    div#cc4,
+    div#cc5,
+    div#cc6,
+    div#cc7 {
+        position: relative;
+        float: left;
+        width: 200px;
+        height: 60px;
+        border-right: 1px solid #ccc;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+    }
+&lt;/style&gt;
+
+&lt;div style="width: 600px; height: 300px"&gt;
+    &lt;div id="cc1"&gt;&lt;/div&gt;
+    &lt;div id="cc2"&gt;&lt;/div&gt;
+    &lt;div id="cc3"&gt;&lt;/div&gt;
+    &lt;div id="cc4"&gt;&lt;/div&gt;
+    &lt;div id="cc5"&gt;&lt;/div&gt;
+    &lt;div id="cc6"&gt;&lt;/div&gt;
+    &lt;div id="cc7"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    l1 = new RGraph.SVG.Line({
+        id: 'cc1',
+        data: [22,61,64,35,91,59,62,91,124,94,77,196,309,147,102,107,199,36,0,0,0,0,0,0],
+        options: {
+            key: ['Pageviews'],
+            keyColorShape: 'circle',
+            keyTextSize: 10,
+            keyOffsetx: -220,
+            gutterTop: 35,
+            filled: true,
+            tickmarks: 'filledcircle',
+            colors: ['#058DC7'],
+            linewidth: 3,
+            tickmarksStyle: 'filledcircle',
+            filledOpacity:  0.75,
+            filledColors:  ['#E6F4FA'],
+            textSize: 8,
+            yaxis: false,
+            yaxisMax: 400,
+            yaxisLabelsCount: 2,
+            xaxis:false,
+            xaxisLabels: [
+                '','','','','04:00','',
+                '','','08:00','','','',
+                '12:00','','','','16:00','',
+                '','','20:00','','',''
+            ],
+            backgroundGridBorder: false,
+            backgroundGridVlines: false,
+            backgroundGridHlinesCount: 2
+        }
+    }).draw();
+    
+    <span>// Set the GLOBALS to the required configuration so it doesn't have to continually set</span>
+    RGraph.SVG.GLOBALS.backgroundGrid = false;
+    RGraph.SVG.GLOBALS.gutterLeft     = 15;
+    RGraph.SVG.GLOBALS.gutterRight    = 15;
+    RGraph.SVG.GLOBALS.gutterTop      = 15;
+    RGraph.SVG.GLOBALS.gutterBottom   = 5;
+    RGraph.SVG.GLOBALS.filled         = true;
+    RGraph.SVG.GLOBALS.colors         = ['#058DC7'];
+    RGraph.SVG.GLOBALS.filledColors   = ['#E6F4FA'];
+    RGraph.SVG.GLOBALS.textSize       = 8;
+    RGraph.SVG.GLOBALS.yaxis          = false;
+    RGraph.SVG.GLOBALS.yaxisMax       = 20;
+    RGraph.SVG.GLOBALS.yaxisScale     = false;
+    RGraph.SVG.GLOBALS.xaxis          = false;
+    RGraph.SVG.GLOBALS.backgroundGrid = false;
+    
+    <span>// The smaller charts</span>
+    l2 = new RGraph.SVG.Line({id: 'cc2',data: [4,6,8,5,2,3,5,4,6,7,8,7,8,5,6,8,9,8,0,0,0,0,0,0]}).draw();
+    l3 = new RGraph.SVG.Line({id: 'cc3',data: [1,6,3,5,2,4,5,6,8,7,8,6,8,9,4,7,5,4,0,0,0,0,0,0]}).draw();
+    l4 = new RGraph.SVG.Line({id: 'cc4',data: [3,6,8,4,2,3,8,9,4,6,5,6,7,8,8,8,6,5,0,0,0,0,0,0]}).draw();
+    l5 = new RGraph.SVG.Line({id: 'cc5',data: [2,3,1,0,0,8,7,8,9,1,4,6,3,4,5,2,8,1,0,0,0,0,0,0]}).draw();
+    l6 = new RGraph.SVG.Line({id: 'cc6',data: [1,2,3,4,5,2,3,4,6,3,5,2,3,5,4,2,4,5,0,0,0,0,0,0]}).draw();
+    l7 = new RGraph.SVG.Line({id: 'cc7',data: [4,6,8,5,3,4,5,6,8,4,5,6,3,5,6,7,4,5,0,0,0,0,0,0]}).draw();
+
+    x    = 5;
+    y    = 10;
+    size = 8;
+    RGraph.SVG.text({object: l2, x: x, y: y, text: 'Sessions',size: size});
+    RGraph.SVG.text({object: l3, x: x, y: y, text: 'Users',size: size});
+    RGraph.SVG.text({object: l4, x: x, y: y, text: 'Pageviews',size: size});
+    RGraph.SVG.text({object: l5, x: x, y: y, text: 'Pages/Session',size: size});
+    RGraph.SVG.text({object: l6, x: x, y: y, text: 'Avg session duration',size: size});
+    RGraph.SVG.text({object: l7, x: x, y: y, text: 'Bounce rate',size: size});
+
+    y    = 30;
+    size = 16;
+    RGraph.SVG.text({object: l2, x: x, y: y, text: '527',size: size});
+    RGraph.SVG.text({object: l3, x: x, y: y, text: '444',size: size});
+    RGraph.SVG.text({object: l4, x: x, y: y, text: '2178',size: size});
+    RGraph.SVG.text({object: l5, x: x, y: y, text: '4.13',size: size});
+    RGraph.SVG.text({object: l6, x: x, y: y, text: '00:03:55',size: size});
+    RGraph.SVG.text({object: l7, x: x, y: y, text: '60.91%',size: size});
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

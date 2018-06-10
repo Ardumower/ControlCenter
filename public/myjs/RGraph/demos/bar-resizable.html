@@ -1,0 +1,94 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.resizing.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+    <title>RGraph demo: A resizable Bar chart</title>
+    
+    
+    <meta name="description" content="A resizable Bar chart" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A resizable Bar chart</h1>
+
+    
+    <canvas id="cvs" width="700" height="250">[No canvas support]</canvas>
+    
+    <script>
+        new RGraph.Bar({
+            id: 'cvs',
+            data: [12,18,10,9,6,20,18],
+            options: {
+                resizable: true,
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                shadow: false,
+                colors: ['red'],
+                strokestyle: 'rgba(0,0,0,0)',
+                textAccessible: true
+            }                
+        }).draw();
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&gt;/script&gt;
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.resizable.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="700" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var bar = new RGraph.Bar({
+            id: 'cvs',
+            data: [12,18,10,9,6,20,18],
+            options: {
+                resizable: true,
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                shadow: false,
+                colors: ['red'],
+                strokestyle: 'rgba(0,0,0,0)',
+                textAccessible: true
+            }                
+        }).draw();
+    };
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

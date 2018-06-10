@@ -1,0 +1,114 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.hbar.js" ></script>
+    
+    <title>RGraph demo: A 3D HBar chart</title>
+    
+    
+    
+    <meta name="description" content="A 3D Horizontal Bar chart" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <!-- Share buttons -->
+    <p style="float: right">
+        <script>
+            document.write('<a href="" target="_blank" onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u=http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=600,height=368\'); return false"><img src="../images/facebook-large.png" width="200" height="43" alt="Share on Facebook" border="0" title="Visit the RGraph Facebook page" id="facebook_link" /></a>&nbsp;');
+            document.write('<a href="https://twitter.com/_rgraph" target="_blank" onclick="window.open(\'https://twitter.com/intent/tweet?text=Check%20out%20this%20demo%20of%20RGraph:%202D/3D%20JavaScript%20charts%20-%20Free%20and%20Open%20Source%20http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=700,height=400\'); return false"><img src="../images/twitter-large.png" width="200" height="43" alt="Share on Twitter" border="0" title="Mention RGraph on Twitter" id="twitter_link" /></a>');
+        </script>
+    </p>
+
+
+    <h1>A 3D horizontal bar chart</h1>
+
+    <canvas id="cvs" width="600" height="550">[No canvas support]</canvas>
+    
+    <script>
+        var hbar = new RGraph.HBar({
+            id: 'cvs',
+            data: [[1,null],[1,2],[5,4],[7,8],[4,3],[8,8],[4,6]],
+            options: {
+                textAccessible: true,
+                colors: [
+                    'Gradient(#fcc:red:red)',
+                    'Gradient(#cfc:#0f0:#0f0)'
+                ],
+                grouping: 'grouped',
+                yaxispos: 'left',
+                scaleZerostart: true,
+                variant: '3d',
+                gutterLeft: 100,
+                shadow: true,
+                shadowOffsety:  5,
+                shadowOffsetx: 13,
+                shadowBlur: 10,
+                shadowColor: '#aaa',
+                vmargin: 10,
+                noaxes: true,
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+            }
+        }).draw();
+    </script>
+    
+    
+    <br />
+
+
+
+
+
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.hbar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="550"&gt;[No canvas support]&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var hbar = new RGraph.HBar({
+        id: 'cvs',
+        data: [[1,null],[1,2],[5,4],[7,8],[4,3],[8,8],[4,6]],
+        options: {
+            textAccessible: true,
+            colors: [
+                'Gradient(#fcc:red:red)',
+                'Gradient(#cfc:#0f0:#0f0)'
+            ],
+            grouping: 'grouped',
+            yaxispos: 'left',
+            scaleZerostart: true,
+            variant: '3d',
+            gutterLeft: 100,
+            shadow: true,
+            shadowOffsety:  5,
+            shadowOffsetx: 13,
+            shadowBlur: 10,
+            shadowColor: '#aaa',
+            vmargin: 10,
+            noaxes: true,
+            labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+</body>
+</html>

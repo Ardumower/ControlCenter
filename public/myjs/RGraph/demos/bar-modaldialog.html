@@ -1,0 +1,105 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.modaldialog.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+
+    <title>RGraph demo: A Bar chart in a ModalDialog</title>
+    
+    
+    <meta name="description" content="A Bar chart in a ModalDialog" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar chart in a ModalDialog</h1>
+
+    
+
+
+
+    <script>
+        window.onload = function ()
+        {
+            ModalDialog.Show('string:<div style="text-align: center; padding: 15px"><canvas id="cvs" width="750" height="250">[No canvas support]</canvas><br /><a href="javascript:ModalDialog.close()">[Close dialog]</a></div>');
+
+            var bar = new RGraph.Bar({
+                id: 'cvs',
+                data: [12,18,10,9,6,20,18],
+                options: {
+                    tooltips: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                    labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                    unitsPost: 'k',
+                    shadow: false,
+                    colors: ['red'],
+                    strokestyle: 'rgba(0,0,0,0)',
+                    textSize: 14,
+                    title: 'A Bar chart inside a ModalDialog',
+                    numyticks: 5,
+                    noxaxis: true,
+                    scaleZerostart: true
+                }
+            }).draw();
+            
+            RGraph.tooltips.style.zIndex = 99999;
+        }
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.modaldialog.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+        window.onload = function ()
+        {
+            ModalDialog.Show('string:&lt;div style="text-align: center; padding: 15px"&gt;&lt;canvas id="cvs" width="750" height="250"&gt;[No canvas support]&lt;/canvas&gt;&lt;br /&gt;&lt;a href="javascript:ModalDialog.close()"&gt;[Close dialog]&lt;/a&gt;&lt;/div&gt;');
+
+            var bar = new RGraph.Bar({
+                id: 'cvs',
+                data: [12,18,10,9,6,20,18],
+                options: {
+                    tooltips: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                    labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                    unitsPost: 'k',
+                    shadow: false,
+                    colors: ['red'],
+                    strokestyle: 'rgba(0,0,0,0)',
+                    textSize: 14,
+                    title: 'A Bar chart inside a ModalDialog',
+                    numyticks: 5,
+                    noxaxis: true,
+                    scaleZerostart: true
+                }
+            }).draw();
+            
+            RGraph.tooltips.style.zIndex = 99999;
+        }
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.rose.js" ></script>
+    
+
+    <title>RGraph demo: An SVG stacked Rose chart with unequal segment sizes</title>
+
+    <meta name="description" content="An SVG stacked Rose chart with unequal segment sizes" />
+</head>
+<body>
+
+
+
+    <h1>An SVG stacked Rose chart with unequal segment sizes</h1>
+    <p>This is a mode of operation that the SVG Rose chart has but the canvas Rose chart doesn't. It's a stacked non-equi-angular variation. It's appropriate for when you have data that has an extra dimension that goes beyond just a straight-forward stacked or non-equi-angular chart.</p>
+
+    
+    <div style="width: 600px; height: 500px" id="chart-container"></div>
+
+
+
+        
+
+    <script>
+        new RGraph.SVG.Rose({
+            id: 'chart-container',
+            data: [ [[4,8,2],14], [[3,6,8],19], [[1,6,9],6], [[4,5,3],7], [[2,1,7],9], [[7,2,5],6], [[8,4,3],23], [[4,7,9],7], [[3,2,3],9], [[5,7,3],4] ],
+            options: {
+                backgroundGridRadialsCount: 0,
+                colorsOpacity: 0.8,
+                colors: ['red', 'blue','#f6f'],
+                strokestyle: 'rgba(0,0,0,0)',
+                linewidth: 1,
+                variant: 'non-equi-angular',
+                margin: 0.05,
+                labels: ['Alf','Bert','Craig','Doug','Edgar','Fred','Gary','Harry','Indigo','Jay'],
+                tooltips: [
+                    'a','b','c','d','e','f','g','h','i','j',
+                    'k','l','m','n','o','p','q','r','s','t',
+                    'u','v','w','x','y','z','aa','bb','cc','dd'
+                ]
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.rose.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 600px; height: 500px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.Rose({
+        id: 'chart-container',
+        data: [ [[4,8,2],14], [[3,6,8],19], [[1,6,9],6], [[4,5,3],7], [[2,1,7],9], [[7,2,5],6], [[8,4,3],23], [[4,7,9],7], [[3,2,3],9], [[5,7,3],4] ],
+        options: {
+            backgroundGridRadialsCount: 0,
+            colorsOpacity: 0.8,
+            colors: ['red', 'blue','#f6f'],
+            strokestyle: 'rgba(0,0,0,0)',
+            linewidth: 1,
+            variant: 'non-equi-angular',
+            margin: 0.05,
+            labels: ['Alf','Bert','Craig','Doug','Edgar','Fred','Gary','Harry','Indigo','Jay'],
+            tooltips: [
+                'a','b','c','d','e','f','g','h','i','j',
+                'k','l','m','n','o','p','q','r','s','t',
+                'u','v','w','x','y','z','aa','bb','cc','dd'
+            ]
+        }
+    }).draw();
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

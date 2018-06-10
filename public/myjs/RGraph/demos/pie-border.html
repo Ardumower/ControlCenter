@@ -1,0 +1,161 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.common.effects.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+    
+    <title>RGraph demo: Pie chart with custom border highlighting</title>
+    
+    
+    <meta name="description" content="A Pie chart that has been exploded and drawn with a border and custom highlighting" />
+     
+    
+    <style>
+        .RGraph_tooltip {
+            background-color: white ! important;
+        }
+        
+        .RGraph_tooltip img {
+            display: none;
+        }
+    </style>
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+
+    <h1>Pie chart custom border highlighting</h1>
+    
+    <p>
+        Tooltips and other dynamic features may be affected by the redrawing.
+    </p>
+
+    <canvas id="cvs" width="550" height="300">[No canvas support]</canvas>
+    
+<script>
+    var colors = ['red','#ccc','#0f0','blue','pink','yellow','black']
+        labels = ['Monday', 'Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+
+    // Create the Pie chart
+    var pie = new RGraph.Pie({
+        id: 'cvs',
+        data: [4,6,3,5,2,5,8],
+        options: {
+            labels: labels,
+            tooltips: labels,
+            tooltipsEvent: 'mousemove',
+            tooltipsHighlight: false,
+            textColor: '#aaa',
+            strokestyle: 'rgba(0,0,0,0)',
+            exploded: [,25],
+            textAccessible: true,
+            labelsSticksList: true,
+            labelsSticksColors: RGraph.arrayPad([], labels.length, 'gray'),
+            labelsSticksLinewidth: 1
+        }
+    }).draw().on('tooltip', function (obj)
+    {
+        var co      = obj.context,
+            tooltip = RGraph.Registry.get('chart.tooltip'),
+            index   = tooltip.__index__,
+            shape   = obj.angles[index],
+            color   = colors[index]
+
+        RGraph.path2(co, 'b a % % % % % false a % % % % % true f %',
+            shape[2], shape[3], obj.radius, shape[0], shape[1],
+            shape[2], shape[3], obj.radius + 5, shape[1], shape[0],
+            color
+        );
+
+        RGraph.path2(co, 'lc butt lw 3 b a % % % % % false s white',
+            shape[2], shape[3], obj.radius, shape[0], shape[1]
+        );
+        
+        // Set some CSS on the tooltip
+        tooltip.style.border  = '3px ' + color + ' solid';
+        tooltip.style.padding = '3px';
+    });
+</script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.pie.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="450" height="300"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var colors = ['red','#ccc','#0f0','blue','pink','yellow','black']
+        labels = ['Monday', 'Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+
+    // Create the Pie chart
+    var pie = new RGraph.Pie({
+        id: 'cvs',
+        data: [4,6,3,5,2,5,8],
+        options: {
+            labels: labels,
+            tooltips: labels,
+            tooltipsEvent: 'mousemove',
+            tooltipsHighlight: false,
+            textColor: '#aaa',
+            strokestyle: 'rgba(0,0,0,0)',
+            exploded: [,25],
+            textAccessible: true,
+            labelsSticksList: true,
+            labelsSticksColors: RGraph.arrayPad([], labels.length, 'gray'),
+            labelsSticksLinewidth: 1
+        }
+    }).draw().on('tooltip', function (obj)
+    {
+        var co      = obj.context,
+            tooltip = RGraph.Registry.get('chart.tooltip'),
+            index   = tooltip.__index__,
+            shape   = obj.angles[index],
+            color   = colors[index]
+
+        RGraph.path2(co, 'b a % % % % % false a % % % % % true f %',
+            shape[2], shape[3], obj.radius, shape[0], shape[1],
+            shape[2], shape[3], obj.radius + 5, shape[1], shape[0],
+            color
+        );
+
+        RGraph.path2(co, 'lc butt lw 3 b a % % % % % false s white',
+            shape[2], shape[3], obj.radius, shape[0], shape[1]
+        );
+        
+        // Set some CSS on the tooltip
+        tooltip.style.border  = '3px ' + color + ' solid';
+        tooltip.style.padding = '3px';
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+
+</body>
+</html>

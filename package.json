@@ -1,25 +1,14 @@
 {
-  "name": "ArdumowerControlCenter",
+  "name": "node-red-project",
+  "description": "A Node-RED Project",
   "version": "0.0.1",
-  "description": "ardumower control web app",
-  "author": "A. Grau, V. Kuehn",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Ardumower/ControlCenter.git"
-  },
-  "license": "https://github.com/Ardumower/ControlCenter/blob/master/LICENSE.md",
   "dependencies": {
-    "cookie-parser": "^1.4.3",
-    "debug": "^2.6.0",
-    "express": "^4.14.0",
-    "jade": "^1.11.0",
-    "request": "^2.79.0",
-    "serialport": "^4.0.7",
-    "socket.io": "^1.7.2"
-  },
-  "eslintConfig": {
-    "env": {
-      "node": true
-    }
+    "node-red-contrib-ibm-watson-iot": "^0.2.8",
+    "node-red-contrib-play-audio": "^2.3.1",
+    "node-red-dashboard": "~2.9.4",
+    "node-red-node-ping": "0.0.15",
+    "node-red-node-random": "^0.1.0",
+    "node-red-node-serialport": "^0.6.6",
+    "node-red-node-smooth": "^0.1.0"
   }
 }

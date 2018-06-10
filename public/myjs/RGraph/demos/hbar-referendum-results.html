@@ -1,0 +1,126 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.hbar.js" ></script>
+    
+    <title>RGraph demo: A basic HBar chart</title>
+    
+    
+    
+    <meta name="description" content="A Horizontal Bar chart showing election results" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <!-- Share buttons -->
+    <p style="float: right">
+        <script>
+            document.write('<a href="" target="_blank" onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u=http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=600,height=368\'); return false"><img src="../images/facebook-large.png" width="200" height="43" alt="Share on Facebook" border="0" title="Visit the RGraph Facebook page" id="facebook_link" /></a>&nbsp;');
+            document.write('<a href="https://twitter.com/_rgraph" target="_blank" onclick="window.open(\'https://twitter.com/intent/tweet?text=Check%20out%20this%20demo%20of%20RGraph:%202D/3D%20JavaScript%20charts%20-%20Free%20and%20Open%20Source%20http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=700,height=400\'); return false"><img src="../images/twitter-large.png" width="200" height="43" alt="Share on Twitter" border="0" title="Mention RGraph on Twitter" id="twitter_link" /></a>');
+        </script>
+    </p>
+
+
+    <h1>A Horizontal Bar chart showing election results</h1>
+
+    <canvas id="cvs" width="1000" height="400">[No canvas support]</canvas>
+    
+    <script>
+        new RGraph.HBar({
+            id: 'cvs',
+            data: [408,242],
+            options: {
+                labels: ['Leave','Remain'],
+                scaleZerostart: true,
+                vmargin: 50,
+                noxaxis: true,
+                axisColor: '#ccc',
+                xlabelsCount: 18,
+                textColor: '#666',
+                backgroundGridBorder: false,
+                backgroundGridHlines: false,
+                backgroundGridAutofitNumvlines: 18,
+                labelsAbove: true,
+                tooltips: [
+                    'Seats: <b>408</b><br /><span style="color: #666">The Leave campaign won a significant<br />majority with a total of 408 seats.</span>',
+                    'Seats: <b>242</b><br /><span style="color: #666">The Remain campaign fought valiantly<br />but, alas, it was to no avail.</span>'
+                ],
+                highlightFill: 'rgba(255,255,255,0.4)',
+                title: 'Leave vs Remain - General election seats won based on EU referendum results',
+                titleX: 75,
+                titleHalign: 'left',
+                titleColor: 'gray'
+            }
+        }).grow();
+        
+        RGraph.tooltips.style.textAlign = 'left';
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.hbar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="1000" height="400"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.HBar({
+        id: 'cvs',
+        data: [408,242],
+        options: {
+            labels: ['Leave','Remain'],
+            scaleZerostart: true,
+            vmargin: 50,
+            noxaxis: true,
+            axisColor: '#ccc',
+            xlabelsCount: 18,
+            textColor: '#666',
+            backgroundGridBorder: false,
+            backgroundGridHlines: false,
+            backgroundGridAutofitNumvlines: 18,
+            labelsAbove: true,
+            tooltips: [
+                'Seats: &lt;b&gt;408&lt;/b&gt;&lt;br /&gt;&lt;span style="color: #666"&gt;The Leave campaign won a significant&lt;br /&gt;majority with a total of 408 seats.&lt;/span&gt;',
+                'Seats: &lt;b&gt;242&lt;/b&gt;&lt;br /&gt;&lt;span style="color: #666"&gt;The Remain campaign fought valiantly&lt;br /&gt;but, alas, it was to no avail.&lt;/span&gt;'
+            ],
+            highlightFill: 'rgba(255,255,255,0.4)',
+            title: 'Leave vs Remain - General election seats won based on EU referendum results',
+            titleX: 75,
+            titleHalign: 'left',
+            titleColor: 'gray'
+        }
+    }).grow();
+    
+    RGraph.tooltips.style.textAlign = 'left';
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+</body>
+</html>

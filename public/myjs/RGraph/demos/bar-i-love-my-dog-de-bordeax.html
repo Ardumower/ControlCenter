@@ -1,0 +1,124 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+    <title>RGraph demo: RGraph demo: Favourite dog breeds</title>
+    
+    
+    <meta name="description" content="Favourite dog breeds" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <h1>Favourite dog breeds</h1>
+
+    <canvas id="cvs" width="900" height="550" style="background-color: white; border-radius: 5px; box-shadow: 2px 2px 2px #999">[No canvas support]</canvas>
+    
+    <script>
+        canvas = document.getElementById('cvs');
+
+        new RGraph.Bar({
+            id: 'cvs',
+            data: [99,10],
+            options: {
+                 colors: ['gray'],
+                labelsAbove: true,
+                labelsAboveSpecific: ['French Mastiff', 'Umm... whatever...'],
+                labelsAboveSize: 24,
+                gutterTop: 50,
+                gutterLeft: 150,
+                gutterBottom: 110,
+                variant: 'sketch',
+                variantSketchVerticals: true,
+                ylabelsCount: 1,
+                textFont: 'Comic sans MS',
+                textSize: 20,
+                backgroundGrid: false,
+                textColor: 'gray',
+                backgroundImage: 'http://www.rgraph.net/images/i-love-my-dog-de-bordeaux.png',
+                backgroundImageX: 0,
+                backgroundImageY: 0,
+                backgroundImageW: canvas.width,
+                backgroundImageH: canvas.height,
+                backgroundImageAlpha: 0.25,
+                linewidth: 5,
+                noyaxis: true,
+                axisColor: 'gray',
+                axisLinewidth: 5,
+                unitsPost: '%'
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="900" height="550" style="background-color: white; border-radius: 5px; box-shadow: 2px 2px 2px #999"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    canvas = document.getElementById('cvs');
+
+    new RGraph.Bar({
+        id: 'cvs',
+        data: [99,10],
+        options: {
+             colors: ['white'],
+            labelsAbove: true,
+            labelsAboveSpecific: ['French Mastiff', 'Umm... whatever...'],
+            labelsAboveSize: 24,
+            gutterTop: 50,
+            gutterLeft: 150,
+            gutterBottom: 110,
+            variant: 'sketch',
+            variantSketchVerticals: true,
+            ylabelsCount: 1,
+            textFont: 'Comic sans MS',
+            textSize: 20,
+            backgroundGrid: false,
+            textColor: 'white',
+            backgroundImage: '/images/i-love-my-dog-de-bordeaux.png',
+            backgroundImageX: 0,
+            backgroundImageY: 0,
+            backgroundImageW: canvas.width,
+            backgroundImageH: canvas.height,
+            backgroundImageAlpha: 0.25,
+            linewidth: 5,
+            noyaxis: true,
+            axisColor: 'white',
+            axisLinewidth: 5,
+            unitsPost: '%'
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+
+
+</body>
+</html>

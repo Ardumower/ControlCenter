@@ -1,0 +1,115 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.hprogress.js" ></script>
+    
+    <title>RGraph demo: An adjustable HProgress chart</title>
+
+    
+    <meta name="description" content="An adjustable Horizontal Progress bar" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <!-- Share buttons -->
+    <p style="float: right">
+        <script>
+            document.write('<a href="" target="_blank" onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u=http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=600,height=368\'); return false"><img src="../images/facebook-large.png" width="200" height="43" alt="Share on Facebook" border="0" title="Visit the RGraph Facebook page" id="facebook_link" /></a>&nbsp;');
+            document.write('<a href="https://twitter.com/_rgraph" target="_blank" onclick="window.open(\'https://twitter.com/intent/tweet?text=Check%20out%20this%20demo%20of%20RGraph:%202D/3D%20JavaScript%20charts%20-%20Free%20and%20Open%20Source%20http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=700,height=400\'); return false"><img src="../images/twitter-large.png" width="200" height="43" alt="Share on Twitter" border="0" title="Mention RGraph on Twitter" id="twitter_link" /></a>');
+        </script>
+    </p>
+
+
+    <h1>An adjustable HProgress chart</h1>
+    
+    <p>
+        This HProgress chart doesn't use the built-in adjusting but uses a cutom onclick
+        event listener (which you can see below) in order to make the adjusting
+        animated.
+    </p>
+
+    <canvas id="cvs" width="600" height="100">[No canvas support]</canvas>
+    
+    <script>
+        new RGraph.HProgress({
+            id: 'cvs',
+            min: 0,
+            max: 100,
+            value:89,
+            options: {
+                tickmarks: 100,
+                numticks: 20,
+                gutterRight: 30,
+                margin: 5,
+                textAccessible: true
+            }
+        }).draw().exec(function(obj)
+        {
+            obj.canvas.onclick = function (e)
+            {
+                var value = obj.getValue(e);
+                obj.value = value;
+            
+                obj.grow();
+            }
+        });
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.hprogress.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="100"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.HProgress({
+        id: 'cvs',
+        min: 0,
+        max: 100,
+        value:89,
+        options: {
+            tickmarks: 100,
+            numticks: 20,
+            gutterRight: 30,
+            margin: 5,
+            textAccessible: true
+        }
+    }).draw().exec(function(obj)
+    {
+        obj.canvas.onclick = function (e)
+        {
+            var value = obj.getValue(e);
+            obj.value = value;
+        
+            obj.grow();
+        }
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+
+
+</body>
+</html>

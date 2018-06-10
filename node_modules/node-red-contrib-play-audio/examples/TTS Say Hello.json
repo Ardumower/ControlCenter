@@ -1,0 +1,1 @@
+[{"id":"fa9250d6.1d8d5","type":"inject","z":"896b28a8.437658","name":"","topic":"","payload":"Hello to Jason Isaacs","payloadType":"str","repeat":"","crontab":"","once":false,"x":160,"y":100,"wires":[["c9a24bb9.28a0a8"]]},{"id":"c9a24bb9.28a0a8","type":"play audio","z":"896b28a8.437658","name":"","x":370,"y":100,"wires":[]}]

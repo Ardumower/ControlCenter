@@ -1,0 +1,144 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.bar.js" ></script>
+    
+
+    <title>RGraph demo: An SVG Bar chart using tooltips</title>
+    
+    
+    <meta name="description" content="An SVG Bar chart using tooltips" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An SVG Bar chart using tooltips</h1>
+    <p>A Bar chart with offset axes (so the upper part of the chart is larger than the lower). The data and labels have been adjusted to highlight the weekdays as opposed to the weekends. The tooltips have been customised so that they have a significantly different appearance than what is the default.</p>
+
+    
+    <div style="padding: 15px; display: inline-block">
+        <div style="width: 750px; height: 300px" id="chart-container"></div>
+    </div>
+
+
+
+        
+    <script>
+        bar = new RGraph.SVG.Bar({
+            id: 'chart-container',
+            data: [
+                112,118,110,91,-49,0,0,
+                81,61,-11,51,-31,0,0,
+                51,61,-45,-38,-26,0,0,
+                58,84,54,63,35,0,0
+            ],
+            options: {
+                xaxisLabels: [
+                    'M','T','W','T','F','','',
+                    'M','T','W','T','F','','',
+                    'M','T','W','T','F','','',
+                    'M','T','W','T','F','',''
+                ],
+                tooltips: [
+                    'Monday','Tuesday','Wednesday','Thursday','Friday','','',
+                    'Monday','Tuesday','Wednesday','Thursday','Friday','','',
+                    'Monday','Tuesday','Wednesday','Thursday','Friday','','',
+                    'Monday','Tuesday','Wednesday','Thursday','Friday','',''
+                ],
+                yaxisUnitsPre: '$',
+                yaxisUnitsPost: 'k',
+                yaxisDecimals: 1,
+                strokestyle: 'rgba(0,0,0,0)',
+                gutterLeft: 75,
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                colors: ['#aaa','red','blue'],
+                yaxisMin: -50,
+                yaxisMax: 200,
+                title: 'A Bar chart using tooltips'
+            }
+        }).wave();
+        
+        RGraph.SVG.tooltips.style.fontWeight      = 'bold';
+        RGraph.SVG.tooltips.style.backgroundColor = 'black';
+        RGraph.SVG.tooltips.style.color           = 'white';
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 750px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.Bar({
+        id: 'chart-container',
+        data: [
+            112,118,110,91,-49,0,0,
+            81,61,-11,51,-31,0,0,
+            51,61,-45,-38,-26,0,0,
+            58,84,54,63,35,0,0
+        ],
+        options: {
+            xaxisLabels: [
+                'M','T','W','T','F','','',
+                'M','T','W','T','F','','',
+                'M','T','W','T','F','','',
+                'M','T','W','T','F','',''
+            ],
+            tooltips: [
+                'Monday','Tuesday','Wednesday','Thursday','Friday','','',
+                'Monday','Tuesday','Wednesday','Thursday','Friday','','',
+                'Monday','Tuesday','Wednesday','Thursday','Friday','','',
+                'Monday','Tuesday','Wednesday','Thursday','Friday','',''
+            ],
+            yaxisUnitsPre: '$',
+            yaxisUnitsPost: 'k',
+            yaxisDecimals: 1,
+            strokestyle: 'rgba(0,0,0,0)',
+            gutterLeft: 75,
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            colors: ['#aaa'],
+            yaxisMin: -50,
+            yaxisMax: 200,
+            title: 'A Bar chart using tooltips'
+        }
+    }).draw();
+
+    RGraph.SVG.tooltips.style.fontWeight = 'bold';
+    RGraph.SVG.tooltips.style.backgroundColor = 'black';
+    RGraph.SVG.tooltips.style.color = 'white';
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

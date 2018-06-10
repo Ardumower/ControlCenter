@@ -1,0 +1,175 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.hbar.js" ></script>
+    
+
+    <title>RGraph demo: An orange/blue SVG Bar chart</title>
+    
+    
+    <meta name="description" content="An orange/blue SVG Bar chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An orange/blue SVG Bar chart</h1>
+    <p>An example of a Horizontal Bar chart which has the Y axis centered. The chart has an ondraw event attached to it so that when the draw function is called a smll bit of text is added to the bottom right of the SVG tag that serves as a label showing what the X axis axis represents.</p>
+
+    
+    <div style="width: 850px; height: 500px; border: 1px solid #eee" id="chart-container"></div>
+
+
+
+        
+
+    <script>
+        new RGraph.SVG.HBar({
+            id: 'chart-container',
+            data: [[-.27,-.21],[.06,.07],[0,.07],[.03,.03],[.03,.05],[.04,.06],[-.31,.38],[.09,.08],[-.02,.10],[.12,.11],[.22,.32],[.12,.1]],
+            options: {
+                gutterBottom: 40,
+                gutterRight: 100,
+                hmargin: 20,
+                yaxisLabels: [
+                    'Food and non-alcoholic beverages',
+                    'Alcohol and tobacco',
+                    'Clothing and footwear',
+                    'Housing and household services',
+                    'Furniture and household goods',
+                    'Health',
+                    'Transport',
+                    'Communication',
+                    'Recreation and culture',
+                    'Education',
+                    'Restaurants and hotels',
+                    'Miscellaneous goods and services'
+                ],
+                title: 'Contributions to the CPI 12-month rate: November 2015 and November 2016',
+                yaxisColor: '#aaa',
+                xaxisMin: 'mirror',
+                xaxisMax: .5,
+                xaxisDecimals: 1,
+                xaxisLabelsCount: 10,
+                backgroundGridHlines: false,
+                backgroundGridBorder: false,
+                xaxis: false,
+                textColor: 'gray',
+                textSize: 9,
+                colors: ['#274796','#F5942F'],
+                titleColor: 'gray',
+                vmargin: 5
+            }
+        }).on('draw', function (obj)
+        {
+            var prop = obj.properties;
+
+            RGraph.SVG.text({
+                object: obj,
+                parent: obj.svg.all,
+                text:   'Percentage points %',
+                x:     840,
+                y:      obj.height - 5,
+                halign: 'right',
+                valign: 'bottom',
+                font:   prop.xaxisTextFont   || prop.textFont,
+                size:   prop.xaxisTextSize   || prop.textSize,
+                bold:   prop.xaxisTextBold   || prop.textBold,
+                italic: prop.xaxisTextItalic || prop.textItalic,
+                color:  prop.xaxisTextColor  || prop.textColor
+            });
+        }).grow();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.hbar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 850px; height: 500px" id="chart-container"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.HBar({
+        id: 'chart-container',
+        data: [[-.27,-.21],[.06,.07],[0,.07],[.03,.03],[.03,.05],[.04,.06],[-.31,.38],[.09,.08],[-.02,.10],[.12,.11],[.22,.32],[.12,.1]],
+        options: {
+            gutterBottom: 40,
+            gutterRight: 100,
+            hmargin: 20,
+            yaxisLabels: [
+                'Food and non-alcoholic beverages',
+                'Alcohol and tobacco',
+                'Clothing and footwear',
+                'Housing and household services',
+                'Furniture and household goods',
+                'Health',
+                'Transport',
+                'Communication',
+                'Recreation and culture',
+                'Education',
+                'Restaurants and hotels',
+                'Miscellaneous goods and services'
+            ],
+            title: 'Contributions to the CPI 12-month rate: November 2015 and November 2016',
+            yaxisColor: '#aaa',
+            xaxisMin: 'mirror',
+            xaxisMax: .5,
+            xaxisDecimals: 1,
+            xaxisLabelsCount: 10,
+            backgroundGridHlines: false,
+            backgroundGridBorder: false,
+            xaxis: false,
+            textColor: 'gray',
+            textSize: 9,
+            colors: ['#274796','#F5942F'],
+            titleColor: 'gray',
+            vmargin: 5
+        }
+    }).on('draw', function (obj)
+    {
+        var prop = obj.properties;
+
+        RGraph.SVG.text({
+            object: obj,
+            parent: obj.svg.all,
+            text:   'Percentage points %',
+            x:     840,
+            y:      obj.height - 5,
+            halign: 'right',
+            valign: 'bottom',
+            font:   prop.xaxisTextFont   || prop.textFont,
+            size:   prop.xaxisTextSize   || prop.textSize,
+            bold:   prop.xaxisTextBold   || prop.textBold,
+            italic: prop.xaxisTextItalic || prop.textItalic,
+            color:  prop.xaxisTextColor  || prop.textColor
+        });
+    }).grow();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

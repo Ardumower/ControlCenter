@@ -1,0 +1,227 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.common.key.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A basic Line chart</title>
+    
+    
+    <meta name="description" content="A basic Line chart" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+    <h1>A line chart showing AIDs infections</h1>
+
+    <canvas id="cvs" width="500" height="450" style="border: 1px solid gray">[No canvas support]</canvas>
+    
+    <script>
+        data = [
+            [8.1, 11.9,16.2,20.8,25.3,28.7,31,32.2,32.8,33.5,34.4,35.3],
+            [5.7,8.5,11.8,15.3,18.4,20.8,22.4,23.1,23.5,23.9,24.5,25],
+            [.4,.89,1.5,2.3,3,3.5,3.8,3.9,3.9,3.9,3.9,3.9],
+            [.019,.031,.12,.19,.24,.32,.43,.54,.65,.74,.81,.88]
+        ];
+        state = {};
+
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: data,
+            options: {
+                tooltips: function (index)
+                {
+                    var indexes = RGraph.sequentialIndexToGrouped(index, data);
+                    var tooltip = RGraph.Registry.get('chart.tooltip');
+                    var dataset = indexes[0];
+                    var index   = indexes[1];
+                    var color   = line.get('colors')[dataset];
+                    
+                    // Set some custom properties
+                    state.dataset = dataset;
+                    state.index   = index;
+                    state.color   = color;
+
+                    return RGraph.numberFormat(line, Math.round(line.data[dataset][index] * 1000000));
+                },
+                
+                key: ['Global','Sub-saharan Africa','South and South-East asia','East Asia'],
+                keyPositionX: 250,
+                keyPositionY: 240,
+                keyPositionGraphBoxed: false,
+                
+                title: 'AIDs infections through the last decade',
+                titleY: 10,
+                colors: ['blue','orange', 'green', 'red'],
+                shadow: false,
+                ylabelsCount: 4,
+                backgroundGridAutofitNumvlines: 3,
+                backgroundGridAutofitNumhlines: 4,
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                labels: ['`90','`92','`94','`96','`98','`00','`02','`04','`06','`08','`10','`12'],
+                noaxes: true,
+                ymax: 40,
+                numxticks: 0,
+                ylabelsSpecific: ['40,000,000','30,0000,000','20,000,000','10,000,000','0'],
+
+                ylabelsOffsetx: -455,
+                ylabelsOffsety: -10,
+                yaxispos: 'right',
+                textColor: '#aaa',
+                linewidth: 3,
+                spline: true,
+                tickmarks: true,
+                highlightStyle: 'halo',
+                textAccessible: false,
+                gutterTop: 50
+            }
+        }).draw().on('tooltip', function (obj)
+        {
+            var tooltip = RGraph.Registry.get('chart.tooltip');
+            
+            tooltip.style.color = 'white';
+            tooltip.style.fontWeight = 'bold';
+            tooltip.style.backgroundColor = state.color;
+        
+        // Give all of the text spans a z-index of -1000 so that the
+        // canvas appears on top
+        }).exec(function (obj)
+        {
+            var spans = obj.canvas.parentNode.querySelectorAll('span');
+
+            for (var i=0; i<spans.length; i++) {
+                spans[i].style.zIndex = 1000;
+            }
+        
+            // Set a default shadow for tooltips
+            RGraph.tooltips.style.boxShadow = '';
+        });
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.drawing.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.drawing.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="500" height="450"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    data = [
+        [8.1, 11.9,16.2,20.8,25.3,28.7,31,32.2,32.8,33.5,34.4,35.3],
+        [5.7,8.5,11.8,15.3,18.4,20.8,22.4,23.1,23.5,23.9,24.5,25],
+        [.4,.89,1.5,2.3,3,3.5,3.8,3.9,3.9,3.9,3.9,3.9],
+        [.019,.031,.12,.19,.24,.32,.43,.54,.65,.74,.81,.88]
+    ];
+    state = {};
+
+    var line = new RGraph.Line({
+        id: 'cvs',
+        data: data,
+        options: {
+            tooltips: function (index)
+            {
+                var indexes = RGraph.sequentialIndexToGrouped(index, data);
+                var tooltip = RGraph.Registry.get('chart.tooltip');
+                var dataset = indexes[0];
+                var index   = indexes[1];
+                var color   = line.get('colors')[dataset];
+                
+                // Set some custom properties
+                state.dataset = dataset;
+                state.index   = index;
+                state.color   = color;
+
+                return RGraph.numberFormat(line, Math.round(line.data[dataset][index] * 1000000));
+            },
+            
+            key: ['Global','Sub-saharan Africa','South and South-East asia','East Asia'],
+            keyPositionX: 250,
+            keyPositionY: 240,
+            keyPositionGraphBoxed: false,
+            
+            title: 'AIDs infections through the last decade',
+            titleY: 10,
+            colors: ['blue','orange', 'green', 'red'],
+            shadow: false,
+            ylabelsCount: 4,
+            backgroundGridAutofitNumvlines: 3,
+            backgroundGridAutofitNumhlines: 4,
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            labels: ['`90','`92','`94','`96','`98','`00','`02','`04','`06','`08','`10','`12'],
+            noaxes: true,
+            ymax: 40,
+            numxticks: 0,
+            ylabelsSpecific: ['40,000,000','30,0000,000','20,000,000','10,000,000','0'],
+
+            ylabelsOffsetx: -455,
+            ylabelsOffsety: -10,
+            yaxispos: 'right',
+            textColor: '#aaa',
+            linewidth: 3,
+            spline: true,
+            tickmarks: true,
+            highlightStyle: 'halo',
+            textAccessible: false,
+            gutterTop: 50
+        }
+    }).draw().on('tooltip', function (obj)
+    {
+        var tooltip = RGraph.Registry.get('chart.tooltip');
+        
+        tooltip.style.color = 'white';
+        tooltip.style.fontWeight = 'bold';
+        tooltip.style.backgroundColor = state.color;
+    
+    // Give all of the text spans a z-index of -1000 so that the
+    // canvas appears on top
+    }).exec(function (obj)
+    {
+        var spans = obj.canvas.parentNode.querySelectorAll('span');
+
+        for (var i=0; i&lt;spans.length; i++) {
+            spans[i].style.zIndex = 1000;
+        }
+    
+        <span>// Set a default shadow for tooltips</span>
+        RGraph.tooltips.style.boxShadow = '';
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+
+</body>
+</html>

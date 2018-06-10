@@ -1,0 +1,94 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A Line chart with different colors for up/down</title>
+    
+    
+    <meta name="description" content="A Line chart which demonstrates using different colours for up and down values" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A Line chart with different colors for up/down</h1>
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+    
+    <script>
+        window.onload = function ()
+        {
+            var line = new RGraph.Line({
+                id: 'cvs',
+                data: [5,4,7,6,8,5,9],
+                options: {
+                    labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                    linewidth: 2,
+                    colors: [['red','black']],
+                    colorsAlternate: true,
+                    textAccessible: true
+                }
+            }).draw();
+        };
+    </script>
+
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: [5,4,7,6,8,5,9],
+            options: {
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                linewidth: 2,
+                colors: [['red','black']],
+                colorsAlternate: true,
+                textAccessible: true
+            }
+        }).draw();
+    };
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.common.key.js" ></script>
+    <script src="../libraries/RGraph.svg.rose.js" ></script>
+    
+
+    <title>RGraph demo: An SVG Rose chart with tooltips</title>
+    
+    
+    <meta name="description" content="An SVG Rose chart with tooltips" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An SVG Rose chart with tooltips</h1>
+    <p>Here we have a Rose chart that has been configured with unrqual segment sizes, a key, sequential colors, tooltips and margins around the segments.</p>
+
+    
+    <div style="width: 500px; height: 500px" id="chart-container"></div>
+
+
+
+        
+    <script>
+        rose = new RGraph.SVG.Rose({
+            id: 'chart-container',
+            data: [[5,8],[8,6],[1,6],[4,9],[7,5],[8,6],[4,5],[5,3]],//[8,6,4,3,8,6,3],
+            options: {
+                tooltips: ['Alf','Bertie','Charlie','Doug','Edgar','Frankie','Gary'],
+                colors: ['blue','green','red','#aaa','black','brown','pink'],
+                colorsSequential: true,
+                //backgroundGridRadialsCount: 0,
+                linewidth: 2,
+                margin: '3deg',
+                key: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+                keyOffsety: 455,
+                variant: 'non-equi-angular'
+            }
+        }).draw().on('tooltip', function (obj)
+        {
+            var tooltip = RGraph.SVG.REG.get('tooltip');
+            var colors  = rose.properties.colors;
+
+            tooltip.style.border = '4px solid ' + colors[tooltip.__index__]
+        });
+        
+        RGraph.SVG.tooltips.style.backgroundColor = 'white';
+        RGraph.SVG.tooltips.style.color           = 'black';
+        RGraph.SVG.tooltips.style.fontWeight      = 'bold';
+        RGraph.SVG.tooltips.style.boxShadow       = 'none';
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.common.key.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.rose.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 500px; height: 500px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+
+    rose = new RGraph.SVG.Rose({
+        id: 'chart-container',
+        data: [8,6,4,3,8,6,3],
+        options: {
+            tooltips: ['Alf','Bertie','Charlie','Doug','Edgar','Frankie','Gary'],
+            colors: ['blue','green','red','#aaa','black','brown','pink'],
+            colorsSequential: true,
+            //backgroundGridRadialsCount: 0,
+            linewidth: 2,
+            margin: '3deg',
+            key: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+            keyOffsety: 455
+        }
+    }).draw().on('tooltip', function (obj)
+    {
+        var tooltip = RGraph.SVG.REG.get('tooltip');
+        var colors  = rose.properties.colors;
+
+        tooltip.style.border = '4px solid ' + colors[tooltip.__index__]
+    });
+    
+    RGraph.SVG.tooltips.style.backgroundColor = 'white';
+    RGraph.SVG.tooltips.style.color           = 'black';
+    RGraph.SVG.tooltips.style.fontWeight      = 'bold';
+    RGraph.SVG.tooltips.style.boxShadow       = 'none';
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.drawing.xaxis.js" ></script>
+    <script src="../libraries/RGraph.hbar.js" ></script>
+    
+    <title>RGraph demo: A Horizontal Bar chart with vertical scrolling</title>
+    
+    
+    
+    <meta name="description" content="A Horizontal Bar chart with vertical scrolling" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <!-- Share buttons -->
+    <p style="float: right">
+        <script>
+            document.write('<a href="" target="_blank" onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u=http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=600,height=368\'); return false"><img src="../images/facebook-large.png" width="200" height="43" alt="Share on Facebook" border="0" title="Visit the RGraph Facebook page" id="facebook_link" /></a>&nbsp;');
+            document.write('<a href="https://twitter.com/_rgraph" target="_blank" onclick="window.open(\'https://twitter.com/intent/tweet?text=Check%20out%20this%20demo%20of%20RGraph:%202D/3D%20JavaScript%20charts%20-%20Free%20and%20Open%20Source%20http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=700,height=400\'); return false"><img src="../images/twitter-large.png" width="200" height="43" alt="Share on Twitter" border="0" title="Mention RGraph on Twitter" id="twitter_link" /></a>');
+        </script>
+    </p>
+
+
+    <h1>A Horizontal Bar chart with vertical scrolling</h1>
+
+    <div style="position: relative">
+        <div style="width: 600px; height: 400px;overflow: auto; overflow-x: hidden">
+            <canvas id="cvs" width="600" height="1000"></canvas>
+        </div>
+        <canvas id="axes" width="600" height="50" style="position: absolute; bottom: 5px; left: 0; z-index: 3"></canvas>
+    </div>
+    
+    <p>&nbsp;</p>
+
+    
+    <script>
+        var hbar = new RGraph.HBar({
+            id: 'cvs',
+            data: [4,6,8,5,9,6,4,8,4,6,12,2,8,6,4,3,2,5,9],
+            options: {
+                gutterBottom: 35,
+                noxaxis: true,
+                xlabels: false,
+                labels: ['Rob','Jason','Louise','Pob','Kevin','Jerry','Inga','Hoolio','Fliss','Matt','Gary','Doug','Mark','Lucy','Lynn','Olga','Kris','Harry','Dave'],
+                textAccessiblePointerevents: true,
+                gutterBottom: 2,
+                vmargin: 20,
+                noyaxis: true
+            }
+        }).draw().exec(function (obj)
+        {
+            obj.coords.forEach(function (v, k, arr)
+            {
+                RGraph.path2(
+                    obj.context,
+                    'b a % % % 0 7 false f red',
+                    v[0] + v[2],
+                    v[1] + (v[3] / 2),
+                    11
+                );
+            });
+        });
+
+
+        var xaxis = new RGraph.Drawing.XAxis({
+            id: 'axes',
+            y: 2,
+            options: {
+                max: hbar.max,
+                colors: ['black'],
+                textAccessiblePointerevents: true,
+                gutterLeft: hbar.get('gutterLeft')
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.drawing.xaxis.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.hbar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="position: relative"&gt;
+    &lt;div style="width: 600px; height: 400px;overflow: auto; overflow-x: hidden"&gt;
+        &lt;canvas id="cvs" width="600" height="1000"&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+    &lt;canvas id="axes" width="600" height="50" style="position: absolute; bottom: 5px; left: 0; z-index: 3"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var hbar = new RGraph.HBar({
+        id: 'cvs',
+        data: [4,6,8,5,9,6,4,8,4,6,12,2,8,6,4,3,2,5,9],
+        options: {
+            gutterBottom: 35,
+            noxaxis: true,
+            xlabels: false,
+            labels: ['Rob','Jason','Louise','Pob','Kevin','Jerry','Inga','Hoolio','Fliss','Matt','Gary','Doug','Mark','Lucy','Lynn','Olga','Kris','Harry','Dave'],
+            textAccessiblePointerevents: true,
+            gutterBottom: 2,
+            vmargin: 20,
+            noyaxis: true
+        }
+    }).draw().exec(function (obj)
+    {
+        obj.coords.forEach(function (v, k, arr)
+        {
+            RGraph.path2(
+                obj.context,
+                'b a % % % 0 7 false f red',
+                v[0] + v[2],
+                v[1] + (v[3] / 2),
+                11
+            );
+        });
+    });
+
+
+    var xaxis = new RGraph.Drawing.XAxis({
+        id: 'axes',
+        y: 2,
+        options: {
+            max: hbar.max,
+            colors: ['black'],
+            textAccessiblePointerevents: true,
+            gutterLeft: hbar.get('gutterLeft')
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+</body>
+</html>

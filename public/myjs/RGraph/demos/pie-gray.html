@@ -1,0 +1,154 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+
+    <title>RGraph demo: A grayish Pie chart</title>
+    
+    
+    <meta name="description" content="A grayish Pie chart" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A basic Pie chart</h1>
+
+    <br />
+    <br />
+
+    <canvas id="cvs" width="550" height="300">[No canvas support]</canvas>
+    
+    <br /><br />
+    
+    <script>
+        data     = [41.2,18.2,17.2,14.2,5,4.2];
+        labels   = ['Symbian','Blackberry','Android','iOS','Windows','Others'];
+        tooltips = [];
+        
+        labels.forEach(function (v, k, arr)
+        {
+            tooltips[k] = '<b>{1}</b><br /><br /><i>Market share: {2}%</i>'.format(
+                labels[k],
+                data[k]
+            );
+            
+            labels[k] = labels[k] + ' ' + data[k] + '%';
+        });
+
+
+        pie = new RGraph.Pie({
+            id: 'cvs',
+            data: data,
+            options: {
+                tooltips: tooltips,
+                labels: labels,
+                labelsBold: true,
+                labelsSticks: true,
+                labelsSticksLength: 45,
+                labelsSticksUsecolors: false,
+                shadow: false,
+                strokestyle: 'rgba(0,0,0,0)',
+                colors: ['#F0F0F0','#08306B','#D9D9D9','#BDBDBD','#969696','#D9D9D9'],
+                textFont: '"Lucida Grande", "Lucida Sans Unicode", Arial',
+                textSize: 10,
+                textColor: 'black',
+                labelsColors: ['black'],
+                tooltipsEvent: 'mousemove',
+                highlightStyle: 'outline',
+                title: 'Smartphone share in Q2 2010',
+                titleY: -25,
+                titleSize: 18,
+                gutterTop: 50
+            }
+        }).roundRobin();
+        
+        // Align the tooltip text to the left
+        RGraph.tooltips.style.textAlign = 'left';
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.pie.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="550" height="300"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    data     = [41.2,18.2,17.2,14.2,5,4.2];
+    labels   = ['Symbian','Blackberry','Android','iOS','Windows','Others'];
+    tooltips = [];
+    
+    labels.forEach(function (v, k, arr)
+    {
+        tooltips[k] = '&lt;b&gt;{1}&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;&lt;i&gt;Market share: {2}%&lt;/i&gt;'.format(
+            labels[k],
+            data[k]
+        );
+        
+        labels[k] = labels[k] + ' ' + data[k] + '%';
+    });
+
+
+    pie = new RGraph.Pie({
+        id: 'cvs',
+        data: data,
+        options: {
+            tooltips: tooltips,
+            labels: labels,
+            labelsBold: true,
+            labelsSticks: true,
+            labelsSticksLength: 45,
+            labelsSticksUsecolors: false,
+            shadow: false,
+            strokestyle: 'rgba(0,0,0,0)',
+            colors: ['#F0F0F0','#08306B','#D9D9D9','#BDBDBD','#969696','#D9D9D9'],
+            textFont: '"Lucida Grande", "Lucida Sans Unicode", Arial',
+            textSize: 10,
+            textColor: 'black',
+            labelsColors: ['black'],
+            tooltipsEvent: 'mousemove',
+            highlightStyle: 'outline',
+            title: 'Smartphone share in Q2 2010',
+            titleY: -25,
+            titleSize: 18,
+            gutterTop: 50
+        }
+    }).roundRobin();
+    
+    <span>// Align the tooltip text to the left</span>
+    RGraph.tooltips.style.textAlign = 'left';
+&lt;/script&gt;
+</pre>
+
+
+
+
+
+
+</body>
+</html>

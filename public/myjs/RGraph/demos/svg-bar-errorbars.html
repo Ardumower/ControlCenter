@@ -1,0 +1,147 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.bar.js" ></script>
+
+    <title>RGraph demo: An SVG Bar chart with error-bars</title>
+    
+    
+    <meta name="description" content="An SVG Bar chart with error-bars" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <h1>An SVG Bar chart with error-bars</h1>
+    <p>A demonstration of using the Bar chart with errorbars. Errorbars work with regular, grouped and stacked data, positive or negative.</p>
+
+    
+    <div style="padding: 15px; display: inline-block">
+        <div style="width: 750px; height: 300px" id="chart-container"></div>
+    </div>
+
+
+
+        
+    <script>
+        bar = new RGraph.SVG.Bar({
+            id: 'chart-container',
+            data: [[4,8,6],[5,3,6],0,[-5,-6,-4],[-5,-6,-4]],
+            options: {
+
+                errorbars: [
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1},
+                    {min:1, max:1}
+                ],
+                errorbarsColor: 'black',
+                errorbarsLinewidth: 1,
+                //errorbarsCapwidth: 20,
+
+                colors: [
+                    'Gradient(red:#c00)',
+                    'Gradient(#0f0:#c00)',
+                    'Gradient(#00f:#ccc)'
+                ],
+                hmargin: 20,
+                xaxisLabels: ['Harry','Pete','Lucy','Paul'],
+                
+                //xaxis: false,
+                yaxis: false,
+                yaxisMin: 'mirror',
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                shadow: true
+            }
+        }).grow();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 750px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    bar = new RGraph.SVG.Bar({
+        id: 'chart-container',
+        data: [[4,8,6],[5,3,6],0,[-5,-6,-4],[-5,-6,-4]],
+        options: {
+
+            errorbars: [
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1},
+                {min:1, max:1}
+            ],
+            errorbarsColor: 'black',
+            errorbarsLinewidth: 1,
+            <span>//errorbarsCapwidth: 20,</span>
+
+            colors: [
+                'Gradient(red:#c00)',
+                'Gradient(#0f0:#c00)',
+                'Gradient(#00f:#ccc)'
+            ],
+            hmargin: 20,
+            xaxisLabels: ['Harry','Pete','Lucy','Paul'],
+            
+            //xaxis: false,
+            yaxis: false,
+            yaxisMin: 'mirror',
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            shadow: true
+        }
+    }).grow();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

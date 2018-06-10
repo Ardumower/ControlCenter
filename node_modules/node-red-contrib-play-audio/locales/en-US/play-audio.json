@@ -1,0 +1,11 @@
+{
+    "playAudio": {
+        "label": {
+            "ttsVoice": "TTS Voice"
+        },
+        "status" : {
+            "playing":"playing",
+            "speaking":"speaking"
+        }
+    }
+}

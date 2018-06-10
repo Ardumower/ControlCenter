@@ -1,0 +1,98 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script type="text/javascript" src="../libraries/RGraph.common.core.js" ></script>
+    <script type="text/javascript" src="../libraries/RGraph.bar.js" ></script>
+    
+    <title>RGraph demo: A Bar chart showing search result clickthru rates</title>
+    
+    
+    <meta name="description" content="A Bar chart showing search result clickthru rates" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar chart showing search result clickthru rates</h1>
+
+    <canvas id="cvs" width="700" height="350">[No canvas support]</canvas>
+    
+    <script>
+        var data = [36.4,12.5,9.5,7.9,6.1,4.1,3.8,3.5,3.0,2.2];
+
+        var bar = new RGraph.Bar({
+            id: 'cvs',
+            data: data,
+            options: {
+                backgroundGridAutofitNumvlines: 10,
+                gutterBottom: 50,
+                gutterLeft: 75,
+                unitsPost: '%',
+                labels: [ 'One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'],
+                labelsAbove: true,
+                labelsAboveDecimals: 1,
+                labelsAboveSize: 12,
+                noxaxis: true,
+                title: 'Search position clickthru rates',
+                textAccessible: true
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var data = [36.4,12.5,9.5,7.9,6.1,4.1,3.8,3.5,3.0,2.2];
+
+    var bar = new RGraph.Bar({
+        id: 'cvs',
+        data: data,
+        options: {
+            backgroundGridAutofitNumvlines: 10,
+            gutterBottom: 50,
+            gutterLeft: 75,
+            unitsPost: '%',
+            labels: [ 'One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'],
+            labelsAbove: true,
+            labelsAboveDecimals: 1,
+            labelsAboveSize: 12,
+            noxaxis: true,
+            title: 'Search position clickthru rates',
+            textAccessible: true
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

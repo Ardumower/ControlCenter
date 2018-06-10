@@ -1,0 +1,102 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.key.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.radar.js" ></script>
+    
+
+    <title>RGraph demo: A basic SVG Radar chart</title>
+    
+    
+    <meta name="description" content="A basic SVG Radar chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>A basic SVG Radar chart</h1>
+    <p>A basic SVG Radar chart. The chart has two datasets - hence there being two lines and uses a key so that you can tell which is which.</p>
+
+    
+    <div style="width: 600px; height: 500px" id="chart-container"></div>
+
+
+
+    <script>
+        new RGraph.SVG.Radar({
+            id: 'chart-container',
+            data: [
+                [89,60,84,78,58],
+                [60,80,70,80,82]
+            ],
+            options: {
+                filled: true,
+                filledAccumulative: false,
+                colors: ['red','blue'],
+                tickmarks: false,
+                linewidth: 3,
+                labels: ['Speed','Reliability','Comfort','Safety','Efficiency'],
+                tooltips: [
+                    '','Reliability','Comfort','Safety','Efficiency',
+                    'Speed','Reliability','Comfort','Safety','Efficiency'
+                ],
+                scaleColor: '#999',
+                key: ['Robert','Jeoffory'],
+                keyOffsety: -25,
+                gutterTop: 45
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.radar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 500px; height: 400px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.Radar({
+        id: 'chart-container',
+        data: [
+            [89,60,84,78,58],
+            [60,80,70,80,82]
+        ],
+        options: {
+            filled: true,
+            filledAccumulative: false,
+            colors: ['red','blue'],
+            tickmarks: false,
+            linewidth: 3,
+            labels: ['Speed','Reliability','Comfort','Safety','Efficiency'],
+            scaleColor: '#999'
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

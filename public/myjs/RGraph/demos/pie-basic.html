@@ -1,0 +1,99 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+
+    <title>RGraph demo: A basic Pie chart</title>
+    
+    
+    <meta name="description" content="A basic Pie chart" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A basic Pie chart</h1>
+
+    <canvas id="cvs" width="550" height="250" style="border: 1px solid #ddd">[No canvas support]</canvas>
+    
+    <script>
+        var labels = [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday'
+        ];
+
+        new RGraph.Pie({
+            id: 'cvs',
+            data: [20,1,1,1,1,1,1],
+            options: {
+                tooltips: labels,
+                labels: labels,
+                labelsSticksList: true,
+                shadow: false,
+                strokestyle: 'rgba(0,0,0,0)',
+                exploded: 0
+            }
+        }).roundRobin();
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.pie.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="350" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var labels = ['Monday', 'Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+    new RGraph.Pie({
+        id: 'cvs',
+        data: [20,1,1,1,1,1,1],
+        options: {
+            tooltips: labels,
+            labels: labels,
+            labelsSticksList: true,
+            shadow: false,
+            strokestyle: 'rgba(0,0,0,0)',
+            exploded: 0
+        }
+    }).roundRobin();
+&lt;/script&gt;
+</pre>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    <script src="../libraries/RGraph.drawing.yaxis.js" ></script>
+    
+
+    <title>RGraph demo: A Bar/Line chart using a negative hmargin</title>
+    
+    
+    <meta name="description" content="A Bar/Line chart using a negative hmargin" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar/Line chart using a negative hmargin</h1>
+
+    
+    <div style="padding: 15px; display: inline-block">
+        <canvas id="cvs" width="750" height="500">[No canvas support]</canvas>
+    </div>
+
+
+
+    <script>
+        var bar = new RGraph.Bar({
+            id: 'cvs',
+            data: [[4,8],[6,5],[5,4],[1,9],[4,8],[8,6]],
+            options: {
+                hmarginGrouped: -15,
+                hmargin: 30,
+                colors: ['red','gray'],
+                backgroundGridHlines: false,
+                backgroundGridBorder: false,
+                backgroundGridDashed: true,
+                noaxes: true,
+                ylabels: false,
+                ymax: 20,
+                unitsPost: '%',
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+            }
+        }).draw();
+        
+        
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: [
+                [14,18,16,12,15,13],
+                [10,16,13,19,16,20]
+            ],
+            options: {
+                spline: true,
+                backgroundGrid: false,
+                tickmarks: 'filledcircle',
+                shadow: false,
+                linewidth: 5,
+                gutterBottom: 35,
+                noaxes: true,
+                ylabels: false,
+                colors: ['#0c0', 'gray'],
+                ymax: 20,
+                ylabels: false,
+                hmargin: 55
+            }
+        }).draw();
+        
+        
+        var axes = new RGraph.Drawing.YAxis({
+            id: 'cvs',
+            x: 725,
+            options: {
+                max: 10,
+                align: 'right',
+                unitsPost: 'ma',
+                colors: ['#0c0'],
+                linewidth: 3,
+                gutterBottom: 35
+            }
+        }).draw();
+        
+        
+        var axes2 = new RGraph.Drawing.YAxis({
+            id: 'cvs',
+            x: 25,
+            options: {
+                max: 20,
+                unitsPost: 'ma',
+                colors: ['red'],
+                linewidth: 3,
+                gutterBottom: 35
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.drawing.yaxis.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;canvas id="cvs" width="750" height="500"&gt;[No canvas support]&lt;/canvas&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var bar = new RGraph.Bar({
+        id: 'cvs',
+        data: [[4,8],[6,5],[5,4],[1,9],[4,8],[8,6]],
+        options: {
+            hmarginGrouped: -15,
+            hmargin: 30,
+            colors: ['red','gray'],
+            backgroundGridHlines: false,
+            backgroundGridBorder: false,
+            backgroundGridDashed: true,
+            noaxes: true,
+            ylabels: false,
+            ymax: 20,
+            unitsPost: '%',
+            labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+        }
+    }).draw();
+    
+    
+    var line = new RGraph.Line({
+        id: 'cvs',
+        data: [
+            [14,18,16,12,15,13],
+            [10,16,13,19,16,20]
+        ],
+        options: {
+            spline: true,
+            backgroundGrid: false,
+            tickmarks: 'filledcircle',
+            shadow: false,
+            linewidth: 5,
+            gutterBottom: 35,
+            noaxes: true,
+            ylabels: false,
+            colors: ['#0c0', 'gray'],
+            ymax: 20,
+            ylabels: false,
+            hmargin: 55
+        }
+    }).draw();
+    
+    
+    var axes = new RGraph.Drawing.YAxis({
+        id: 'cvs',
+        x: 725,
+        options: {
+            max: 10,
+            align: 'right',
+            unitsPost: 'ma',
+            colors: ['#0c0'],
+            linewidth: 3,
+            gutterBottom: 35
+        }
+    }).draw();
+    
+    
+    var axes2 = new RGraph.Drawing.YAxis({
+        id: 'cvs',
+        x: 25,
+        options: {
+            max: 20,
+            unitsPost: 'ma',
+            colors: ['red'],
+            linewidth: 3,
+            gutterBottom: 35
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

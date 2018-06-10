@@ -1,0 +1,113 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.line.js" ></script>
+    
+
+    <title>RGraph demo: An SVG Line chart inspired by a chart on the NVD website</title>
+    
+    
+    <meta name="description" content="An SVG Line chart inspired by a chart on the NVD website" />
+
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An SVG Line chart inspired by a chart on the NVD website</h1>
+    <p>This is a demo of a Line chart that was "inspired" by an example that was showcased on the NVD3 website. It's a filled Line chart that has the filledAccumulative and the spline options enabled. And importantly, the first color for the chart is transparent - making it seem like the rest of the datasets are "floating". The rest of the configuration is quite straight-forward - the vertical grid lines are turned  off and the colors are a custom set. There's also labels specified.</p>
+
+    
+    <div style="width: 950px; height: 250px" id="chart-container"></div>
+
+
+
+        
+    <script>
+        new RGraph.SVG.Line({
+            id: 'chart-container',
+            data: [
+                [84,65,3,15,12,22,95,5,35,45,85,85,23,45,62,52,45,31,53,66],
+                [64,12,56,25,20,80,85,61,81,56,45,32,91,52,86,23,45,56,51,48],
+                [48,5,23,12,16,36,49,130,52,95,45,21,65,35,28,75,59,74,86,23],
+                [95,65,32,12,100,8,152,63,52,54,85,45,12,13,15,32,64,84,54,66]
+            ],
+            options: {
+                filled: true,
+                filledAccumulative: true,
+                colors: [
+                    'rgba(0,0,0,0)',
+                    '#FDA354',
+                    '#C4D6ED',
+                    '#609EC8'
+                ],
+                spline: true,
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                xaxis: false,
+                yaxis: false,
+                xaxisLabels: ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20']
+            }
+        }).trace();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="../libraries/RGraph.svg.common.core.js" &gt;&lt;/script&gt;
+&lt;script src="../libraries/RGraph.svg.line.js" &gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 950px; height: 250px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.Line({
+        id: 'chart-container',
+        data: [
+            [84,65,3,15,12,22,95,5,35,45,85,85,23,45,62,52,45,31,53,66],
+            [64,12,56,25,20,80,85,61,81,56,45,32,91,52,86,23,45,56,51,48],
+            [48,5,23,12,16,36,49,130,52,95,45,21,65,35,28,75,59,74,86,23],
+            [95,65,32,12,100,8,152,63,52,54,85,45,12,13,15,32,64,84,54,66]
+        ],
+        options: {
+            filled: true,
+            filledAccumulative: true,
+            colors: [
+                'rgba(0,0,0,0)',
+                '#FDA354',
+                '#C4D6ED',
+                '#609EC8'
+            ],
+            spline: true,
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            xaxis: false,
+            yaxis: false,
+            xaxisLabels: ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20']
+        }
+    }).trace();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

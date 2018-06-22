@@ -772,6 +772,24 @@
      "file": "/home/pi/.node-red/node_modules/node-red-contrib-config/config.js"
     }
    }
+  },
+  "node-red-contrib-contextbrowser": {
+   "name": "node-red-contrib-contextbrowser",
+   "version": "0.0.4",
+   "local": true,
+   "nodes": {
+    "contextbrowser": {
+     "name": "contextbrowser",
+     "types": [
+      "contextbrowser",
+      "contextbrowser-sidebar"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-contextbrowser",
+     "file": "/home/pi/.node-red/node_modules/node-red-contrib-contextbrowser/contextbrowser.js"
+    }
+   }
   }
  },
  "_credentialSecret": "2645911320224f7eaf2e6a7c19ec0caace86cbf14e78c0f18db8a5e9140d5d76",

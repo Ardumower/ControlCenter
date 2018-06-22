@@ -755,6 +755,23 @@
      "file": "/home/pi/.node-red/node_modules/node-red-dashboard/nodes/ui_group.js"
     }
    }
+  },
+  "node-red-contrib-config": {
+   "name": "node-red-contrib-config",
+   "version": "1.1.2",
+   "local": true,
+   "nodes": {
+    "config": {
+     "name": "config",
+     "types": [
+      "config"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-config",
+     "file": "/home/pi/.node-red/node_modules/node-red-contrib-config/config.js"
+    }
+   }
   }
  },
  "_credentialSecret": "2645911320224f7eaf2e6a7c19ec0caace86cbf14e78c0f18db8a5e9140d5d76",

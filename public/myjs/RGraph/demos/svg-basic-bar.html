@@ -1,0 +1,115 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.bar.js" ></script>
+
+    <title>RGraph demo: A basic SVG Bar chart</title>
+    
+    
+    <meta name="description" content="A basic SVG Bar chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <h1>A basic SVG Bar chart</h1>
+    <p>A demonstration of a simple Bar chart. The Bar chart does however have a title, subtitle and multiline labels. The multiple lines are achieved using the carriage return/newline string: <b>\r\n</b> As you can see you can have multiple new lines in your text if you wish.</p>
+
+    
+    <div style="padding: 15px; display: inline-block">
+        <div style="width: 750px; height: 300px" id="chart-container"></div>
+    </div>
+
+
+
+        
+    <script>
+        bar = new RGraph.SVG.Bar({
+            id: 'chart-container',
+            data: [8,5,9,3,5,2,4],
+            options: {
+                gutterTop: 50,
+                gutterBottom: 75,
+                hmargin: 20,
+                xaxisLabels: [
+                    'Monday\nresults',
+                    'Tuesday\nresults',
+                    'Wednesday\nresults\n (winner!)',
+                    'Thursday\nresults',
+                    'Friday\r\nresults',
+                    'Saturday\nresults',
+                    'Sunday\nresults'
+                ],
+                tooltips: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                title: 'A basic Bar chart',
+                titleSubtitle: 'A chart showing the daily totals for last week',
+                titleSubtitleItalic: true,
+                colors: ['red','pink'],
+                shadow: true,
+                shadowOpacity: 0.2
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 750px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    bar = new RGraph.SVG.Bar({
+        id: 'chart-container',
+        data: [8,5,9,3,5,2,4],
+        options: {
+            gutterTop: 50,
+            gutterBottom: 75,
+            hmargin: 20,
+            xaxisLabels: [
+                'Monday\nresults',
+                'Tuesday\nresults',
+                'Wednesday\nresults\n (winner!)',
+                'Thursday\nresults',
+                'Friday\r\nresults',
+                'Saturday\nresults',
+                'Sunday\nresults'
+            ],
+            tooltips: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],                
+            title: 'A basic Bar chart',
+            titleSubtitle: 'A chart showing the daily totals for last week',
+            titleSubtitleItalic: true,
+            colors: ['red','pink'],
+            shadow: true,
+            shadowOpacity: 0.2
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

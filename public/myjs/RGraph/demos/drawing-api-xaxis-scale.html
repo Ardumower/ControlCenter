@@ -1,0 +1,125 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.drawing.xaxis.js" ></script>
+    <script src="../libraries/RGraph.scatter.js" ></script>
+    
+    <title>RGraph demo: An example of the drawing API X axis</title>
+    
+
+    
+    <meta name="description" content="An example of the drawing API X axis object" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+        
+    <h1>An example of the drawing API X axis (with a scale)</h1>
+
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+
+    <script>
+        window.onload = function ()
+        {
+            var scatter = new RGraph.Scatter({
+                id: 'cvs',
+                data: [[50,432],[423,485],[375,500],[123,369],[411,149]],
+                options: {
+                    ymax: 500,
+                    xmax: 500,
+                    xaxis: false,
+                    noyaxis: true,
+                    gutterLeft: 50,
+                    textAccessible: true
+                }
+            }).draw()
+
+
+
+            var xaxis = new RGraph.Drawing.XAxis({
+                id: 'cvs',
+                y: scatter.canvas.height - 30,
+                options: {
+                    min: 5,
+                    max: 0,
+                    yaxispos: 'right',
+                    xaxispos: 'bottom',
+                    gutterLeft: 50,
+                    textAccessible: true
+                }
+            }).draw()
+        };
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.drawing xaxis.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var scatter = new RGraph.Scatter({
+            id: 'cvs',
+            data: [[50,432],[423,485],[375,500],[123,369],[411,149]],
+            options: {
+                ymax: 500,
+                xmax: 500,
+                xaxis: false,
+                noyaxis: true,
+                textAccessible: true
+            }
+        }).draw()
+
+
+
+        var xaxis = new RGraph.Drawing.XAxis({
+            id: 'cvs',
+            y: scatter.canvas.height - 30,
+            options: {
+                min: 5,
+                max: 0,
+                yaxispos: 'right',
+                xaxispos: 'center',
+                textAccessible: true
+            }
+        }).draw()
+    };
+&lt;/script&gt;
+</pre>
+    
+
+
+
+
+</body>
+</html>

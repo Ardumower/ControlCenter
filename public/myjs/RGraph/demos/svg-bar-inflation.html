@@ -1,0 +1,206 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.bar.js" ></script>
+    
+
+    <title>RGraph demo: An SVG Bar chart showing the UK inflation rate</title>
+    
+    
+    <meta name="description" content="An SVG Bar chart showing the UK inflation rate" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>An SVG Bar chart showing the UK inflation rate</h1>
+    <p>This is a copy of a chart that represents the UK monthly inflation rate (these are the real figures). Not good if you have a mortgage - but on the other hand if you're a saver its a good sign! It's using gradients, labelsAbove and a custom font. It also sets the yaxisMax property to 3.5 so the granularity is clearer.</p>
+
+
+
+
+
+
+
+
+
+    <div style="width: 750px; height: 300px" id="chart-container"></div>
+
+
+
+
+    <script>
+        // This is the source data
+        data = {            
+            source: [
+                {rate: 3.0, label: 'February 2018'},
+                {rate: 3.0, label: 'January 2018'},
+                {rate: 3.1, label: 'November 2017'},
+                {rate: 3.0, label: 'October 2017'},
+                {rate: 3.0, label: 'September 2017'},
+                {rate: 2.9, label: 'August 2017'},
+                {rate: 2.6, label: 'July 2017'},
+                {rate: 2.6, label: 'June 2017'},
+                {rate: 2.9, label: 'May 2017'},
+                {rate: 2.7, label: 'April 2017'},
+                {rate: 2.3, label: 'March 2017'},
+                {rate: 2.3, label: 'February 2017'}
+            ],
+            
+            // These are for once the data has been extracted and split up from
+            // the source
+            data:   [],
+            labels: []
+        };
+
+        // Reverse the data so that the latest figure is on the right
+        data.source = RGraph.SVG.arrayReverse(data.source);
+        
+        
+        // Loop through the source data extracting the required parts
+        for (var i=0; i<data.source.length; ++i) {
+            if (data.source[i]) {
+                
+                // Extract the data piece from the source data
+                data.data[i] = data.source[i].rate;
+    
+                // Extract the label from the source data
+                data.labels[i] = ((i+1) % 3 === 0 ? data.source[i].label : '');
+            }
+        }
+
+
+
+
+        new RGraph.SVG.Bar({
+            id: 'chart-container',
+            data: data['data'],
+            options: {
+                xaxisLabels: data['labels'],
+                colors: ['Gradient(#94B7D4:#94B7D4:white)'],
+                strokestyle: 'black',
+                textFont: 'Monospace',
+                textSize: 10,
+                hmargin: 8,
+                backgroundGridColor: '#eee',
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                yaxis: false,
+                xaxis: false,
+                yaxisDecimals: 1,
+                labelsAbove: true,
+                labelsAboveDecimals: 1,
+                title: 'UK inflation rate',
+                titleSize: 10,
+                titleHalign: 'left',
+                titleX: 50,
+                yaxisMax: 3.5,
+                linewidth: 0.75
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 750px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    <span>// This is the source data</span>
+
+    <span>// This is the source data</span>
+    data = {            
+        source: [
+            {rate: 3.0, label: 'February 2018'},
+            {rate: 3.0, label: 'January 2018'},
+            {rate: 3.1, label: 'November 2017'},
+            {rate: 3.0, label: 'October 2017'},
+            {rate: 3.0, label: 'September   2017'},
+            {rate: 2.9, label: 'August 2017'},
+            {rate: 2.6, label: 'July 2017'},
+            {rate: 2.6, label: 'June 2017'},
+            {rate: 2.9, label: 'May 2017'},
+            {rate: 2.7, label: 'April 2017'},
+            {rate: 2.3, label: 'March 2017'},
+            {rate: 2.3, label: 'February 2017'}
+        ],
+        
+        <span>// These are for once the data has been extracted and split up from
+        // the source</span>
+        data:   [],
+        labels: []
+    };
+
+    // Reverse the data so that the latest figure is on the right
+    data.source = RGraph.SVG.arrayReverse(data.source);
+    
+    
+    <span>// Loop through the source data extracting the required parts</span>
+    for (var i=0; i&lt;data.source.length; ++i) {
+        if (data.source[i]) {
+            
+            <span>// Extract the data piece from the source data</span>
+            data.data[i] = data.source[i].rate;
+
+            <span>// Extract the label from the source data</span>
+            data.labels[i] = ((i+1) % 3 === 0 ? data.source[i].label : '');
+        }
+    }
+
+
+
+
+    new RGraph.SVG.Bar({
+        id: 'chart-container',
+        data: data['data'],
+        options: {
+            xaxisLabels: data['labels'],
+            colors: ['Gradient(#4B86B6:#4B86B6:white)'],
+            strokestyle: 'black',
+            textFont: 'Monospace',
+            textSize: 10,
+            hmargin: 8,
+            backgroundGridColor: '#eee',
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            yaxis: false,
+            xaxis: false,
+            yaxisDecimals: 1,
+            labelsAbove: true,
+            labelsAboveDecimals: 1,
+            title: 'UK inflation rate',
+            titleSize: 10,
+            titleHalign: 'left',
+            titleX: 50,
+            yaxisMax: 3.5,
+            linewidth: 0.75
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

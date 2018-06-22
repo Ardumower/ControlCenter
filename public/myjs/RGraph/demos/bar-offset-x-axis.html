@@ -1,0 +1,106 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+
+    <title>RGraph demo: A 2D Bar chart with an offset X axis</title>
+    
+    
+    <meta name="description" content="A 2D Bar chart with an offset X axis" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A 2D Bar chart with an offset X axis</h1>
+
+    
+    <div style="padding: 15px; display: inline-block">
+        <canvas id="cvs" width="750" height="500">[No canvas support]</canvas>
+    </div>
+
+
+
+    <script>
+        new RGraph.Bar({
+            id: 'cvs',
+            data: [14,16,68,-9,-6,40,36],
+            options: {
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                unitsPost: '%',
+                shadow: false,
+                colors: ['red'],
+                strokestyle: 'rgba(0,0,0,0)',
+                textSize: 10,
+                title: 'A Bar chart with an offset X axis',
+                numyticks: 11,
+                gutterLeft: 50,
+                scaleZerostart: true,
+                ymin: -10,
+                ymax: 100,
+                backgroundGridVlines: false,
+                backgroundGridAutofitNumhlines: 11,
+                backgroundGridBorder: false,
+                ylabelsCount: 11
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px; display: inline-block"&gt;
+    &lt;canvas id="cvs" width="750" height="250"&gt;[No canvas support]&lt;/canvas&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Bar({
+        id: 'cvs',
+        data: [14,16,68,-9,-6,40,36],
+        options: {
+            labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            unitsPost: '%',
+            shadow: false,
+            colors: ['red'],
+            strokestyle: 'rgba(0,0,0,0)',
+            textSize: 10,
+            title: 'A Bar chart with an offset X axis',
+            numyticks: 11,
+            gutterLeft: 50,
+            scaleZerostart: true,
+            ymin: -10,
+            ymax: 100,
+            backgroundGridVlines: false,
+            backgroundGridAutofitNumhlines: 11,
+            backgroundGridBorder: false,
+            ylabelsCount: 11
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+</body>
+</html>

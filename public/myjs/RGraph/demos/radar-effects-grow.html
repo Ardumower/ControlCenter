@@ -1,0 +1,114 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.common.effects.js" ></script>
+    <script src="../libraries/RGraph.radar.js" ></script>
+
+    <title>RGraph demo: An animated Radar chart</title>
+
+    
+    
+    <meta name="description" content="An animated Radar chart that uses the Grow effect" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>An animated Radar chart</h1>
+
+    <canvas id="cvs" width="450" height="400">[No canvas support]</canvas>
+    
+    <script>
+        window.onload = function ()
+        {
+            var labels = ['Mal', 'Barry', 'Gary','Dave','Paul'];
+
+            new RGraph.Radar({
+                id: 'cvs',
+                data: [
+                    [4,8,5,2,3],
+                    [9,5,6,3,5]
+                ],
+                options: {
+                    labels: labels,
+                    tooltips: RGraph.arrayLinearize(labels, labels), // Effectively adds the two arrays together
+                    clearto: 'white',
+                    backgroundCirclesPoly: true,
+                    backgroundCirclesSpacing: 30,
+                    colors: ['rgba(255,0,0,0.25)','rgba(255,255,0,0.25)'],
+                    axesColor: 'transparent',
+                    highlights: true,
+                    strokestyle: ['red','black'],
+                    textAccessible: true,
+                    clearto: 'white'
+                }
+            }).grow();
+        };
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.effects.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.radar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="450" height="400"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var labels = ['Mal', 'Barry', 'Gary','Dave','Paul'];
+
+        new RGraph.Radar({
+            id: 'cvs',
+            data: [
+                [4,8,5,2,3],
+                [9,5,6,3,5]
+            ],
+            options: {
+                labels: labels,
+                tooltips: RGraph.arrayLinearize(labels, labels), // Effectively adds the two arrays together
+                clearto: 'white',
+                backgroundCirclesPoly: true,
+                backgroundCirclesSpacing: 30,
+                colors: ['rgba(255,0,0,0.25)','rgba(255,255,0,0.25)'],
+                axesColor: 'transparent',
+                highlights: true,
+                strokestyle: ['red','black'],
+                textAccessible: true,
+                clearto: 'white'
+            }
+        }).grow();
+    };
+&lt;/script&gt;
+</pre>
+
+
+
+
+</body>
+</html>

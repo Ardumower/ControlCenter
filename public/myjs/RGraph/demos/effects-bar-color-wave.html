@@ -1,0 +1,107 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+    <title>RGraph demo: Bar chart Color Wave effect</title>
+    
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>Bar chart Color Wave effect</h1>
+    
+    <p>
+        The colorWave effect gradually fades in the colors for each bar. It has a few
+        requirements for it to be implemented:
+    </p>
+    
+    <ul>
+        <li>The color(s) must be in the format: <b>rgba(r,g,b,a)</b></li>
+        <li>The function will pad the colors and turn on colorsSequential.</li>
+    </ul>
+
+    <canvas id="cvs" width="650" height="350">[No canvas support]</canvas>
+    
+    <br />
+    
+    <script>
+        new RGraph.Bar({
+            id: 'cvs',
+            data: [4,8,6,5,2,3,4,9],
+            options: {
+                textAccessible: true,
+                colors: [
+                    'rgba(255,0,0,0)',
+                    'rgba(0,255,0,0)',
+                    'rgba(0,0,255,0)',
+                    'rgba(0,255,255,0)',
+                    'rgba(255,0,255,0)',
+                    'rgba(255,255,0,0)',
+                    'rgba(255,128,0,0)',
+                    'rgba(128,255,128,0)'
+                ],
+                colorsSequential: true,
+                textSize: 16,
+                variant: 'bar',
+                shadow: false
+            }
+        }).colorWave();
+    </script>
+    
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div id="container" style="display: inline-block; position: relative"&gt;
+    &lt;canvas id="cvs" width="350" height="350" &gt;[No canvas support]&lt;/canvas&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Bar({
+        id: 'cvs',
+        data: [4,8,6,5,2,3,4,9],
+        options: {
+            textAccessible: true,
+            colors: [
+                'rgba(255,0,0,0)',
+                'rgba(0,255,0,0)',
+                'rgba(0,0,255,0)',
+                'rgba(0,255,255,0)',
+                'rgba(255,0,255,0)',
+                'rgba(255,255,0,0)',
+                'rgba(255,128,0,0)',
+                'rgba(128,255,128,0)'
+            ],
+            colorsSequential: true,
+            textSize: 16,
+            variant: 'bar',
+            shadow: false
+        }
+    }).colorWave();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

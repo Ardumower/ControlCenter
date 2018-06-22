@@ -1,0 +1,107 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.scatter.js" ></script>
+    
+    <title>RGraph demo: A Scatter chart with an offset X axis</title>
+    
+    
+    
+    
+    <meta name="description" content="A(nother) Scatter chart with an offset X axis" />
+
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A(nother) Scatter chart with an offset X axis</h1>
+
+    <canvas id="cvs" width="600" height="200">[No canvas support]</canvas>
+    
+    <script>
+        new RGraph.Scatter({
+            id: 'cvs',
+            data: [
+                [412,-150], [155,-261], [351,41], [455,-291], [121,-55], [89,-111],
+                [400,-66], [358,45], [500,-288], [321,-168], [111,45], [436,88]
+            ],
+            options: {
+                xmax: 500,
+                labels: ['0-100','101-200','201-300','301-400','401-500'],
+                ymin: -300,
+                ymax: 100,
+                numyticks: 4,
+                ylabelsCount: 4,
+                gutterLeft: 50,
+                backgroundGridVlines: false,
+                backgroundGridAutofitNumhlines: 4,
+                backgroundGridColor: '#eee',
+                backgroundGridBorder: false,
+                unitsPost: ' %',
+                textColor: '#888',
+                axisColor: '#999',
+                tickmarks: 'circle'
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.scatter.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="200"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Scatter({
+        id: 'cvs',
+        data: [
+            [412,-150], [155,-261], [351,41], [455,-291], [121,-55], [89,-111],
+            [400,-66], [358,45], [500,-288], [321,-168], [111,45], [436,88]
+        ],
+        options: {
+            xmax: 500,
+            labels: ['0-100','101-200','201-300','301-400','401-500'],
+            ymin: -300,
+            ymax: 100,
+            numyticks: 4,
+            ylabelsCount: 4,
+            gutterLeft: 50,
+            backgroundGridVlines: false,
+            backgroundGridAutofitNumhlines: 4,
+            backgroundGridColor: '#eee',
+            backgroundGridBorder: false,
+            unitsPost: ' %',
+            textColor: '#888',
+            axisColor: '#999',
+            tickmarks: 'circle'
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+
+</body>
+</html>

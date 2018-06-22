@@ -1,0 +1,113 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.common.effects.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A spline Line chart with multiple lines given as an array</title>
+    
+    
+    <meta name="description" content="A curvy Line chart (a spline) that has multiple lines. It uses the Line chart Trace effect. In this chart the arguments are given as one big multidimensional array" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A spline Line chart with multiple lines given as an array</h1>
+    
+    <p>
+        In this example the two datasets are given to the constructor as one big multidimensional array. This method can be useful
+        when you're using AJAX.
+    </p>
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+    
+    <script>
+        window.onload = function ()
+        {
+            var dataset1 = [4,5,1,6,3,5,2];
+            var dataset2 = [7,7,8,6,2,1,1];
+
+            var line = new RGraph.Line({
+                id: 'cvs',
+                data: [dataset1, dataset2],
+                options: {
+                    spline: true,
+                    linewidth: 3,
+                    hmargin: 5,
+                    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+                    tooltips: [
+                        'Mon','Tue','Wed','Thu','Fri','Sat','Sun',
+                        'Mon','Tue','Wed','Thu','Fri','Sat','Sun'
+                    ],
+                    tickmarks: 'circle',
+                    ticksize: 5,
+                    textAccessible: true,
+                    highlightStyle: 'halo'
+                }
+            }).trace2();
+        };
+    </script>
+
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.effects.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var dataset1 = [4,5,1,6,3,5,2];
+        var dataset2 = [7,7,8,6,2,1,1];
+
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: [dataset1, dataset2],
+            options: {
+                spline: true,
+                linewidth: 3,
+                hmargin: 5,
+                labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+                tooltips: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+                tickmarks: 'circle',
+                ticksize: 5,
+                textAccessible: true
+            }
+        }).trace2();
+    };
+&lt;/script&gt;
+</pre>
+
+    
+</body>
+</html>

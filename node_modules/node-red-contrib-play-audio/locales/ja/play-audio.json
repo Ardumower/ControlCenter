@@ -1,0 +1,11 @@
+{
+    "playAudio": {
+        "label": {
+            "ttsVoice": "TTSボイス"
+        },
+        "status" : {
+            "playing":"音",
+            "speaking":"話し中"
+        }
+    }
+}

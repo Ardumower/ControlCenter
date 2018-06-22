@@ -1,0 +1,102 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.scatter.js" ></script>
+    
+    <title>RGraph demo: A Scatter chart with the X axis in the middle</title>
+    
+    
+    
+    
+    <meta name="description" content="A Scatter chart which is demonstrating the Scatter chart X axis options" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A Scatter chart demonstrating  the axis options</h1>
+
+    <button onclick="scatter.set('ylabels.invert', !scatter.get('ylabels.invert')); RGraph.redraw();">Toggle inverted labels</button>
+    <button onclick="scatter.set('xaxispos', scatter.get('xaxispos') == 'bottom' ? 'center' : 'bottom'); RGraph.redraw();">Toggle the X axis position</button>
+    <button onclick="scatter.set('yaxispos', scatter.get('yaxispos') == 'left' ? 'right' : 'left'); RGraph.redraw();">Toggle the Y axis position</button>
+    <button onclick="scatter.set('ylabels', scatter.get('ylabels') ? false : true); RGraph.redraw();">Toggle the Y axis labels</button>
+    <button onclick="scatter.set('ylabels.specific', scatter.get('ylabels.specific') ? false : ['High','Medium','Low']); RGraph.redraw();">Toggle specific Y axis labels</button>
+    <button onclick="scatter.set('ymin', scatter.get('ymin') ? 0 : 50); RGraph.redraw();">Toggle ymin (50) setting</button>
+    <button onclick="scatter.set('xaxis', scatter.get('xaxis') ? false : true); RGraph.redraw();">Toggle X axis</button>
+    
+    <br />
+
+    <canvas id="cvs" width="700" height="400">[No canvas support]</canvas>
+    
+    <script>
+        scatter = new RGraph.Scatter({
+            id: 'cvs',
+            data: [[15,50]],
+            options: {
+                ymax: 100,
+                xmax: 365,
+                labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                xaxispos: 'center',
+                gutterBottom: 45,
+                gutterLeft: 65,
+                gutterRight: 65
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.scatter.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+    &gt;button onclick="scatter.set('ylabels.invert', !scatter.get('ylabels.invert')); RGraph.redraw();"&lt;Toggle inverted labels&gt;/button&lt;
+    &gt;button onclick="scatter.set('xaxispos', scatter.get('xaxispos') == 'bottom' ? 'center' : 'bottom'); RGraph.redraw();"&lt;Toggle the X axis position&gt;/button&lt;
+    &gt;button onclick="scatter.set('yaxispos', scatter.get('yaxispos') == 'left' ? 'right' : 'left'); RGraph.redraw();"&lt;Toggle the Y axis position&gt;/button&lt;
+    &gt;button onclick="scatter.set('ylabels', scatter.get('ylabels') ? false : true); RGraph.redraw();"&lt;Toggle the Y axis labels&gt;/button&lt;
+    &gt;button onclick="scatter.set('ylabels.specific', scatter.get('ylabels.specific') ? false : ['High','Medium','Low']); RGraph.redraw();"&lt;Toggle specific Y axis labels&gt;/button&lt;
+    &gt;button onclick="scatter.set('ymin', scatter.get('ymin') ? 0 : 50); RGraph.redraw();"&lt;Toggle ymin (50) setting&gt;/button&lt;
+    &gt;button onclick="scatter.set('xaxis', scatter.get('xaxis') ? false : true); RGraph.redraw();"&lt;Toggle X axis&gt;/button&lt;
+
+&lt;canvas id="cvs" width="600" height="250"&gt;[No canvas support]&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    scatter = new RGraph.Scatter({
+        id: 'cvs',
+        data: [[15,50]],
+        options: {
+            ymax: 100,
+            xmax: 365,
+            labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            xaxispos: 'center',
+            gutterBottom: 45,
+            gutterLeft: 65,
+            gutterRight: 65
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.bar.js" ></script>
+    
+
+    <title>RGraph demo: A blue SVG Bar chart</title>
+    
+    <meta name="description" content="A blue SVG Bar chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>A blue SVG Bar chart</h1>
+    <p>A blue Bar chart that has an offset X axis but also has both of the axes and the background grid turned off. It has a title, subtitle, labelsAbove labels and is using the wave animation effect. The font size of the the text is a little bit smaller than usual too.</p>
+    
+
+    <div style="width: 950px; height: 300px" id="chart-container"></div>
+
+
+
+    <script>
+        new RGraph.SVG.Bar({
+            id: 'chart-container',
+            data: [12.8,23.3,4.9,10.3,-2.6,4.3,7.5],
+            options: {
+                hmargin: 25,
+                yaxisLabels: false,
+                yaxisMin: -10,
+                yaxisMax: 30,
+                yaxis: false,
+                xaxis: false,
+                backgroundGrid: false,
+                labelsAbove: true,
+                labelsAboveUnitsPost: '%',
+                labelsAboveOffsety: -5,
+                labelsAboveDecimals: 1,
+                labelsAboveSize: 10,
+                colors: ['#00B9F2'],
+                xaxisLabels: ['Hele handset','Oslo','Bergen','Trondheim','Stavanger','Kristiansand','Tromso'],
+                xaxisTextSize: 8,
+                xaxisTextColor: '#666',
+                yaxisScale: false,
+                title: 'Boligprisutvikling 2016',
+                titleSubtitle: 'Prosentvis endring siste 12 maneder',
+                titleSubtitleItalic: true,
+                gutterTop: 45
+            }
+        }).wave();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 950px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.Bar({
+        id: 'chart-container',
+        data: [12.8,23.3,4.9,10.3,-2.6,4.3,7.5],
+        options: {
+            hmargin: 25,
+            yaxisLabels: false,
+            yaxisMin: -10,
+            yaxisMax: 30,
+            yaxis: false,
+            xaxis: false,
+            backgroundGrid: false,
+            labelsAbove: true,
+            labelsAboveUnitsPost: '%',
+            labelsAboveOffsety: -5,
+            labelsAboveDecimals: 1,
+            labelsAboveSize: 10,
+            colors: ['#00B9F2'],
+            xaxisLabels: ['Hele handset','Oslo','Bergen','Trondheim','Stavanger','Kristiansand','Tromso'],
+            xaxisTextSize: 8,
+            xaxisTextColor: '#666',
+            yaxisScale: false,
+            title: 'Boligprisutvikling 2016',
+            titleSubtitle: 'Prosentvis endring siste 12 maneder',
+            titleSubtitleItalic: true,
+            gutterTop: 45
+        }
+    }).wave();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

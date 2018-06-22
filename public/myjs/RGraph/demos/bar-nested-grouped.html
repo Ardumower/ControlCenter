@@ -1,0 +1,177 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.key.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+    <title>RGraph demo: A combined Bar and Spline chart</title>
+    
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    
+    <meta name="description" content="A nested grouped Bar chart" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+    <h1>A nested grouped Bar chart</h1>
+    
+    <p>
+        This is a variation on the already existing nested Bar chart,
+        this one with the nested Bar chart being grouped.
+    </p>
+
+    <canvas id="cvs" width="700" height="250">[No canvas support]</canvas>
+    <script>
+        // The "master" inner data
+        data_inner = [[4,2,5],[6,8,4],[4,8,9],[3,5,2],[1,5,5],[4,8,8],[6,3,5]];
+        data_outer = [];
+
+
+
+
+        // The totalled "outer" data
+        data_inner.forEach(function (v, k, arr)
+        {
+            data_outer[k] = RGraph.arraySum(v);
+        });
+
+        var outer = new RGraph.Bar({
+            id: 'cvs',
+            data: data_outer,
+            options: {
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                colors: ['Gradient(#eee:#aaa)'],
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                textSize: 12,
+                shadow: false,
+                strokestyle: 'rgba(0,0,0,0)',
+                textAccessible: true,
+                noaxes: true,
+                labelsAbove: true,
+                labelsAboveUnitsPost: 'kg',
+                unitsPost: 'kg',
+                gutterLeft: 50
+            }
+        }).grow()
+
+        var inner = new RGraph.Bar({
+            id: 'cvs',
+            data: data_inner,
+            options: {
+                colors: ['red','green','blue'],
+                key: ['Johnny','Rufus','Larna'],
+                keyPosition: 'gutter',
+                backgroundGrid: false,
+                textSize: 12,
+                shadow: false,
+                strokestyle: 'rgba(0,0,0,0)',
+                textAccessible: true,
+                noaxes: true,
+                ymax: outer.scale2.max,
+                hmargin: 10,
+                gutterLeft: outer.get('gutterLeft'),
+                labelsAbove: true,
+                labelsAboveColor: '#333',
+                labelsAboveSize: 8,
+                ylabels: false
+            }
+        }).wave()
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.key.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="700" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    <span>// The "master" inner data</span>
+    data_inner = [[4,2,5],[6,8,4],[4,8,9],[3,5,2],[1,5,5],[4,8,8],[6,3,5]];
+    data_outer = [];
+
+
+
+
+    <span>// The totalled "outer" data</span>
+    data_inner.forEach(function (v, k, arr)
+    {
+        data_outer[k] = RGraph.arraySum(v);
+    });
+
+    var outer = new RGraph.Bar({
+        id: 'cvs',
+        data: data_outer,
+        options: {
+            labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            colors: ['Gradient(#eee:#aaa)'],
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            textSize: 12,
+            shadow: false,
+            strokestyle: 'rgba(0,0,0,0)',
+            textAccessible: true,
+            noaxes: true,
+            labelsAbove: true,
+            labelsAboveUnitsPost: 'kg',
+            unitsPost: 'kg',
+            gutterLeft: 50
+        }
+    }).grow()
+
+
+
+
+
+    var inner = new RGraph.Bar({
+        id: 'cvs',
+        data: data_inner,
+        options: {
+            colors: ['red','green','blue'],
+            key: ['Johnny','Rufus','Larna'],
+            keyPosition: 'gutter',
+            backgroundGrid: false,
+            textSize: 12,
+            shadow: false,
+            strokestyle: 'rgba(0,0,0,0)',
+            textAccessible: true,
+            noaxes: true,
+            ymax: outer.scale2.max,
+            hmargin: 10,
+            gutterLeft: outer.get('gutterLeft'),
+            labelsAbove: true,
+            labelsAboveColor: '#333',
+            labelsAboveSize: 8,
+            ylabels: false
+        }
+    }).wave()
+&lt;/script&gt;
+</pre>
+
+
+    
+</body>
+</html>

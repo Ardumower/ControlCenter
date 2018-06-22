@@ -1,0 +1,205 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A dynamically updating filled range chart with a threshold</title>
+    
+    
+    <meta name="description" content="A dynamically updating filled range chart. The data here is simply generated randomly but could just as easily be retrieved from a server via AJAX (for example)." />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+    <h1>A dynamically updating filled range chart with a threshold</h1>
+    
+    <p>
+        This chart is very similar to the regular scrolling line chart but is a filled range chart with a threshold set.
+    </p>
+
+    <canvas id="cvs" width="1000" height="250">[No canvas support]</canvas>
+    
+    <script>textAccessible: true
+        window.onload = function ()
+        {
+            var obj       = null;
+            var numvalues = 600;
+            var value     = 25;
+
+            // RGraph.array_pad(array, length[, value])
+            var data1 = RGraph.arrayPad([], numvalues, null);
+            var data2 = RGraph.arrayPad([], numvalues, null);
+        
+            function drawGraph ()
+            {
+                // "cache" this in a local variable
+                var RG = RGraph;
+                var ma = Math;
+                var canvas = document.getElementById("cvs");
+                RG.clear(canvas);
+                
+
+                if (!obj) {
+                    obj = new RGraph.Line({
+                        id: 'cvs',
+                        data: [data1, data2],
+                        options: {
+                            xticks: 100,
+                            backgroundGridAutofitNumvlines: 15,
+                            title: 'Bandwidth used (Mb/s)',
+                            titleXaxis: 'Bandwidth used',
+                            titleXaxisPos: 0.5,
+                            colors: ['black'],
+                            linewidth: 0.5,
+                            yaxispos: 'right',
+                            ymax: 50,
+                            noxaxis: true,
+                            numyticks: 0,
+                            filled: true,
+                            filledRange: true,
+                            filledRangeThreshold: 25,
+                            filledRangeThresholdColors: ['red','#0c0'],
+                            fillstyle: 'red',
+                            colors: ['rgba(0,0,0,0)'],
+                            tickmarks: null,
+                            textAccessible: true,
+                            scaleZerostart: true
+                        }
+                    }).draw();
+                }
+
+                
+                value = value + RG.random(-3,3);
+                value = ma.max(0,value)
+                value = ma.min(50,value)
+                
+                obj.original_data[0].push(Math.min(value + 5, 50));
+                obj.original_data[1].push(Math.max(value - 5, 0));
+                
+                obj.original_data[0] = RG.arrayShift(obj.original_data[0]);
+                obj.original_data[1] = RG.arrayShift(obj.original_data[1]);
+                
+                obj.draw();
+
+                
+
+                RGraph.Effects.updateCanvas(drawGraph);
+            }
+
+
+
+            drawGraph();
+        };
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="1000" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var obj       = null;
+        var numvalues = 600;
+        var value     = 25;
+
+        // RGraph.array_pad(array, length[, value])
+        var data1 = RGraph.arrayPad([], numvalues, null);
+        var data2 = RGraph.arrayPad([], numvalues, null);
+    
+        function drawGraph ()
+        {
+            // "cache" this in a local variable
+            var RG = RGraph;
+            var ma = Math;
+            var canvas = document.getElementById("cvs");
+            RG.clear(canvas);
+            
+
+            if (!obj) {
+                obj = new RGraph.Line({
+                    id: 'cvs',
+                    data: [data1, data2],
+                    options: {
+                        xticks: 100,
+                        backgroundGridAutofitNumvlines: 15,
+                        title: 'Bandwidth used (Mb/s)',
+                        titleXaxis: 'Bandwidth used',
+                        titleXaxisPos: 0.5,
+                        colors: ['black'],
+                        linewidth: 0.5,
+                        yaxispos: 'right',
+                        ymax: 50,
+                        noxaxis: true,
+                        numyticks: 0,
+                        filled: true,
+                        filledRange: true,
+                        filledRangeThreshold: 25,
+                        filledRangeThresholdColors: ['red','#0c0'],
+                        fillstyle: 'red',
+                        colors: ['rgba(0,0,0,0)'],
+                        tickmarks: null,
+                        textAccessible: true,
+                        scaleZerostart: true
+                    }
+                }).draw();
+            }
+
+            
+            value = value + RG.random(-3,3);
+            value = ma.max(0,value)
+            value = ma.min(50,value)
+            
+            obj.original_data[0].push(Math.min(value + 5, 50));
+            obj.original_data[1].push(Math.max(value - 5, 0));
+            
+            obj.original_data[0] = RG.arrayShift(obj.original_data[0]);
+            obj.original_data[1] = RG.arrayShift(obj.original_data[1]);
+            
+            obj.draw();
+
+            
+
+            RGraph.Effects.updateCanvas(drawGraph);
+        }
+
+
+
+        drawGraph();
+    };
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+</body>
+</html>

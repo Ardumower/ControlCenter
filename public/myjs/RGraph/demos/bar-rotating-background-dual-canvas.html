@@ -1,0 +1,309 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+
+    <title>RGraph demo: A basic Bar chart</title>
+    
+    
+    <meta name="description" content="A Bar chart with a rotating background" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar chart with a rotating background on dual canvas tags</h1>
+    
+    <p>
+        This is the dual canvas version of this demo that only uses a two canvas
+        tags. The
+        background rotates on the rear canvas and the Bar chart is drawn on the
+        foreground canvas. The single canvas version
+        <a href="/demos/bar-rotating-background.html">
+            <b>can be found here</b>
+        </a>.
+    </p>
+
+    
+    <div style="position: relative; display: inline-block; width: 750px; height: 250px">
+        <canvas id="cvs_background" width="750" height="250" style="position: absolute; top: 0; left: 0">[No canvas support]</canvas>
+        <canvas id="cvs_foreground" width="750" height="250" style="position: absolute; top: 0; left: 0">[No canvas support]</canvas>
+    </div>
+
+
+
+    <script>
+        color1    = 'white';
+        color2    = 'rgba(64,64,64,0.15)';
+        increment = 0.0005;
+        radius    = 500; // The gradient radius
+
+        ca    = document.getElementById('cvs_background'),
+        co    = ca.getContext('2d'),
+
+        cx    = ca.width / 2,
+        cy    = ca.height / 2,
+        angle = 0
+
+
+        function draw ()
+        {
+            co.clearRect(-5000,-5000,10000,10000);
+
+
+            co.translate(cx,cy);
+            co.rotate(increment);
+            co.translate(cx * -1,cy * -1);
+            
+            // Keep a record of what the angle used is
+            angle += increment;
+            
+            for (var i=0; i<6.28; i+=(6.28 / 15)) {
+
+                var endpoint1 = RGraph.getRadiusEndPoint(cx, cy, i - 0.1, 10000 * angle * 4);
+                var endpoint2 = RGraph.getRadiusEndPoint(cx, cy, i + 0.1, 10000 * angle * 4);
+            
+                co.beginPath();
+                    co.fillStyle = color2;
+                    co.moveTo(cx,cy);
+                    co.lineTo(endpoint1[0],endpoint1[1]);
+                    co.lineTo(endpoint2[0],endpoint2[1]);
+                    co.lineTo(cx,cy);
+                co.fill();
+            }
+            
+            // Draw a circular gradient from the center outwards
+            var grad = co.createRadialGradient(cx, cy, 0, cx, cy, 1000);
+                grad.addColorStop(0, 'rgba(255,255,255,1)');
+                grad.addColorStop(0.25, 'rgba(255,255,255,0.5)');
+                grad.addColorStop(0.5, 'rgba(255,255,255,0)');
+            
+            co.fillStyle = grad;
+            RGraph.path2(
+                co, 'b a % % % % % % f',
+                cx, cy,
+                1000,
+                0,
+                2 * Math.PI,
+                -1
+            );
+
+            setTimeout(draw, 25);
+        }
+        
+        draw();
+        
+        
+        labels = [
+            'Mon',
+            'Tue',
+            'Wed',
+            'Thu',
+            'Fri',
+            'Sat',
+            'Sun'
+        ];
+
+
+        
+        bar = new RGraph.Bar({
+            id: 'cvs_foreground',
+            data: [4,8,6,5,3,7,8],
+            options: {
+                numxticks: 0,
+                numyticks: 0,
+                colors: ['black'],
+                tooltips: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                backgroundGrid: false,
+                shadow: false,
+                ylabels: false,
+                hmargin: 25,
+                textAccessiblePointerevents: false
+            }
+        }).wave(null, function (obj)
+        {
+            
+            var func = function (obj)
+            {
+                // Now go through the coords
+                obj.coords.forEach (function (v,k,arr)
+                {
+                    var x = v[0] + 10;
+                    var y = 225 - v[3] + 10;
+    
+                    RGraph.text2(obj, {
+                        x: x,
+                        y: y,
+                        text: labels[k],
+                        color: 'white',
+                        font: 'Arial',
+                        size: 12,
+                        halign: 'left',
+                        valign:'center'
+                    });
+                });
+            }
+            
+            // Add it to the draw event so that the text is redrawn
+            // whenever the canvas is cleared
+            obj.on('draw', func);
+            
+            func(obj);
+        });
+	</script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.tooltips.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="position: relative; display: inline-block; width: 750px; height: 250px"&gt;
+    &lt;canvas id="cvs_background" width="750" height="250" style="position: absolute; top: 0; left: 0"&gt;[No canvas support]&lt;/canvas&gt;
+    &lt;canvas id="cvs_foreground" width="750" height="250" style="position: absolute; top: 0; left: 0"&gt;[No canvas support]&lt;/canvas&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    color1    = 'white';
+    color2    = 'rgba(64,64,64,0.15)';
+    increment = 0.0005;
+    radius    = 500; // The gradient radius
+
+    ca    = document.getElementById('cvs_background'),
+    co    = ca.getContext('2d'),
+
+    cx    = ca.width / 2,
+    cy    = ca.height / 2,
+    angle = 0
+
+
+    function draw ()
+    {
+        co.clearRect(-5000,-5000,10000,10000);
+
+
+        co.translate(cx,cy);
+        co.rotate(increment);
+        co.translate(cx * -1,cy * -1);
+        
+        // Keep a record of what the angle used is
+        angle += increment;
+        
+        for (var i=0; i&lt;6.28; i+=(6.28 / 15)) {
+
+            var endpoint1 = RGraph.getRadiusEndPoint(cx, cy, i - 0.1, 10000 * angle * 4);
+            var endpoint2 = RGraph.getRadiusEndPoint(cx, cy, i + 0.1, 10000 * angle * 4);
+        
+            co.beginPath();
+                co.fillStyle = color2;
+                co.moveTo(cx,cy);
+                co.lineTo(endpoint1[0],endpoint1[1]);
+                co.lineTo(endpoint2[0],endpoint2[1]);
+                co.lineTo(cx,cy);
+            co.fill();
+        }
+        
+        // Draw a circular gradient from the center outwards
+        var grad = co.createRadialGradient(cx, cy, 0, cx, cy, 1000);
+            grad.addColorStop(0, 'rgba(255,255,255,1)');
+            grad.addColorStop(0.25, 'rgba(255,255,255,0.5)');
+            grad.addColorStop(0.5, 'rgba(255,255,255,0)');
+        
+        co.fillStyle = grad;
+        RGraph.path2(
+            co, 'b a % % % % % % f',
+            cx, cy,
+            1000,
+            0,
+            2 * Math.PI,
+            -1
+        );
+
+        setTimeout(draw, 25);
+    }
+    
+    draw();
+    
+    
+    labels = [
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat',
+        'Sun'
+    ];
+
+
+    
+    bar = new RGraph.Bar({
+        id: 'cvs_foreground',
+        data: [4,8,6,5,3,7,8],
+        options: {
+            numxticks: 0,
+            numyticks: 0,
+            colors: ['black'],
+            tooltips: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            backgroundGrid: false,
+            shadow: false,
+            ylabels: false,
+            hmargin: 25,
+            textAccessiblePointerevents: false
+        }
+    }).wave(null, function (obj)
+    {
+        
+        var func = function (obj)
+        {
+            // Now go through the coords
+            obj.coords.forEach (function (v,k,arr)
+            {
+                var x = v[0] + 10;
+                var y = 225 - v[3] + 10;
+
+                RGraph.text2(obj, {
+                    x: x,
+                    y: y,
+                    text: labels[k],
+                    color: 'white',
+                    font: 'Arial',
+                    size: 12,
+                    halign: 'left',
+                    valign:'center'
+                });
+            });
+        }
+        
+        obj.on('draw', func);
+        
+        func(obj);
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

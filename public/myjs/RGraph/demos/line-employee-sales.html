@@ -1,0 +1,142 @@
+ <!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.key.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A Line chart showing employee sales</title>
+    
+    
+    <meta name="description" content="A Line chart showing employee sales" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A Line chart showing employee sales</h1>
+    <p>A Line chart showing the employee sales by department. Since this chart was a copy of a chart found on the Internet it uses the Line chart - though a stacked or grouped Bar chart may represent the data better as the types of furniture aren't really related to each other.</p>
+
+    <canvas id="cvs" width="575" height="450">[No canvas support]</canvas>
+    
+    <script>
+        new RGraph.Line({
+            id: 'cvs',
+            data: [
+                [190,165,47,121,30,72],
+                [12,180,10,80,25,75],
+                [42,80,93,25,21,120],
+                [2,42,27,47,43,50]
+            ],
+            options: {
+                shadow: false,
+                tickmarks: null,
+                linewidth: 7,
+                backgroundGridVlines: false,
+                backgroundGridColor: 'gray',
+                backgroundColor: '#222',
+                noaxes: true,
+                textColor: '#A7A5A6',
+                textSize: 10,
+                textAccessible: false,
+                title: '2009 employee sales by department',
+                titleColor: 'white',
+                titleSize: 24,
+                labels: ['Food','Auto','Household','Furniture','Hitchen','Bath'],
+                gutterLeft: 50,
+                gutterRight: 50,
+                gutterTop: 75,
+                gutterBottom: 60,
+                key: ['Mary','Tom','Brad','Kate'],
+                keyPosition: 'gutter',
+                keyTextSize: 14,
+                keyTextColor: 'rgb(248,248,248)',
+                keyPositionY: 425,
+                colors: ['#B8202C','#96D1E3','#FA8710','#62648D']
+            }
+        }).on('beforedraw', function (obj)
+        {
+            RGraph.clear(obj.canvas, '#555557');
+        }).trace();
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.key.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="575" height="450"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Line({
+        id: 'cvs',
+        data: [
+            [190,165,47,121,30,72],
+            [12,180,10,80,25,75],
+            [42,80,93,25,21,120],
+            [2,42,27,47,43,50]
+        ],
+        options: {
+            shadow: false,
+            tickmarks: null,
+            linewidth: 7,
+            backgroundGridVlines: false,
+            backgroundGridColor: 'gray',
+            backgroundColor: '#222',
+            noaxes: true,
+            textColor: '#A7A5A6',
+            textSize: 10,
+            textAccessible: false,
+            title: '2009 employee sales by department',
+            titleColor: 'white',
+            titleSize: 24,
+            labels: ['Food','Auto','Household','Furniture','Hitchen','Bath'],
+            gutterLeft: 50,
+            gutterRight: 50,
+            gutterTop: 75,
+            gutterBottom: 60,
+            key: ['Mary','Tom','Brad','Kate'],
+            keyPosition: 'gutter',
+            keyTextSize: 14,
+            keyTextColor: 'rgb(248,248,248)',
+            keyPositionY: 425,
+            colors: ['#B8202C','#96D1E3','#FA8710','#62648D']
+        }
+    }).on('beforedraw', function (obj)
+    {
+        RGraph.clear(obj.canvas, '#555557');
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+
+</body>
+</html>

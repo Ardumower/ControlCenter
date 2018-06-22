@@ -1,0 +1,176 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.key.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+
+    <title>RGraph demo: A nested Donut chart/progress bar</title>
+    
+    <meta name="description" content="A nested Donut chart/progress bar" />
+    
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A nested Donut chart/progress bar</h1>
+
+    <canvas id="cvs" width="450" height="475" style="background-color: black">[No canvas support]</canvas>
+    
+    <script>
+        var rings = [
+            {color: '#2B908F', value: 67, width: 50, radius: 200},
+            {color: '#90EE7E', value: 57, width: 50, radius: 147},
+            {color: '#F45B5B', value: 46, width: 50, radius: 94}
+        ];
+
+        for (var i=0; i<rings.length; ++i) {
+            new RGraph.Pie({
+                id: 'cvs',
+                data: [1],
+                options: {
+                    variant: 'donut',
+                    colors: [rings[i].color],
+                    strokestyle: 'rgba(0,0,0,0)',
+                    shadow: false,
+                    radius: rings[i].radius,
+                    variantDonutWidth: rings[i].width,
+                    key: [
+                        'John ({1}%)'.format(rings[0].value),
+                        'Freddy ({1}%)'.format(rings[1].value),
+                        'Lucy ({1}%)'.format(rings[2].value)
+                    ],
+                    keyPosition: 'gutter',
+                    keyTextSize: 16,
+                    keyTextColor: 'white',
+                    keyColors: ['#2B908F','#90EE7E','#F45B5B'],
+                    textAccessible: false,
+                    keyPositionY: 12.5
+                }
+            }).on('draw', function (obj)
+            {
+                var co = obj.context,
+                    ca = obj.canvas;
+                
+                RGraph.path2(co,
+                    'b a % % % % % false f rgba(0,0,0,0.45)',
+                    obj.centerx,
+                    obj.centery,
+                    obj.radius,
+                    0,
+                    2 * Math.PI
+                );
+
+            }).draw();
+    
+            new RGraph.Pie({
+                id: 'cvs',
+                data: [rings[i].value,100 - rings[i].value],
+                options: {
+                    variant: 'donut',
+                    colors: [rings[i].color,'rgba(0,0,0,0)'],
+                    strokestyle: 'rgba(0,0,0,0)',
+                    shadow: false,
+                    radius: rings[i].radius,
+                    variantDonutWidth: rings[i].width
+                }
+            }).roundRobin();
+        }
+    </script>
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.drawing.text.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.pie.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="450" height="450"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var rings = [
+        {color: '#2B908F', value: 67, width: 50, radius: 200},
+        {color: '#90EE7E', value: 57, width: 50, radius: 147},
+        {color: '#F45B5B', value: 46, width: 50, radius: 94}
+    ];
+
+    for (var i=0; i&lt;rings.length; ++i) {
+        new RGraph.Pie({
+            id: 'cvs',
+            data: [1],
+            options: {
+                variant: 'donut',
+                colors: [rings[i].color],
+                strokestyle: 'rgba(0,0,0,0)',
+                shadow: false,
+                radius: rings[i].radius,
+                variantDonutWidth: rings[i].width,
+                key: [
+                    'John ({1}%)'.format(rings[0].value),
+                    'Freddy ({1}%)'.format(rings[1].value),
+                    'Lucy ({1}%)'.format(rings[2].value)
+                ],
+                keyPosition: 'gutter',
+                keyTextSize: 16,
+                keyTextColor: 'white',
+                keyColors: ['#2B908F','#90EE7E','#F45B5B'],
+                textAccessible: false,
+                keyPositionY: 12.5
+            }
+        }).on('draw', function (obj)
+        {
+            var co = obj.context,
+                ca = obj.canvas;
+            
+            RGraph.path2(co,
+                'b a % % % % % false f rgba(0,0,0,0.45)',
+                obj.centerx,
+                obj.centery,
+                obj.radius,
+                0,
+                2 * Math.PI
+            );
+
+        }).draw();
+
+        new RGraph.Pie({
+            id: 'cvs',
+            data: [rings[i].value,100 - rings[i].value],
+            options: {
+                variant: 'donut',
+                colors: [rings[i].color,'rgba(0,0,0,0)'],
+                strokestyle: 'rgba(0,0,0,0)',
+                shadow: false,
+                radius: rings[i].radius,
+                variantDonutWidth: rings[i].width
+            }
+        }).roundRobin();
+    }
+&lt;/script&gt;
+</pre>
+
+
+
+    
+</body>
+</html>

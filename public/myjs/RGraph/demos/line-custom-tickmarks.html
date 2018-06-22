@@ -1,0 +1,115 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A basic Line chart</title>
+    
+    
+    <meta name="description" content="A Line chart with custom tickmarks" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A Line chart with <span style="text-decoration: line-through">custom</span> tickmarks</h1>
+
+    <p>
+        This chart has tickmarks (but no tooltips). They were achieved using custom
+        events/drawing but have now been incorporated into RGraph itself.
+    </p>
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+    
+    <script>
+        new RGraph.Line({
+            id: 'cvs',
+            data: [[5,4,1,6,8,5,3], [4,8,6,1,3,5,7]],
+            options: {
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                gutterLeft: 55,
+                gutterRight: 35,
+                gutterBottom: 35,
+                gutterTop: 35,
+                textAccessible: true,
+                scaleZerostart: true,
+                labelsOffsety: 5,
+                tickmarks: null,
+                backgroundGridDashed: true,
+                shadow: null,
+                highlightStyle: 'halo',
+                tooltips: function ()
+                {
+                    return '\0';
+                }
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.core.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Line({
+        id: 'cvs',
+        data: [[5,4,1,6,8,5,3], [4,8,6,1,3,5,7]],
+        options: {
+            labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            gutterLeft: 55,
+            gutterRight: 35,
+            gutterBottom: 35,
+            gutterTop: 35,
+            textAccessible: true,
+            scaleZerostart: true,
+            labelsOffsety: 5,
+            tickmarks: null,
+            backgroundGridDashed: true,
+            shadow: null,
+            highlightStyle: 'halo',
+            tooltips: function ()
+            {
+                return '\0';
+            }
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+
+</body>
+</html>

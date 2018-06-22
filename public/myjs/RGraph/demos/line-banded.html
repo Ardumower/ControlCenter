@@ -1,0 +1,273 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A Line chart with color bands</title>
+    
+    
+    <meta name="description" content="A Line chart with color bands" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A Line chart with color bands</h1>
+
+    <canvas id="cvs" width="950" height="350">[No canvas support]</canvas>
+    
+    <script>
+        // Data for the chart
+        data = [80,90,70,90,80,80,70,20,10,60,95,97,90,50,20,85,70,80,80,70,90,80,90,90];
+
+        // Configuration for the chart
+        conf = {
+            linewidth: 3,
+            
+            // These are an alternate set of colors (that aren't currently used
+            fills: ['#F2D8D9','#F9E7D3','#DCEAD9','#D9E7F4'],
+            
+            // Comment this line out to use the colors above instead
+            fills: ['rgba(255,0,0,0.25)','rgba(255,255,0,0.25)','rgba(0,255,0,0.25)','rgba(0,0,255,0.25)'],
+
+            labels: [
+                '','Q1\n2014','',
+                '','Q2\n2014','',
+                '','Q3\n2014','',
+                '','Q4\n2014','',
+                '','Q1\n2015','',
+                '','Q2\n2015','',
+                '','Q3\n2015','',
+                '','Q4\n2015',''
+            ],
+            filled: true,
+            backgroundGridColor: '#eee',
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            backgroundGridAutofitNumhlines: 4,
+            noaxes: true,
+            tickmarks: 'circle',
+            spline:    true,
+            unitsPost: '%',
+            gutterLeft: 50,
+            numxticks: 7,
+            ylabelsCount: 4,
+            textColor: 'gray'
+        };
+
+        // Get references to the canvas and context
+        ca = document.getElementById('cvs');
+        co = ca.getContext('2d');
+
+        // First draw the chart so we can get the scale points
+        line = drawChart({
+            data: data,
+            conf: conf,
+            clipX: 0,
+            clipY: 0,
+            clipW: 1500,
+            clipH: 500
+        });
+
+        // These are the coordinates that are used for the color bands
+        y0 = 0;
+        y1 = line.getYCoord(75);
+        y2 = line.getYCoord(50);
+        y3 = line.getYCoord(25);
+
+        // Start with a fresh, clear canvas
+        RGraph.clear(line.canvas);
+
+        //
+        // This is the function that draws a line chart based on the
+        // configuration that is passed to it.
+        //
+        function drawChart (opt)
+        {
+            co.save();
+                
+                // Draw the clipping region
+                co.rect(
+                    opt.clipX,
+                    opt.clipY,
+                    opt.clipW,
+                    opt.clipH
+                );
+                co.clip();
+            
+                // Draw a chart (because the canvas is clipped only part of it
+                // is visible)
+                var line = new RGraph.Line({
+                    id: 'cvs',
+                    data: opt.data,
+                    options: opt.conf
+                }).set({
+                    colors: ['black'],
+                    fillstyle: opt.conf.fills[opt.index]
+                }).draw();
+            co.restore();
+            
+            return line;
+        }
+
+
+        // Draw the red area
+        drawChart({data: data, conf: conf, index: 0, clipX: 0, clipY: y0, clipW: 1000, clipH: y1});
+        
+        // Draw the yellow area
+        drawChart({data: data, conf: conf, index: 1, clipX: 0, clipY: y1, clipW: 1000, clipH: y2 - y1});
+
+        // Draw the green area
+        drawChart({data: data, conf: conf, index: 2, clipX: 0, clipY: y2, clipW: 1000, clipH: y3 - y2});
+        
+        // Draw the blue area
+        drawChart({data: data, conf: conf, index: 3, clipX: 0, clipY: y3, clipW: 1000, clipH: ca.height - y3});
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="950" height="350"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    <span>// Data for the chart</span>
+    data = [80,90,70,90,80,80,70,20,10,60,95,97,90,50,20,85,70,80,80,70,90,80,90,90];
+
+    <span>// Configuration for the chart</span>
+    conf = {
+        linewidth: 3,
+        
+        <span>// These are an alternate set of colors (that aren't currently used</span>
+        fills: ['#F2D8D9','#F9E7D3','#DCEAD9','#D9E7F4'],
+        
+        <span>// Comment this line out to use the colors above instead</span>
+        fills: ['rgba(255,0,0,0.25)','rgba(255,255,0,0.25)','rgba(0,255,0,0.25)','rgba(0,0,255,0.25)'],
+
+        labels: [
+            '','Q1\n2014','',
+            '','Q2\n2014','',
+            '','Q3\n2014','',
+            '','Q4\n2014','',
+            '','Q1\n2015','',
+            '','Q2\n2015','',
+            '','Q3\n2015','',
+            '','Q4\n2015',''
+        ],
+        filled: true,
+        backgroundGridColor: '#eee',
+        backgroundGridVlines: false,
+        backgroundGridBorder: false,
+        backgroundGridAutofitNumhlines: 4,
+        noaxes: true,
+        tickmarks: 'circle',
+        spline:    true,
+        unitsPost: '%',
+        gutterLeft: 50,
+        numxticks: 7,
+        ylabelsCount: 4,
+        scaleDecimals: 1,
+        textColor: 'gray'
+    };
+
+    <span>// Get references to the canvas and context</span>
+    ca = document.getElementById('cvs');
+    co = ca.getContext('2d');
+
+    <span>// First draw the chart so we can get the scale points</span>
+    line = drawChart({
+        data: data,
+        conf: conf,
+        clipX: 0,
+        clipY: 0,
+        clipW: 1500,
+        clipH: 500
+    });
+
+    <span>// These are the coordinates that are used for the color bands</span>
+    y0 = 0;
+    y1 = line.getYCoord(75);
+    y2 = line.getYCoord(50);
+    y3 = line.getYCoord(25);
+
+    <span>// Start with a fresh, clear canvas</span>
+    RGraph.clear(line.canvas);
+
+    <span>//
+    // This is the function that draws a line chart based on the
+    // configuration that is passed to it.
+    //</span>
+    function drawChart (opt)
+    {
+        co.save();
+            
+            // Draw the clipping region
+            co.rect(
+                opt.clipX,
+                opt.clipY,
+                opt.clipW,
+                opt.clipH
+            );
+            co.clip();
+        
+            // Draw a chart (because the canvas is clipped only part of it
+            // is visible)
+            var line = new RGraph.Line({
+                id: 'cvs',
+                data: opt.data,
+                options: opt.conf
+            }).set({
+                colors: ['black'],
+                fillstyle: opt.conf.fills[opt.index]
+            }).draw();
+        co.restore();
+        
+        return line;
+    }
+
+
+    <span>// Draw the red area</span>
+    drawChart({data: data, conf: conf, index: 0, clipX: 0, clipY: y0, clipW: 1000, clipH: y1});
+    
+    <span>// Draw the yellow area</span>
+    drawChart({data: data, conf: conf, index: 1, clipX: 0, clipY: y1, clipW: 1000, clipH: y2 - y1});
+
+    <span>// Draw the green area</span>
+    drawChart({data: data, conf: conf, index: 2, clipX: 0, clipY: y2, clipW: 1000, clipH: y3 - y2});
+    
+    <span>// Draw the blue area</span>
+    drawChart({data: data, conf: conf, index: 2, clipX: 0, clipY: y3, clipW: 1000, clipH: ca.height - y3});&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+
+</body>
+</html>

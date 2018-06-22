@@ -1,0 +1,122 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.line.js" ></script>
+    
+
+    <title>RGraph demo: An SVG Line chart using the trace effect</title>
+    
+    
+    <meta name="description" content="An SVG Line chart using the trace effect" />
+
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An SVG Line chart using the trace effect</h1>
+    <p>A dark themed filled Line chart that also has the spline option enabled. Circular tickmarks are enabled. The chart has black background and the line is coloured dark blue. The chart uses the trace effect.</p>
+
+    
+    <div style="width: 950px; height: 400px; background-color: black; box-shadow: 3px 3px 3px #ccc" id="chart-container"></div>
+
+
+
+
+        
+    <script>
+        new RGraph.SVG.Line({
+            id: 'chart-container',
+            data: [5,8,6,3,4,1,9,8,2,3,5,6,7,8,9,4,5,6,3,2,5,4,8,6,4,5,3,1,6,4,5],
+            options: {
+                backgroundGridVlinesCount: 11,
+                hmargin: 0,
+                textColor: 'white',
+                textSize: 14,
+                textFont: 'Verdana',
+                filled: true,
+                filledColors: ['rgba(25,51,74,0.75)'],
+                colors: ['#5AF'],
+                gutterLeft: 65,
+                gutterRight: 40,
+                gutterBottom: 50,
+                gutterTop: 20,
+                xaxis: false,
+                yaxis: false,
+                yaxisUnitsPost: 'm',
+                yaxisUnitsPre: '$',
+                tickmarksStyle: 'circle',
+                tickmarksFill: 'black',
+                tickmarksLinewidth: 2,
+                tickmarksSize: 6,
+                linewidth: 4,
+                spline: true,
+                xaxisLabels: ['Kev','John','Fred','July','Fred','Olga','Ben','Boris','Lenny','Pete','Lewis']
+            }
+        }).trace();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 950px; height: 400px; background-color: black; box-shadow: 3px 3px 3px #ccc" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.Line({
+        id: 'chart-container',
+        data: [5,8,6,3,4,1,9,8,2,3,5,6,7,8,9,4,5,6,3,2,5,4,8,6,4,5,3,1,6,4,5],
+        options: {
+            backgroundGridVlinesCount: 11,
+            hmargin: 0,
+            textColor: 'white',
+            textSize: 14,
+            textFont: 'Verdana',
+            filled: true,
+            filledColors: ['rgba(25,51,74,0.75)'],
+            colors: ['#5AF'],
+            gutterLeft: 65,
+            gutterRight: 40,
+            gutterBottom: 50,
+            gutterTop: 20,
+            yaxis: false,
+            xaxis: false,
+            yaxisUnitsPost: 'm',
+            yaxisUnitsPre: '$',
+            tickmarksStyle: 'circle',
+            tickmarksFill: 'black',
+            tickmarksLinewidth: 2,
+            tickmarksSize: 6,
+            linewidth: 4,
+            spline: true,
+            xaxisLabels: ['Kev','John','Fred','July','Fred','Olga','Ben','Boris','Lenny','Pete','Lewis']
+        }
+    }).trace();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

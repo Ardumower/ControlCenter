@@ -1,0 +1,279 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+
+    <title>RGraph demo: A basic Bar chart</title>
+    
+    
+    <meta name="description" content="A Bar chart with a rotating background" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar chart with a rotating background</h1>
+    
+    <p>
+        This is the single canvas version of this demo that only uses a single canvas. The
+        background rotates and the Bar chart is drawn on top. Because of the
+        constant updating its not conducive to interactive features - for that
+        you'll want the
+        <a href="/demos/bar-rotating-background-dual-canvas.html">
+            <b>two canvas version</b>
+        </a>.
+    </p>
+
+    
+    <canvas id="cvs" width="750" height="250">[No canvas support]</canvas>
+
+
+
+    <script>
+        color1    = 'white';
+        color2    = 'rgba(255,0,0,0.25)';
+        increment = 0.0005;
+        radius    = 500; // The gradient radius
+
+        ca    = document.getElementById('cvs'),
+        co    = ca.getContext('2d'),
+
+        cx    = ca.width / 2,
+        cy    = ca.height / 2,
+        angle = 0,
+        
+        bar = new RGraph.Bar({
+            id: 'cvs',
+            data: [1,5,3,2,5,6,8],
+            options: {
+                colors: ['Gradient(#fcc:red)'],
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                backgroundGrid: false,
+                shadow: true,
+                shadowOffsetx: 1,
+                shadowOffsety: 1,
+                shadowBlur:3
+            }
+        });
+
+
+        function draw ()
+        {
+            co.clearRect(-5000,-5000,10000,10000);
+
+
+            co.translate(cx,cy);
+            co.rotate(increment);
+            co.translate(cx * -1,cy * -1);
+            
+            // Keep a record of what the angle used is
+            angle += increment;
+            
+            for (var i=0; i<6.28; i+=(6.28 / 15)) {
+
+                var endpoint1 = RGraph.getRadiusEndPoint(cx, cy, i - 0.1, 10000 * angle * 4);
+                var endpoint2 = RGraph.getRadiusEndPoint(cx, cy, i + 0.1, 10000 * angle * 4);
+            
+                co.beginPath();
+                    co.fillStyle = color2;
+                    co.moveTo(cx,cy);
+                    co.lineTo(endpoint1[0],endpoint1[1]);
+                    co.lineTo(endpoint2[0],endpoint2[1]);
+                    co.lineTo(cx,cy);
+                co.fill();
+            }
+            
+            // Draw a circular gradient from the center outwards
+            var grad = co.createRadialGradient(cx, cy, 0, cx, cy, 1000);
+                grad.addColorStop(0, 'rgba(255,255,255,1)');
+                grad.addColorStop(0.25, 'rgba(255,255,255,0.5)');
+                grad.addColorStop(0.5, 'rgba(255,255,255,0)');
+            
+            co.fillStyle = grad;
+            RGraph.path2(
+                co, 'b a % % % % % % f',
+                cx, cy,
+                1000,
+                0,
+                2 * Math.PI,
+                -1
+            );
+            
+            
+            drawChart()
+
+            setTimeout(draw, 25);
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // This function draws the chart
+            function drawChart ()
+            {
+                // Rotate the canvas back so when drawn the chart appears straight
+                co.translate(cx,cy);
+                co.rotate(0-angle);
+                co.translate(cx * -1,cy * -1);
+    
+    
+    
+                bar.draw();
+    
+                // Rotate the canvas again
+                co.translate(cx,cy);
+                co.rotate(angle);
+                co.translate(cx * -1,cy * -1);
+            }
+        }
+        
+        draw();
+	</script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="750" height="250"&gt;[No canvas support]&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    color1    = 'white';
+    color2    = 'rgba(255,0,0,0.25)';
+    increment = 0.0005;
+    radius    = 500; // The gradient radius
+
+    ca    = document.getElementById('cvs'),
+    co    = ca.getContext('2d'),
+
+    cx    = ca.width / 2,
+    cy    = ca.height / 2,
+    angle = 0,
+    
+    bar = new RGraph.Bar({
+        id: 'cvs',
+        data: [1,5,3,2,5,6,8],
+        options: {
+            colors: ['Gradient(#fcc:red)'],
+            labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            backgroundGrid: false,
+            shadow: true,
+            shadowOffsetx: 1,
+            shadowOffsety: 1,
+            shadowBlur:3
+        }
+    });
+
+
+    function draw ()
+    {
+        co.clearRect(-5000,-5000,10000,10000);
+
+
+        co.translate(cx,cy);
+        co.rotate(increment);
+        co.translate(cx * -1,cy * -1);
+        
+        // Keep a record of what the angle used is
+        angle += increment;
+        
+        for (var i=0; i&lt;6.28; i+=(6.28 / 15)) {
+
+            var endpoint1 = RGraph.getRadiusEndPoint(cx, cy, i - 0.1, 10000 * angle * 4);
+            var endpoint2 = RGraph.getRadiusEndPoint(cx, cy, i + 0.1, 10000 * angle * 4);
+        
+            co.beginPath();
+                co.fillStyle = color2;
+                co.moveTo(cx,cy);
+                co.lineTo(endpoint1[0],endpoint1[1]);
+                co.lineTo(endpoint2[0],endpoint2[1]);
+                co.lineTo(cx,cy);
+            co.fill();
+        }
+        
+        // Draw a circular gradient from the center outwards
+        var grad = co.createRadialGradient(cx, cy, 0, cx, cy, 1000);
+            grad.addColorStop(0, 'rgba(255,255,255,1)');
+            grad.addColorStop(0.25, 'rgba(255,255,255,0.5)');
+            grad.addColorStop(0.5, 'rgba(255,255,255,0)');
+        
+        co.fillStyle = grad;
+        RGraph.path2(
+            co, 'b a % % % % % % f',
+            cx, cy,
+            1000,
+            0,
+            2 * Math.PI,
+            -1
+        );
+        
+        
+        drawChart()
+
+        setTimeout(draw, 25);
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // This function draws the chart
+        function drawChart ()
+        {
+            // Rotate the canvas back so when drawn the chart appears straight
+            co.translate(cx,cy);
+            co.rotate(0-angle);
+            co.translate(cx * -1,cy * -1);
+
+
+
+            bar.draw();
+
+            // Rotate the canvas again
+            co.translate(cx,cy);
+            co.rotate(angle);
+            co.translate(cx * -1,cy * -1);
+        }
+    }
+    
+    draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

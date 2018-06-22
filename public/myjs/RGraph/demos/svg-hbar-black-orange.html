@@ -1,0 +1,127 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.hbar.js" ></script>
+    
+
+    <title>RGraph demo: A black and orange SVG HBar chart</title>
+    
+    
+    <meta name="description" content="A black and orange SVG HBar " />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>A black and orange SVG HBar </h1>
+    <p>This is a Horizontal Bar chart that is actually made up of two charts. The first chart is the gray backgrounds for the bars that you can see. Then the orange Horizontal Bar chart is overlaid on top. The labels on the right are made up from the labelsAbove option (on the first background HBar chart).</p>
+
+    
+    <div style="width: 500px; height: 300px; display: inline-block; background-color: black" id="chart-container"></div>
+
+
+
+        
+
+    <script>
+        data   = [70,80,60,50,40,80];
+        labels = ['JavaScript','HTML','CSS','React','Ruby','Python'];
+
+        new RGraph.SVG.HBar({
+            id: 'chart-container',
+            data: [1,1,1,1,1,1],
+            options: {
+                colors: ['gray'],
+                xaxisScale: false,
+                backgroundGrid: false,
+                vmargin: 5,
+                yaxisLabels: labels,
+                textColor: 'rgba(0,0,0,0)',
+                labelsAbove: true,
+                labelsAboveColor: 'white',
+                labelsAboveSpecific: data
+            }
+        }).draw();
+
+        new RGraph.SVG.HBar({
+            id: 'chart-container',
+            data: data,
+            options: {
+                colors: ['orange'],
+                textColor: 'white',
+                yaxisLabels: labels,
+                xaxisScale: false,
+                backgroundGrid: false,
+                vmargin: 5
+            }
+        }).wave();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.hbar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 500px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    data   = [70,80,60,50,40,80];
+    labels = ['JavaScript','HTML','CSS','React','Ruby','Python'];
+
+    new RGraph.SVG.HBar({
+        id: 'chart-container',
+        data: [1,1,1,1,1,1],
+        options: {
+            colors: ['gray'],
+            xaxisScale: false,
+            backgroundGrid: false,
+            vmargin: 5,
+            yaxisLabels: labels,
+            textColor: 'rgba(0,0,0,0)',
+            labelsAbove: true,
+            labelsAboveColor: 'white',
+            labelsAboveSpecific: data
+        }
+    }).draw();
+
+    new RGraph.SVG.HBar({
+        id: 'chart-container',
+        data: data,
+        options: {
+            colors: ['orange'],
+            textColor: 'white',
+            yaxisLabels: labels,
+            xaxisScale: false,
+            backgroundGrid: false,
+            vmargin: 5
+        }
+    }).wave();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

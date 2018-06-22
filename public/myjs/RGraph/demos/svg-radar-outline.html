@@ -1,0 +1,126 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.radar.js" ></script>
+    
+
+    <title>RGraph demo: An unfilled SVG Radar chart</title>
+    
+    
+    <meta name="description" content="An unfilled SVG Radar chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An unfilled SVG Radar chart</h1>
+    <p>A Radar chart that has been set to have no concentric rings on the background grid - just some radial lines that emanate outwards from the center.</p>
+
+    
+    <div style="width: 600px; height: 500px" id="chart-container"></div>
+
+
+
+        
+
+    <script>
+        data = [
+            [8,7,9,9,8,8,8],
+            [5,8,5,6,3,5,6]
+        ];
+        
+        // Make the tooltips
+        tooltips = [];
+        seq      = 0;
+        data.forEach(function (v,k,arr)
+        {
+            data[k].forEach(function (v2,k2,arr2)
+            {
+                tooltips[seq++] = v2 + '%';
+            });
+        });
+
+        new RGraph.SVG.Radar({
+            id: 'chart-container',
+            data: data,
+            options: {
+                backgroundGridColor: 'gray',
+                backgroundGridConcentricsCount: 0,
+                colors: ['red','black'],
+                highlightLinewidth: 2,
+                linewidth: 3,
+                labels: ['Bob','Reg','Dug','Lou','Joe','Kev','Jon'],
+                tooltips: tooltips,
+                tickmarks: 'circle',
+                tickmarksSize: 5
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.radar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 600px; height: 500px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    data = [
+        [8,7,9,9,8,8,8],
+        [4,8,5,6,3,5,6]
+    ];
+    
+    <span>// Make the tooltips</span>
+    tooltips = [];
+    seq      = 0;
+    data.forEach(function (v,k,arr)
+    {
+        data[k].forEach(function (v2,k2,arr2)
+        {
+            tooltips[seq++] = v2 + '%';
+        });
+    });
+
+    new RGraph.SVG.Radar({
+        id: 'chart-container',
+        data: data,
+        options: {
+            backgroundGridColor: 'gray',
+            backgroundGridConcentricsCount: 0,
+            colors: ['red','black'],
+            highlightLinewidth: 2,
+            linewidth: 3,
+            labels: ['Bob','Reg','Dug','Lou','Joe','Kev','Jon'],
+            tooltips: tooltips,
+            tickmarks: 'filledrect',
+            tickmarksSize: 10
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+
+    <title>RGraph demo: A Bar chart using the labelsAbove option</title>
+    
+    
+    <meta name="description" content="A Bar chart using the labelsAbove option" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar chart using the labelsAbove option</h1>
+
+    
+    <div style="padding: 15px; display: inline-block">
+        <canvas id="cvs" width="750" height="250">[No canvas support]</canvas>
+    </div>
+
+
+
+    <script>
+        var data = [
+            [4,8,6,3],
+            [4,5,6,3],
+            [1,5,9,6],
+            [5,8,4,2],
+            [6,9,5,6],
+            [4,4,5,3],
+            [5,6,3,6]
+        ];
+        
+        var labels = [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday'
+        ];
+        
+        var labelsAbove = [];
+        
+        // Create the labelsAbove
+        data.forEach(function (v, k, arr)
+        {
+            labelsAbove[k * 4] = '{1}kg'.format(RGraph.arraySum(v))
+        });
+        
+        var bar = new RGraph.Bar({
+             id: 'cvs',
+             data: data,
+             options: {
+                 textSize: 10,
+                 textAccessible: false,
+                 gutterTop: 35,
+                 gutterBottom: 70,
+                 textAngle: 45,
+                 hmargin: 10,
+                 labelsOffsety: 10,
+                 labels: labels,
+                 colors: ['#aaf', 'rgba(96,128,96,0.5)', '#faa','#afa'],
+                 backgroundGridVlines: false,
+                 backgroundGridBorder: false,
+                 grouping: 'stacked',
+                 strokestyle: 'transparent',
+                 shadow: false,
+                 labelsAbove: true,
+                 labelsAboveSize: 12,
+                 labelsAboveSpecific: labelsAbove,
+                 noxaxis: true,
+                 noyaxis: true,
+             }
+         }).wave();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;canvas id="cvs" width="750" height="250"&gt;[No canvas support]&lt;/canvas&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var data = [
+        [4,8,6,3],
+        [4,5,6,3],
+        [1,5,9,6],
+        [5,8,4,2],
+        [6,9,5,6],
+        [4,4,5,3],
+        [5,6,3,6]
+    ];
+    
+    var labels = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+    ];
+    
+    var labelsAbove = [];
+    
+    <span>// Create the labelsAbove</span>
+    data.forEach(function (v, k, arr)
+    {
+        labelsAbove[k * 4] = '{1}kg'.format(RGraph.arraySum(v))
+    });
+    
+    var bar = new RGraph.Bar({
+         id: 'cvs',
+         data: data,
+         options: {
+             textSize: 10,
+             textAccessible: false,
+             gutterTop: 35,
+             gutterBottom: 70,
+             textAngle: 45,
+             hmargin: 10,
+             labelsOffsety: 10,
+             labels: labels,
+             colors: ['#aaf', 'rgba(96,128,96,0.5)', '#faa','#afa'],
+             backgroundGridVlines: false,
+             backgroundGridBorder: false,
+             grouping: 'stacked',
+             strokestyle: 'transparent',
+             shadow: false,
+             labelsAbove: true,
+             labelsAboveSize: 12,
+             labelsAboveSpecific: labelsAbove,
+             noxaxis: true,
+             noyaxis: true,
+         }
+     }).wave();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

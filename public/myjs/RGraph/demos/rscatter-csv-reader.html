@@ -1,0 +1,120 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script type="text/javascript" src="../libraries/RGraph.common.core.js" ></script>
+    <script type="text/javascript" src="../libraries/RGraph.common.csv.js" ></script>
+    <script type="text/javascript" src="../libraries/RGraph.rscatter.js" ></script>
+    
+    <title>RGraph demo: An RScatter chart using the CSV reader</title>
+
+    
+    
+    <meta name="description" content="An RScatter chart using the CSV reader" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A RScatter chart using the CSV reader</h1>
+
+    <br />
+
+    <div style="background-color: #ffc; border: 2px solid #cc0; border-radius: 5px; padding: 5px;">
+        <b>Note:</b>
+        For browser security reasons the AJAX demos don't work offline. You can view the demos on the RGraph website here:
+        <a href="https://www.rgraph.net/demos/index.html" target="_blank" rel="nofollow">https://www.rgraph.net/demos/index.html</a>
+    </div>
+    <canvas id="cvs" width="500" height="450">[No canvas support]</canvas>
+    
+    <script>
+        window.onload = function ()
+        {
+            new RGraph.CSV('/sample.csv', function (csv)
+            {
+                // Just fetch the two rows of the CSV file, starting at the second column
+                var row1 = csv.getRow(0, 1); // First row
+                var row2 = csv.getRow(1, 1); // Second row
+                var data = [];
+
+                /**
+                * Now make up some sample points using the data
+                */
+                for (var i=0; i<row1.length; i+=1) {
+                    data.push( [(row1[i] / 10) * 360, row2[i]]);
+                }
+
+                var rscatter = new RGraph.RScatter({
+                    id: 'cvs',
+                    data: data,
+                    options: {
+                        labelsAxes: 'n',
+                        textAccessible: true
+                    }
+                }).draw()
+            })
+        };
+    </script>
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.csv.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.rscatter.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="500" height="450"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        new RGraph.CSV('/sample.csv', function (csv)
+        {
+            <span>// Just fetch the two rows of the CSV file, starting at the second column</span>
+            var row1 = csv.getRow(0, 1); <span>// First row</span>
+            var row2 = csv.getRow(1, 1); <span>// Second row</span>
+            var data = [];
+
+            <span>/**
+            * Now make up some sample points using the data
+            */</span>
+            for (var i=0; i&lt;row1.length; i+=1) {
+                data.push( [(row1[i] / 10) * 360, row2[i]]);
+            }
+
+            var rscatter = new RGraph.RScatter({
+                id: 'cvs',
+                data: data,
+                options: {
+                    labelsAxes: 'n',
+                    textAccessible: true
+                }
+            }).draw();
+        });
+    };
+&lt;/script&gt;
+</pre>
+
+
+    
+
+</body>
+</html>

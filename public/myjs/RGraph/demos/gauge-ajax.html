@@ -1,0 +1,182 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.effects.js" ></script>
+    <script src="../libraries/RGraph.gauge.js" ></script>
+    
+    <title>RGraph demo: A customised and adjustable Gauge chart</title>
+
+    
+    <meta name="description" content="A Gauge chart that is updated periodically by AJAX" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <div style="background-color: #ffc; border: 2px solid #cc0; border-radius: 5px; padding: 5px;">
+        <b>Note:</b>
+        For security reasons the AJAX demos don't work offline. You can view the demos on the RGraph website here:
+        <a href="https://www.rgraph.net/demos/index.html" target="_blank" rel="nofollow">https://www.rgraph.net/demos/index.html</a>
+    </div>
+
+    <h1>A customised Gauge chart (with AJAX updating)</h1>
+    
+    <p>
+        This Gauge is much like the previous one but with AJAX updating instead of click updating. Because
+        of the AJAX it only works when viewed online - which you can do <a href="https://www.rgraph.net/demos/gauge-ajax.html" rel="nofollow">here</a>.
+    </p>
+
+    <canvas id="cvs" width="250" height="250">[No canvas support]</canvas>
+    
+    <script>
+        window.onload = function ()
+        {
+            var gauge = new RGraph.Gauge({
+                id: 'cvs',
+                min:0,
+                max: 100,
+                value: 7,
+                options: {
+                    borderOutline: 'transparent',
+                    needleColors: ['red'],
+                    needleType: 'line',
+                    centerpinRadius: 0.1,
+                    titleTop: 'Speed',
+                    textAccessible: true
+                }
+            }).on('draw', function (obj)
+            {
+                var co = obj.context;
+    
+                // This circle becomes the border of the centerpin
+                RGraph.path2(co, ['b', 'a', obj.centerx, obj.centery, 10, 0, RGraph.TWOPI, false, 'f', 'black']);
+            })
+            .draw();
+
+
+
+
+            var delay = 1500;
+
+
+
+
+            function myAJAXCallback(num)
+            {
+                gauge.value = num;
+                gauge.grow()
+                
+                
+                // Make another AJAX call after the delay (which is in milliseconds)
+                setTimeout(function ()
+                    {
+                        RGraph.AJAX.getNumber('/getdata.html', myAJAXCallback);
+                    },
+                    delay);
+            }
+
+
+
+
+            /**
+            * Make the AJAX call every so often (contolled by the delay variable)
+            */
+            setTimeout(function () {RGraph.AJAX.getNumber('/getdata.html', myAJAXCallback);}, delay);
+        };
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.effects.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.gauge.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="250" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    window.onload = function ()
+    {
+        var gauge = new RGraph.Gauge({
+            id: 'cvs',
+            min:0,
+            max: 100,
+            value: 7,
+            options: {
+                borderOutline: 'transparent',
+                needleColors: ['red'],
+                needleType: 'line',
+                centerpinRadius: 0.1,
+                titleTop: 'Speed',
+                labelsOffset: 7,
+                textAccessible: true
+            }
+        }).on('draw', function (obj)
+        {
+            var co = obj.context;
+
+            <span>// This circle becomes the border of the centerpin</span>
+            RGraph.path2(co, ['b', 'a', obj.centerx, obj.centery, 10, 0, RGraph.TWOPI, false, 'f', 'black']);
+        })
+        .draw();
+
+
+
+
+        var delay = 1500;
+
+
+
+
+        function myAJAXCallback(num)
+        {
+            gauge.value = num;
+            gauge.grow()
+            
+            
+            <span>// Make another AJAX call after the delay (which is in milliseconds)</span>
+            setTimeout(function ()
+            {
+                RGraph.AJAX.getNumber('/getdata.html', myAJAXCallback);
+            }, delay);
+        }
+
+
+
+
+        <span>/**
+        * Make the AJAX call every so often (contolled by the delay variable)
+        */</span>
+        setTimeout(function ()
+        {
+            RGraph.AJAX.getNumber('/getdata.html', myAJAXCallback);
+        }, delay);
+    };
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+</body>
+</html>

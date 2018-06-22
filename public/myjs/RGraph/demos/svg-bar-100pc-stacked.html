@@ -1,0 +1,134 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.bar.js" ></script>
+    
+
+    <title>RGraph demo: An SVG 100% Bar chart</title>
+
+    
+    <meta name="description" content="An SVG 100% Bar chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>An SVG 100% Bar chart</h1>
+    <p>By configuring your data (as is shown here) you can have your Bar chart take on the appearance of a 100% Bar chart. This chart does just that and also uses the grow animation effect.</p>
+
+    
+    <div style="width: 750px; height: 300px" id="chart-container"></div>
+
+
+
+
+    <script>
+        // Define the data
+        data  = [[4,9,9],[8,6,4],[1,2,5],[5,6,2],[4,8,8],[3,2,5],[4,6,5]];
+
+        // Calculate the percentages that the data represents
+        data.forEach(function (v, k, arr)
+        {
+            var total = RGraph.SVG.arraySum(v);
+
+            for (var i=0; i<v.length; ++i) {
+                v[i] = (v[i] / total) * 100;
+            }
+        });
+
+
+
+
+        new RGraph.SVG.Bar({
+            id: 'chart-container',
+            data: data,
+            options: {                
+                gutterLeft: 50,
+                colors: ['#c66','#6c6','#66c'],
+                yaxisUnitsPost: '%',
+                xaxisLabels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                tooltips: [
+                    'Bob', 'Jerry', 'Ben',
+                    'Bob', 'Jerry', 'Ben',
+                    'Bob', 'Jerry', 'Ben',
+                    'Bob', 'Jerry', 'Ben',
+                    'Bob', 'Jerry', 'Ben',
+                    'Bob', 'Jerry', 'Ben',
+                    'Bob', 'Jerry', 'Ben'
+                ],
+                grouping: 'stacked',
+                hmargin: 20,
+                linewidth:3,
+                yaxisMax: 100,
+                title: 'A 100% Bar chart',
+                shadow: true
+            }
+        }).grow();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 750px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    <span>// Define the data</span>
+    data  = [[4,9,9],[8,6,4],[1,2,5],[5,6,2],[4,8,8],[3,2,5],[4,6,5]];
+
+    <span>// Calculate the percentages that the data represents</span>
+    data.forEach(function (v, k, arr)
+    {
+        var total = RGraph.SVG.arraySum(v);
+
+        for (var i=0; i&lt;v.length; ++i) {
+            v[i] = (v[i] / total) * 100;
+        }
+    });
+
+
+
+
+    new RGraph.SVG.Bar({
+        id: 'chart-container',
+        data: data,
+        options: {
+            gutterLeft: 50,
+            colors: ['#c66','#6c6','#66c'],
+            yaxisUnitsPost: '%',
+            xaxisLabels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            grouping: 'stacked',
+            hmargin: 20,
+            linewidth:3,
+            yaxisMax: 100,
+            title: 'A 100% Bar chart'
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

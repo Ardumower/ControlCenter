@@ -1,0 +1,152 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    
+
+    <title>RGraph demo: A Bar chart customised to look like the millionaire bar chart</title>
+    
+    
+    <meta name="description" content="A Bar chart customised to look like the millionaire bar chart" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar chart customised to look like the millionaire bar chart</h1>
+    <p>This is an example of a Bar chart that has been customised to have an appearance similar to the "Who wants to be a millionaire" "Ask the Audience" results bar chart. It uses the ondraw event in-conjunction with the API in order to draw the text above the bars. The background gradient is done with a CSS linear-gradient - it's not drawn on the canvas. The background grid is customised in linewidth and color, the axes are disabled and the text colour is customised too.</p>
+
+    <p>
+        <a href="svg-bar-millionaire.html">
+            There's an SVG version of this chart here.
+        </a>
+    </p>
+
+    <canvas id="cvs" width="300" height="250" style="border-radius: 6px; background-image: linear-gradient(45deg, black, blue, black); box-shadow: #aaa 2px 2px 2px">[No canvas support]</canvas>
+
+
+
+    <script>
+        labels = [50,20,15,15];
+        data   = RGraph.arrayClone(labels);
+    
+        var bar = new RGraph.Bar({
+            id: 'cvs',
+            data: data,
+            options: {
+                textAccessible: true,
+                backgroundGridAutofitAlign: false,
+                backgroundGridAutofitNumvlines: 8,
+                backgroundGridAutofitNumhlines: 10,
+                backgroundGridColor: '#6A93CA',
+                backgroundGridWidth: 3,
+                colors:['Gradient(#EC06D8:#FEB2FB:#FEB2FB)'],
+                ymax: 100,
+                gutterLeft: 10,
+                gutterRight: 10,
+                gutterTop: 30,
+                gutterBottom: 45,
+                ylabels: false,
+                labels: ['A','B','C','D'],
+                labelsColor: 'yellow',
+                noaxes: true,
+                textSize: 22,
+                textColor: 'rgba(0,0,0,0)',
+                textFont: 'Verdana',
+                strokestyle: 'rgba(0,0,0,0)'
+            }                
+        }).grow().on('draw', function ()
+        {
+            // Add the labels
+            for (var i=0; i<4; i++) {
+                RGraph.text2(bar.context, {
+                    text: labels[i] + '%',
+                    x:bar.coords[i][0] + (bar.coords[i][2] / 2),
+                    y:30,
+                    color: 'white',
+                    size: 18,
+                    halign: 'center',
+                    font: 'Verdana'
+                });
+            }
+        });
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="300" height="250" style="border-radius: 6px; background-image: linear-gradient(45deg, black, blue, black); box-shadow: #aaa 2px 2px 2px"&gt;[No canvas support]&lt;/canvas&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    labels = [50,20,15,15];
+    data   = RGraph.arrayClone(labels);
+
+    var bar = new RGraph.Bar({
+        id: 'cvs',
+        data: data,
+        options: {
+            textAccessible: true,
+            backgroundGridAutofitAlign: false,
+            backgroundGridAutofitNumvlines: 8,
+            backgroundGridAutofitNumhlines: 10,
+            backgroundGridColor: '#6A93CA',
+            backgroundGridWidth: 3,
+            colors:['Gradient(#EC06D8:#FEB2FB:#FEB2FB)'],
+            ymax: 100,
+            gutterLeft: 10,
+            gutterRight: 10,
+            gutterTop: 30,
+            gutterBottom: 45,
+            ylabels: false,
+            labels: ['A','B','C','D'],
+            labelsColor: 'yellow',
+            noaxes: true,
+            textSize: 22,
+            textColor: 'rgba(0,0,0,0)',
+            textFont: 'Verdana',
+            strokestyle: 'rgba(0,0,0,0)'
+        }                
+    }).grow().on('draw', function ()
+    {
+        // Add the labels
+        for (var i=0; i&lt;4; i++) {
+            RGraph.text2(bar.context, {
+                text: labels[i] + '%',
+                x:bar.coords[i][0] + (bar.coords[i][2] / 2),
+                y:30,
+                color: 'white',
+                size: 18,
+                halign: 'center',
+                font: 'Verdana'
+            });
+        }
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

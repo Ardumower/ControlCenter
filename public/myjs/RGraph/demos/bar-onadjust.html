@@ -1,0 +1,132 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+     <script src="/libraries/RGraph.common.core.js" ></script>
+     <script src="/libraries/RGraph.common.dynamic.js" ></script>
+     <script src="/libraries/RGraph.bar.js" ></script>
+    
+
+    <title>RGraph demo: A customised adjustable Bar chart</title>
+    
+    
+    <meta name="description" content="A customised adjustable Bar chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A customised adjustable Bar chart</h1>
+
+    <p>
+        This demo shows how you can make use of the <b>onadjust</b> RGraph event
+        so that when you adjust one bar on the chart the others are updated
+        with the remainder (so that they all add up to 300).
+    </p>
+
+    <canvas id="cvs" width="800" height="300">[No canvas support]</canvas>
+
+    <script>
+        combinedMax = 300;
+
+        bar = new RGraph.Bar({
+            id: 'cvs',
+            data: [180,20,20,20,20,20,20],
+            options: {
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                adjustable: true,
+                gutterLeft: 50,
+                ymax: combinedMax,
+                labelsAbove: true,
+                labelsAboveSize: 18,
+                labelsAboveDecimals: 1,
+                textSize: 14,
+                textAccessiblePointerevents: false
+            }
+        }).draw().on('adjust', function (obj)
+        {
+            var shape = RGraph.Registry.get('chart.adjusting.shape');
+
+            // Get the value of the bar thats just been adjusted
+            var index = shape.index;
+            var value = bar.data[index];
+            var other = (combinedMax - value) / (bar.data.length - 1);
+            
+            // Now adjust all of the other values
+            for (var i=0; i<bar.data.length; ++i) {
+                if (i != index) {
+                    bar.data[i] = other;
+                }
+            }
+            
+            RGraph.redraw();
+        });
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="800" height="300"&gt;[No canvas support]&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    combinedMax = 300;
+
+    bar = new RGraph.Bar({
+        id: 'cvs',
+        data: [180,20,20,20,20,20,20],
+        options: {
+            labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            adjustable: true,
+            gutterLeft: 50,
+            ymax: combinedMax,
+            labelsAbove: true,
+            labelsAboveSize: 18,
+            labelsAboveDecimals: 1,
+            textSize: 14,
+            textAccessiblePointerevents: false
+        }
+    }).draw().on('adjust', function (obj)
+    {
+        var shape = RGraph.Registry.get('chart.adjusting.shape');
+
+        <span>// Get the value of the bar thats just been adjusted</span>
+        var index = shape.index;
+        var value = bar.data[index];
+        var other = (combinedMax - value) / (bar.data.length - 1);
+        
+        <span>// Now adjust all of the other values</span>
+        for (var i=0; i&lt;bar.data.length; ++i) {
+            if (i != index) {
+                bar.data[i] = other;
+            }
+        }
+        
+        RGraph.redraw();
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.rose.js" ></script>
+    
+    <title>RGraph demo: A 3D rose chart</title>
+
+
+    
+    <meta name="description" content="A 3D Rose chart" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A 3D Rose chart</h1>
+
+    <canvas id="cvs" width="800" height="400">[No canvas support]</canvas>
+    
+    <script>
+        new RGraph.Rose({
+            id: 'cvs',
+            data: [[4,8,7],[6,5,8],[4,5,3],[4,9,8],[3,8,6],[4,6,3],[1,5,8]],
+            options: {
+                strokestyle: 'rgba(0,0,0,0)',
+                margin: 7,
+                variant: 'stacked3d',
+                variantThreedDepth: 10,
+                labelsAxes: 'n',
+                colors: ['gradient(#faa:red)','Gradient(#afa:green)','gradient(#aaf:#ddf)'],
+                labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                textAccessible: false
+            }
+        }).draw();
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.rose.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="800" height="400"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Rose({
+        id: 'cvs',
+        data: [[4,8,7],[6,5,8],[4,5,3],[4,9,8],[3,8,6],[4,6,3],[1,5,8]],
+        options: {
+            strokestyle: 'rgba(0,0,0,0)',
+            margin: 7,
+            variant: 'stacked3d',
+            variantThreedDepth: 10,
+            labelsAxes: 'n',
+            colors: ['gradient(#faa:red)','Gradient(#afa:green)','gradient(#aaf:#ddf)'],
+            labels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            textAccessible: false
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+    
+
+</body>
+</html>

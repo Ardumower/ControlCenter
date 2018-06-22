@@ -1,0 +1,232 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.key.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.bar.js" ></script>
+    <script src="../libraries/RGraph.drawing.rect.js" ></script>
+    
+    <title>RGraph demo: A grouped bar chart</title>
+    
+    
+    <meta name="description" content="This demonstration shows a grouped Bar chart (the one from the example page as of 5th March 2014)" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+        
+    <h1>A grouped bar chart</h1>
+    
+
+    <canvas id="cvs" width="950" height="350">[No canvas support]</canvas>
+
+    <script>
+        bar = new RGraph.Bar({
+            id: 'cvs',
+            data: [[17,14,9,16,28,2], [22,15,19,16,12,6], [18,15,21,13,11,13], [17,12,12,14,22,3]],
+            options: {
+                noaxes: true,
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                backgroundGridAutofitNumhlines: 3,
+                ylabelsCount: 3,
+                textColor: '#666',
+                textSize: 10,
+                hmargin: 55,
+                hmarginGrouped: 2,
+                colors: ['#E30513', '#1C1C1B', '#86BC24', '#E5007D', '#2F8DCD', '#F9D900'],
+                labels: ['Arbeiter','Angestellte','Selbststandige','Arbeitslose'],
+                unitsPost: ' %',
+                gutterLeft: 50,
+                gutterBottom: 65,
+                gutterTop: 65,
+                title: 'AfD unter Arbeitern und Arbeitslosen starkste Kraft',
+                titleX: 50,
+                titleHalign: 'left',
+                titleColor: 'gray',
+                key: ['SPD','CDU','Grune','Linke','AfD','FDP'],
+                keyPosition: 'gutter',
+                keyPositionY: 320,
+                keyTextSize: 12,
+                tooltipsHighlight: false
+            }
+        }).grow({frames:60}, function (obj)
+        {
+            var key = bar.get('key');
+
+            for (var i=0,tooltips=[]; i<bar.data.length; i++) {
+                tooltips.push('{1}: <b>{2} %</b><br />{3}: <b>{4} %</b><br />{5}: <b>{6} %</b><br />{7}: <b>{8} %</b><br />{9}: <b>{10} %</b><br />FDP: <b>{12} %</b><br />'.format(
+                    key[0], bar.data[i][0],
+                    key[1], bar.data[i][1],
+                    key[2], bar.data[i][2],
+                    key[3], bar.data[i][3],
+                    key[4], bar.data[i][4],
+                    key[5], bar.data[i][5]
+                ));
+            }
+        
+            bar.set({
+                tooltips: tooltips,
+                tooltipsEvent: 'mousemove'
+            });
+            
+            RGraph.tooltips.style.backgroundColor = 'rgba(255,255,255,0.85)';
+            RGraph.tooltips.style.padding         = '10px';
+            RGraph.tooltips.style.paddingLeft     = '20px';
+            RGraph.tooltips.style.border          = '2px solid red';
+            RGraph.tooltips.style.textAlign       = 'left';
+
+
+
+
+
+
+
+
+
+
+            // Add the drawing API rect objects that are used to trigger
+            // the tooltips
+            for (var i=0,j=0; i<bar.coords.length; i+=6,j++) {
+                new RGraph.Drawing.Rect({
+                    id: 'cvs',
+                    x: bar.coords[i][0] - 1,
+                    y: bar.get('gutterTop'),
+                    width: (bar.coords[i][2] * 6) + (10 * bar.get('hmarginGrouped')) + 2,
+                    height: bar.canvas.height - bar.get('gutterTop') - bar.get('gutterBottom'),
+                    options: {
+                        colors: ['red'],
+                        fillstyle: 'transparent',
+                        tooltips: [tooltips[j]],
+                        highlightStroke: 'transparent'
+                    }
+                }).draw();
+            }
+
+        });
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    bar = new RGraph.Bar({
+        id: 'cvs',
+        data: [[17,14,9,16,28,2], [22,15,19,16,12,6], [18,15,21,13,11,13], [17,12,12,14,22,3]],
+        options: {
+            noaxes: true,
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            backgroundGridAutofitNumhlines: 3,
+            ylabelsCount: 3,
+            textColor: '#666',
+            textSize: 10,
+            hmargin: 55,
+            hmarginGrouped: 2,
+            colors: ['#E30513', '#1C1C1B', '#86BC24', '#E5007D', '#2F8DCD', '#F9D900'],
+            labels: ['Arbeiter','Angestellte','Selbststandige','Arbeitslose'],
+            unitsPost: ' %',
+            gutterLeft: 50,
+            gutterBottom: 65,
+            gutterTop: 65,
+            title: 'AfD unter Arbeitern und Arbeitslosen starkste Kraft',
+            titleX: 50,
+            titleHalign: 'left',
+            titleColor: 'gray',
+            key: ['SPD','CDU','Grune','Linke','AfD','FDP'],
+            keyPosition: 'gutter',
+            keyPositionY: 320,
+            keyTextSize: 12,
+            tooltipsHighlight: false
+        }
+    }).grow({frames:60}, function (obj)
+    {
+        for (var i=0,tooltips=[]; i&lt;bar.data.length; i++) {
+            tooltips.push('{1}: &lt;b&gt;{2} %&lt;/b&gt;&lt;br /&gt;{3}: &lt;b&gt;{4} %&lt;/b&gt;&lt;br /&gt;{5}: &lt;b&gt;{6} %&lt;/b&gt;&lt;br /&gt;{7}: &lt;b&gt;{8} %&lt;/b&gt;&lt;br /&gt;{9}: &lt;b&gt;{10} %&lt;/b&gt;&lt;br /&gt;11: &lt;b&gt;{12} %&lt;/b&gt;&lt;br /&gt;'.format(
+                key[0], bar.data[i][0],
+                key[1], bar.data[i][1],
+                key[2], bar.data[i][2],
+                key[3], bar.data[i][3],
+                key[4], bar.data[i][4],
+                key[5], bar.data[i][5]
+            ));
+        }
+    
+        bar.set({
+            tooltips: tooltips,
+            tooltipsEvent: 'mousemove'
+        });
+
+        RGraph.tooltips.style.backgroundColor = 'rgba(255,255,255,0.85)';
+        RGraph.tooltips.style.padding         = '10px';
+        RGraph.tooltips.style.paddingLeft     = '20px';
+        RGraph.tooltips.style.border          = '2px solid red';
+        RGraph.tooltips.style.textAlign       = 'left';
+
+
+
+
+
+
+
+
+
+
+        // Add the drawing API rect objects that are used to trigger
+        // the tooltips
+        for (var i=0,j=0; i&lt;bar.coords.length; i+=6,j++) {
+            new RGraph.Drawing.Rect({
+                id: 'cvs',
+                x: bar.coords[i][0],
+                y: bar.get('gutterTop'),
+                width: (bar.coords[i][2] * 6) + (10 * bar.get('hmarginGrouped')),
+                height: bar.canvas.height - bar.get('gutterTop') - bar.get('gutterBottom'),
+                options: {
+                    colors: ['red'],
+                    fillstyle: 'transparent',
+                    tooltips: [tooltips[j]],
+                    highlightStroke: 'transparent'
+                }
+            }).draw();
+        }
+
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    <br />
+
+
+
+
+</body>
+</html>

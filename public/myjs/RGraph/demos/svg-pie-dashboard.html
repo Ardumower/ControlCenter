@@ -1,0 +1,554 @@
+
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.pie.js" ></script>
+    <script src="../libraries/RGraph.svg.hbar.js" ></script>
+    
+
+    <title>RGraph demo: SVG Pie charts configured to look like meters</title>
+
+    
+    <meta name="description" content="SVG Pie charts configured to look like meters" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>SVG Pie charts configured to look like meters</h1>
+    <p>Here we have three Pie charts that have been configured to look like gauges showing percentages. They're regular Pie charts with two colours but then a big black circle is added over the top which makes them look like donut charts (somewhat). And finally the text is added to the center in the draw event.</p>
+
+    <style>
+        div#meters{
+            position: relative;
+            background-color: black;
+            height: 425px;
+        }
+
+        div#meters div {
+            float: left;
+            width: 300px;
+            height: 300px;
+        }
+        
+        
+        div#chart-container4,
+        div#chart-container5,
+        div#chart-container6 {
+            position: absolute !important;
+            left: 0 !important;
+            top: 280px !important;
+            width: 900px !important;
+            height: 70px !important;
+        }
+        
+        div#chart-container5 {top: 310px !important;}
+        div#chart-container6 {top: 340px !important;}
+    </style>
+
+    <div id="meters">
+        <div id="chart-container1"></div>
+        <div id="chart-container2"></div>
+        <div id="chart-container3"></div>
+        <div id="chart-container4"></div>
+        <div id="chart-container5"></div>
+        <div id="chart-container6"></div>
+    </div>
+
+
+
+        
+    <script>
+        pie1 = new RGraph.SVG.Pie({
+            id: 'chart-container1',
+            data: [15,85],
+            options: {
+                colors: ['red', 'transparent'],
+                donut: true,
+                donutWidth: 20
+            }
+        }).on('draw', function (obj)
+        {
+            RGraph.SVG.create({
+                svg: obj.svg,
+                type: 'circle',
+                parent: obj.layers.background1,
+                attr: {
+                    cx: obj.centerx,
+                    cy: obj.centery,
+                    r: obj.radius,
+                    fill: 'gray'
+                }
+            });
+            RGraph.SVG.create({
+                svg: obj.svg,
+                type: 'circle',
+                parent: obj.layers.background1,
+                attr: {
+                    cx: obj.centerx,
+                    cy: obj.centery,
+                    r: obj.radius - obj.properties.donutWidth,
+                    fill: 'black'
+                }
+            });
+
+            // Add the text label
+            RGraph.SVG.text({
+                object: obj,
+                parent: obj.svg.all,
+                text:   obj.data[0] + '%',
+                x:      obj.centerx,
+                y:      obj.centery,
+                halign: 'center',
+                valign: 'center',
+                size:   45,
+                bold: true,
+                color:  '#999'
+            });
+
+            // Add the text label of the name
+            RGraph.SVG.text({
+                object: obj,
+                parent: obj.svg.all,
+                text:   'Charles',
+                x:      obj.centerx,
+                y:      obj.centery + 20,
+                halign: 'center',
+                valign: 'top',
+                size:   16,
+                bold: true,
+                color:  '#999'
+            });
+        }).roundRobin({frames: 45});
+
+        new RGraph.SVG.Pie({
+            id: 'chart-container2',
+            data: [50,50],
+            options: {
+                colors: ['red', 'transparent'],
+                donut: true,
+                donutWidth: 20
+            }
+        }).on('draw', function (obj)
+        {
+            RGraph.SVG.create({
+                svg: obj.svg,
+                type: 'circle',
+                parent: obj.layers.background1,
+                attr: {
+                    cx: obj.centerx,
+                    cy: obj.centery,
+                    r: obj.radius,
+                    fill: 'gray'
+                }
+            });
+            RGraph.SVG.create({
+                svg: obj.svg,
+                type: 'circle',
+                parent: obj.layers.background1,
+                attr: {
+                    cx: obj.centerx,
+                    cy: obj.centery,
+                    r: obj.radius - obj.properties.donutWidth,
+                    fill: 'black'
+                }
+            });
+
+            // Add the text label
+            RGraph.SVG.text({
+                object: obj,
+                parent: obj.svg.all,
+                text:   obj.data[0] + '%',
+                x:      obj.centerx,
+                y:      obj.centery,
+                halign: 'center',
+                valign: 'center',
+                size:   45,
+                bold: true,
+                color:  '#999'
+            });
+
+            // Add the text label of the name
+            RGraph.SVG.text({
+                object: obj,
+                parent: obj.svg.all,
+                text:   'Ricky',
+                x:      obj.centerx,
+                y:      obj.centery + 20,
+                halign: 'center',
+                valign: 'top',
+                size:   16,
+                bold: true,
+                color:  '#999'
+            });
+        }).roundRobin({frames: 45});
+
+
+        new RGraph.SVG.Pie({
+            id: 'chart-container3',
+            data: [42,58],
+            options: {
+                colors: ['red', 'transparent'],
+                donut: true,
+                donutWidth: 20
+            }
+        }).on('draw', function (obj)
+        {
+            RGraph.SVG.create({
+                svg: obj.svg,
+                type: 'circle',
+                parent: obj.layers.background1,
+                attr: {
+                    cx: obj.centerx,
+                    cy: obj.centery,
+                    r: obj.radius,
+                    fill: 'gray'
+                }
+            });
+            RGraph.SVG.create({
+                svg: obj.svg,
+                type: 'circle',
+                parent: obj.layers.background1,
+                attr: {
+                    cx: obj.centerx,
+                    cy: obj.centery,
+                    r: obj.radius - obj.properties.donutWidth,
+                    fill: 'black'
+                }
+            });
+
+            // Add the text label of the value
+            RGraph.SVG.text({
+                object: obj,
+                parent: obj.svg.all,
+                text:   obj.data[0] + '%',
+                x:      obj.centerx,
+                y:      obj.centery,
+                halign: 'center',
+                valign: 'center',
+                size:   45,
+                bold: true,
+                color:  '#999'
+            });
+
+            // Add the text label of the name
+            RGraph.SVG.text({
+                object: obj,
+                parent: obj.svg.all,
+                text:   'Freddy',
+                x:      obj.centerx,
+                y:      obj.centery + 20,
+                halign: 'center',
+                valign: 'top',
+                size:   16,
+                bold: true,
+                color:  '#999'
+            });
+        }).roundRobin({frames: 45});
+
+        // Config for the red bars
+        conf = {
+            xaxis: false,
+            xaxisScale: false,
+            xaxisMax: 100,
+            xaxisLabels: false,
+            yaxis: false,
+            colors: ['red'],
+            gutterTop: 40,
+            gutterBottom: 5,
+            backgroundGrid: false
+        };
+
+        
+
+        // Gray backgrounds for the progress bars
+        new RGraph.SVG.HBar({id: 'chart-container4', data: [100], options: conf}).on('beforedraw', function (obj) {var prop = obj.properties;prop.colors = ['gray'];prop.title = 'Overall 16%';prop.titleSize = 22;prop.titleColor = '#666';prop.titleBold = true;}).draw();
+        new RGraph.SVG.HBar({id: 'chart-container5', data: [100], options: conf}).on('beforedraw', function (obj) {obj.properties.colors = ['gray']}).draw();
+        new RGraph.SVG.HBar({id: 'chart-container6', data: [100], options: conf}).on('beforedraw', function (obj) {obj.properties.colors = ['gray']}).draw();
+
+        // The red bars
+        new RGraph.SVG.HBar({id: 'chart-container4', data: [16], options: conf}).grow();
+        new RGraph.SVG.HBar({id: 'chart-container5', data: [88], options: conf}).grow();
+        new RGraph.SVG.HBar({id: 'chart-container6', data: [74], options: conf}).grow();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.hbar.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.pie.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;style&gt;
+    div#meters{
+        position: relative;
+        background-color: black;
+        height: 425px;
+    }
+
+    div#meters div {
+        float: left;
+        width: 300px;
+        height: 300px;
+    }
+    
+    
+    div#chart-container4,
+    div#chart-container5,
+    div#chart-container6 {
+        position: absolute !important;
+        left: 0 !important;
+        top: 280px !important;
+        width: 900px !important;
+        height: 70px !important;
+    }
+    
+    div#chart-container5 {top: 310px !important;}
+    div#chart-container6 {top: 340px !important;}
+&lt;/style&gt;
+
+&lt;div id="meters"&gt;
+    &lt;div id="chart-container1"&gt;&lt;/div&gt;
+    &lt;div id="chart-container2"&gt;&lt;/div&gt;
+    &lt;div id="chart-container3"&gt;&lt;/div&gt;
+    &lt;div id="chart-container4"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    pie1 = new RGraph.SVG.Pie({
+        id: 'chart-container1',
+        data: [15,85],
+        options: {
+            colors: ['red', 'transparent'],
+            donut: true,
+            donutWidth: 20
+        }
+    }).on('draw', function (obj)
+    {
+        RGraph.SVG.create({
+            svg: obj.svg,
+            type: 'circle',
+            parent: obj.layers.background1,
+            attr: {
+                cx: obj.centerx,
+                cy: obj.centery,
+                r: obj.radius,
+                fill: 'gray'
+            }
+        });
+        RGraph.SVG.create({
+            svg: obj.svg,
+            type: 'circle',
+            parent: obj.layers.background1,
+            attr: {
+                cx: obj.centerx,
+                cy: obj.centery,
+                r: obj.radius - obj.properties.donutWidth,
+                fill: 'black'
+            }
+        });
+
+        <span>// Add the text label</span>
+        RGraph.SVG.text({
+            object: obj,
+            parent: obj.svg.all,
+            text:   obj.data[0] + '%',
+            x:      obj.centerx,
+            y:      obj.centery,
+            halign: 'center',
+            valign: 'center',
+            size:   45,
+            bold: true,
+            color:  '#999'
+        });
+
+        <span>// Add the text label of the name</span>
+        RGraph.SVG.text({
+            object: obj,
+            parent: obj.svg.all,
+            text:   'Charles',
+            x:      obj.centerx,
+            y:      obj.centery + 20,
+            halign: 'center',
+            valign: 'top',
+            size:   16,
+            bold: true,
+            color:  '#999'
+        });
+    }).roundRobin({frames: 45});
+
+    new RGraph.SVG.Pie({
+        id: 'chart-container2',
+        data: [50,50],
+        options: {
+            colors: ['red', 'transparent'],
+            donut: true,
+            donutWidth: 20
+        }
+    }).on('draw', function (obj)
+    {
+        RGraph.SVG.create({
+            svg: obj.svg,
+            type: 'circle',
+            parent: obj.layers.background1,
+            attr: {
+                cx: obj.centerx,
+                cy: obj.centery,
+                r: obj.radius,
+                fill: 'gray'
+            }
+        });
+        RGraph.SVG.create({
+            svg: obj.svg,
+            type: 'circle',
+            parent: obj.layers.background1,
+            attr: {
+                cx: obj.centerx,
+                cy: obj.centery,
+                r: obj.radius - obj.properties.donutWidth,
+                fill: 'black'
+            }
+        });
+
+        <span>// Add the text label</span>
+        RGraph.SVG.text({
+            object: obj,
+            parent: obj.svg.all,
+            text:   obj.data[0] + '%',
+            x:      obj.centerx,
+            y:      obj.centery,
+            halign: 'center',
+            valign: 'center',
+            size:   45,
+            bold: true,
+            color:  '#999'
+        });
+
+        <span>// Add the text label of the name</span>
+        RGraph.SVG.text({
+            object: obj,
+            parent: obj.svg.all,
+            text:   'Ricky',
+            x:      obj.centerx,
+            y:      obj.centery + 20,
+            halign: 'center',
+            valign: 'top',
+            size:   16,
+            bold: true,
+            color:  '#999'
+        });
+    }).roundRobin({frames: 45});
+
+
+    new RGraph.SVG.Pie({
+        id: 'chart-container3',
+        data: [42,58],
+        options: {
+            colors: ['red', 'transparent'],
+            donut: true,
+            donutWidth: 20
+        }
+    }).on('draw', function (obj)
+    {
+        RGraph.SVG.create({
+            svg: obj.svg,
+            type: 'circle',
+            parent: obj.layers.background1,
+            attr: {
+                cx: obj.centerx,
+                cy: obj.centery,
+                r: obj.radius,
+                fill: 'gray'
+            }
+        });
+        RGraph.SVG.create({
+            svg: obj.svg,
+            type: 'circle',
+            parent: obj.layers.background1,
+            attr: {
+                cx: obj.centerx,
+                cy: obj.centery,
+                r: obj.radius - obj.properties.donutWidth,
+                fill: 'black'
+            }
+        });
+
+        <span>// Add the text label of the value</span>
+        RGraph.SVG.text({
+            object: obj,
+            parent: obj.svg.all,
+            text:   obj.data[0] + '%',
+            x:      obj.centerx,
+            y:      obj.centery,
+            halign: 'center',
+            valign: 'center',
+            size:   45,
+            bold: true,
+            color:  '#999'
+        });
+
+        <span>// Add the text label of the name</span>
+        RGraph.SVG.text({
+            object: obj,
+            parent: obj.svg.all,
+            text:   'Freddy',
+            x:      obj.centerx,
+            y:      obj.centery + 20,
+            halign: 'center',
+            valign: 'top',
+            size:   16,
+            bold: true,
+            color:  '#999'
+        });
+    }).roundRobin({frames: 45});
+
+    <span>// The configuration for the red bars</span>
+    conf = {
+        xaxis: false,
+        xaxisScale: false,
+        xaxisMax: 100,
+        xaxisLabels: false,
+        yaxis: false,
+        colors: ['red'],
+        gutterTop: 40,
+        gutterBottom: 5,
+        backgroundGrid: false
+    };
+
+    
+
+    <span>// Gray backgrounds for the progress bars</span>
+    new RGraph.SVG.HBar({id: 'chart-container4', data: [100], options: conf}).on('beforedraw', function (obj) {var prop = obj.properties;prop.colors = ['gray'];prop.title = 'Overall 16%';prop.titleSize = 22;prop.titleColor = '#666';prop.titleBold = true;}).draw();
+    new RGraph.SVG.HBar({id: 'chart-container5', data: [100], options: conf}).on('beforedraw', function (obj) {obj.properties.colors = ['gray']}).draw();
+    new RGraph.SVG.HBar({id: 'chart-container6', data: [100], options: conf}).on('beforedraw', function (obj) {obj.properties.colors = ['gray']}).draw();
+
+    <span>// The red bars</span>
+    new RGraph.SVG.HBar({id: 'chart-container4', data: [16], options: conf}).grow();
+    new RGraph.SVG.HBar({id: 'chart-container5', data: [88], options: conf}).grow();
+    new RGraph.SVG.HBar({id: 'chart-container6', data: [74], options: conf}).grow();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

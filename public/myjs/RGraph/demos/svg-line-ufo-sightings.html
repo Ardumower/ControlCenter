@@ -1,0 +1,99 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.line.js" ></script>
+    
+
+    <title>RGraph demo: An SVG Line chart showing UFO sightings over the past century.</title>
+    
+    
+    <meta name="description" content="An SVG Line chart showing UFO sightings over the past century." />
+
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An SVG Line chart showing UFO sightings over the past century.</h1>
+    <p>A straight-forward Line chart that is showing UFO sightings over the past century. As you can see - peoples inventiveness is clearly on the increase! The chart uses a gray background with a white grid on top along with a black colored line.</p>
+
+    
+    <div style="width: 750px; height: 250px" id="chart-container"></div>
+
+
+
+        
+
+    <script>
+        line = new RGraph.SVG.Line({
+            id: 'chart-container',
+            data: [0,2,3,2,3,6,5,6,10,42,46],
+            options: {
+                backgroundColor: '#eee',
+                backgroundGridColor: 'white',
+                backgroundGridVlinesCount: 20,
+                backgroundGridLinewidth: 2,
+                xaxisLabels: ['1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010'],
+                colors: ['black'],
+                linewidth: 3,
+                tickmarksStyle: 'filledcircle',
+                xaxis: false,
+                yaxis: false,
+                yaxisUnitsPost: 'k'
+            }
+        }).trace();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="../libraries/RGraph.svg.common.core.js" &gt;&lt;/script&gt;
+&lt;script src="../libraries/RGraph.svg.line.js" &gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 750px; height: 250px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    line = new RGraph.SVG.Line({
+        id: 'chart-container',
+        data: [0,2,3,2,3,6,5,6,10,42,46],
+        options: {
+            backgroundColor: '#eee',
+            backgroundGridColor: 'white',
+            backgroundGridVlinesCount: 20,
+            backgroundGridLinewidth: 2,
+            xaxisLabels: ['1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010'],
+            colors: ['black'],
+            linewidth: 3,
+            tickmarksStyle: 'filledcircle',
+            xaxis: false,
+            yaxis: false,
+            yaxisUnitsPost: 'k'
+        }
+    }).trace();
+    
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script type="text/javascript" src="../libraries/RGraph.common.core.js" ></script>
+    <script type="text/javascript" src="../libraries/RGraph.bar.js" ></script>
+    
+    <title>RGraph demo: A Bar chart using AJAX</title>
+
+    
+    <meta name="description" content="A Bar chart fetching its data via AJAX" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+    <h1>A Bar chart using AJAX</h1>
+    
+    <br />
+
+    <div style="background-color: #ffc; border: 2px solid #cc0; border-radius: 5px; padding: 5px;">
+        <b>Note:</b>
+        For browser security reasons the AJAX demos don't work offline. You can view the demos on the RGraph website here:
+        <a href="https://www.rgraph.net/demos/index.html" target="_blank" rel="nofollow">https://www.rgraph.net/demos/index.html</a>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <canvas id="cvs" width="600" height="250">[No canvas support]</canvas>
+
+    <script>
+        drawGraph = function (data)
+        {
+            var bar = new RGraph.Bar({
+                id: 'cvs',
+                data: data,
+                options: {
+                    colors: ['red'],
+                    labels: ['John', 'Fred', 'Joe', 'Rich', 'Pete', 'Lilly', 'Fred', 'Joe', 'Rich', 'Pete'],
+                    numyticks: 5,
+                    ylabelsCount: 5,
+                    gutterLeft: 35,
+                    variant: '3d',
+                    textAccessible: true,
+                    strokestyle: 'transparent',
+                    hmarginGrouped: true,
+                    scaleRound: true,
+                    backgroundGridVlines: false,
+                    backgroundGridBorder: false,
+                    shadowOffsetx: 10,
+                    gutterBottom: 75,
+                    noaxes: true
+                }
+            }).draw();
+        }
+        
+        RGraph.AJAX.getCSV('/getdata.html', drawGraph);
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.bar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    drawGraph = function (data)
+    {
+        var bar = new RGraph.Bar({
+            id: 'cvs',
+            data: data,
+            options: {
+                    colors: ['red'],
+                    labels: ['John', 'Fred', 'Joe', 'Rich', 'Pete', 'Lilly', 'Fred', 'Joe', 'Rich', 'Pete'],
+                    numyticks: 5,
+                    ylabelsCount: 5,
+                    gutterLeft: 35,
+                    variant: '3d',
+                    textAccessible: true,
+                    strokestyle: 'transparent',
+                    hmarginGrouped: true,
+                    scaleRound: true,
+                    backgroundGridVlines: false,
+                    backgroundGridBorder: false,
+                    shadowOffsetx: 10,
+                    gutterBottom: 75,
+                    noaxes: true
+            }
+        }).draw();
+    }
+    
+    RGraph.AJAX.getCSV('/getdata.html', drawGraph);
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+</body>
+</html>

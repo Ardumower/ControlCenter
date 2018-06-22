@@ -1,0 +1,119 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.sheets.js" ></script>
+    <script src="../libraries/RGraph.line.js" ></script>
+    
+    <title>RGraph demo: A Line chart using the Google Sheets connector</title>
+
+    
+    <meta name="description" content="A Line chart using the Google Sheets connector" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A Line chart using the Google Sheets connector</h1>
+
+    
+    <canvas id="cvs" width="700" height="250">[No canvas support]</canvas>
+    
+    <script>
+        new RGraph.Sheets('1ncvARBgXaDjzuca9i7Jyep6JTv9kms-bbIzyAxbaT0E', 2, function (sheet)
+        {        
+            var labels = sheet.get('B1:M1');
+            var data   = sheet.get('B2:M2');
+
+            var line = new RGraph.Line({
+                id: 'cvs',
+                data: data,
+                options: {
+                    linewidth: 25,
+                    tickmarks: null,
+                    labels: labels,
+                    xlabelsOffset: 10,
+                    colors: ['#f66'],
+                    shadowOffsetx: 2,
+                    shadowOffsety: 2,
+                    strokestyle: 'rgba(0,0,0,0)',
+                    scaleZerostart: true,
+                    noaxes: true,
+                    backgroundGridVlines: false,
+                    backgroundGridBorder: false,
+                    textAccessible: true,
+                    textSize: 18,
+                    gutterLeft: 35,
+                    hmargin: 10
+                }
+            }).trace2();
+        });
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="../libraries/RGraph.common.core.js" &gt;&lt;/script&gt;
+&lt;script src="../libraries/RGraph.common.sheets.js" &gt;&lt;/script&gt;
+&lt;script src="../libraries/RGraph.line.js" &gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="700" height="250"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.Sheets('1ncvARBgXaDjzuca9i7Jyep6JTv9kms-bbIzyAxbaT0E', 2, function (sheet)
+    {        
+        var labels = sheet.get('B1:M1');
+        var data   = sheet.get('B2:M2');
+
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: data,
+            options: {
+                linewidth: 25,
+                tickmarks: null,
+                labels: labels,
+                xlabelsOffset: 10,
+                colors: ['#f66'],
+                shadowOffsetx: 2,
+                shadowOffsety: 2,
+                strokestyle: 'rgba(0,0,0,0)',
+                scaleZerostart: true,
+                noaxes: true,
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                textAccessible: true,
+                textSize: 18,
+                gutterLeft: 35,
+                hmargin: 10
+            }
+        }).trace2();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.dynamic.js" ></script>
+    <script src="../libraries/RGraph.gantt.js" ></script>
+    
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <title>RGraph demo: An adjustable Gantt chart showing a work schedule</title>
+    
+    
+    
+    <meta name="description" content="An adjustable Gantt chart showing a work schedule" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <!-- Share buttons -->
+    <p style="float: right">
+        <script>
+            document.write('<a href="" target="_blank" onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u=http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=600,height=368\'); return false"><img src="../images/facebook-large.png" width="200" height="43" alt="Share on Facebook" border="0" title="Visit the RGraph Facebook page" id="facebook_link" /></a>&nbsp;');
+            document.write('<a href="https://twitter.com/_rgraph" target="_blank" onclick="window.open(\'https://twitter.com/intent/tweet?text=Check%20out%20this%20demo%20of%20RGraph:%202D/3D%20JavaScript%20charts%20-%20Free%20and%20Open%20Source%20http://www.rgraph.net' + location.pathname + '\', null, \'top=50,left=50,width=700,height=400\'); return false"><img src="../images/twitter-large.png" width="200" height="43" alt="Share on Twitter" border="0" title="Mention RGraph on Twitter" id="twitter_link" /></a>');
+        </script>
+    </p>
+
+
+    <h1>An adjustable Gantt chart showing a work schedule</h1>
+
+    <canvas id="cvs" width="800" height="350">[No canvas support]</canvas>
+    <br />
+    <br />
+    <span style="display: inline-block; width: 125px">Name:</span> <input type="text" id="name" style="font-size: 16pt; padding: 5px"/><br />
+    <span style="display: inline-block; width: 125px">Event start:</span> <input type="text" id="eventStart"  style="font-size: 16pt; padding: 5px" /><br />
+    <span style="display: inline-block; width: 125px">Event duration:</span> <input type="text" id="eventduration"  style="font-size: 16pt; padding: 5px" />
+
+    <script>
+        var data = [
+            [3, 2, null, 'Barney','red'],
+            [7, 5, null, 'Harry','blue'],
+            [14, 3, null, 'Cynthia','pink'],
+            [[14, 5, null, 'Kiffen','#aaf'], [21, 5, null, 'Kiffen','#aaf']],
+            [14, 5, null, 'John', 'cyan'],
+            [21, 5, null, 'Jenny', 'green'],
+            [21, 5, null, 'Ken', 'black'],
+            [21, 5, null, 'Richard', 'pink'],
+            [[14, 5, null, 'Lucy','#fc7'], [21, 5, null, 'Lucy','#fc7']]
+        ];
+
+        var gantt = new RGraph.Gantt({
+            id: 'cvs',
+            data: data,
+            options: {
+                borders: false,
+                labels: [
+                    'M','T','W','T','F','','',
+                    'M','T','W','T','F','','',
+                    'M','T','W','T','F','','',
+                    'M','T','W','T','F','',''
+                ],
+                xmax: 28,
+                vbars: [
+                    [5, 2, 'rgba(240,240,240,0.75)'],
+                    [12, 2, 'rgba(240,240,240,0.75)'],
+                    [19, 2, 'rgba(240,240,240,0.75)'], 
+                    [26, 2, 'rgba(240,240,240,0.75)']
+                ],
+                adjustable: true
+            }
+        }).draw().on('adjust', function (obj)
+        {
+            var event    = RGraph.Registry.get('chart.adjusting.gantt');
+            var index    = RGraph.Registry.get('chart.adjusting.gantt').index;
+            var subindex = RGraph.Registry.get('chart.adjusting.gantt').subindex;
+
+            if (typeof subindex === 'number') {
+                document.getElementById('eventStart').value    = obj.data[index][subindex][0] + 1;
+                document.getElementById('eventduration').value = obj.data[index][subindex][1];
+                document.getElementById('name').value          = obj.data[index][subindex][3];
+            } else {
+                document.getElementById('eventStart').value    = obj.data[index][0] + 1;
+                document.getElementById('eventduration').value = obj.data[index][1];
+                document.getElementById('name').value          = obj.data[index][3];
+            }
+        });
+    </script>
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.dynamic.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.gantt.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="800" height="350"&gt;[No canvas support]&lt;/canvas&gt;
+
+&lt;br /&gt;&lt;br /&gt;
+
+&lt;span style="display: inline-block; width: 125px"&gt;Name:&lt;/span&gt; &lt;input type="text" id="name" style="font-size: 16pt; padding: 5px"/&gt;&lt;br /&gt;
+&lt;span style="display: inline-block; width: 125px"&gt;Event start:&lt;/span&gt; &lt;input type="text" id="eventStart"  style="font-size: 16pt; padding: 5px" /&gt;&lt;br /&gt;
+&lt;span style="display: inline-block; width: 125px"&gt;Event duration:&lt;/span&gt; &lt;input type="text" id="eventduration"  style="font-size: 16pt; padding: 5px" /&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    var data = [
+        [3, 2, null, 'Barney','red'],
+        [7, 5, null, 'Harry','blue'],
+        [14, 3, null, 'Cynthia','pink'],
+        [[14, 5, null, 'Kiffen','#aaf'], [21, 5, null, 'Kiffen','#aaf']],
+        [14, 5, null, 'John', 'cyan'],
+        [21, 5, null, 'Jenny', 'green'],
+        [21, 5, null, 'Ken', 'black'],
+        [21, 5, null, 'Richard', 'pink'],
+        [[14, 5, null, 'Lucy','#fc7'], [21, 5, null, 'Lucy','#fc7']]
+    ];
+
+    var gantt = new RGraph.Gantt({
+        id: 'cvs',
+        data: data,
+        options: {
+            borders: false,
+            labels: [
+                'M','T','W','T','F','','',
+                'M','T','W','T','F','','',
+                'M','T','W','T','F','','',
+                'M','T','W','T','F','',''
+            ],
+            xmax: 28,
+            vbars: [
+                [5, 2, 'rgba(240,240,240,0.75)'],
+                [12, 2, 'rgba(240,240,240,0.75)'],
+                [19, 2, 'rgba(240,240,240,0.75)'], 
+                [26, 2, 'rgba(240,240,240,0.75)']
+            ],
+            adjustable: true
+        }
+    }).draw().on('adjust', function (obj)
+    {
+        var event    = RGraph.Registry.get('chart.adjusting.gantt');
+        var index    = RGraph.Registry.get('chart.adjusting.gantt').index;
+        var subindex = RGraph.Registry.get('chart.adjusting.gantt').subindex;
+
+        if (typeof subindex === 'number') {
+            document.getElementById('eventStart').value    = obj.data[index][subindex][0] + 1;
+            document.getElementById('eventduration').value = obj.data[index][subindex][1];
+            document.getElementById('name').value          = obj.data[index][subindex][3];
+        } else {
+            document.getElementById('eventStart').value    = obj.data[index][0] + 1;
+            document.getElementById('eventduration').value = obj.data[index][1];
+            document.getElementById('name').value          = obj.data[index][3];
+        }
+    });
+&lt;/script&gt;
+</pre>
+    
+</body>
+</html>

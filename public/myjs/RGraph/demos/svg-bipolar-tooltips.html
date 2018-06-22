@@ -1,0 +1,108 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.bipolar.js" ></script>
+
+    <title>RGraph demo: An SVG Bipolar chart with tooltips</title>
+    
+    
+    <meta name="description" content="An SVG Bipolar chart showing tooltips" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    <h1>An SVG Bipolar chart showing tooltips</h1>
+    <p>A pretty standard Bipolar chart that uses the wave effect and has the labelsAbove option enabled.</p>
+
+    
+    <div style="padding: 15px; display: inline-block">
+        <div style="width: 900px; height: 500px" id="cc"></div>
+    </div>
+
+
+
+
+
+
+    <script>
+        new RGraph.SVG.Bipolar({
+            id: 'cc',
+            left: [4,8,6,5,2,3,9],
+            right: [8,6,9,5,8,5,4],
+            options: {
+                grouping: 'stacked',
+                title: 'A Bipolar chart showing tooltips',
+                tooltips: [
+                    'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday',
+                    'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'
+                ],
+                yaxisLabels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                vmargin: 15
+            }
+        }).wave();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bipolar.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="padding: 15px"&gt;
+    &lt;div style="width: 600px; height: 500px" id="chart-container"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.Bipolar({
+        id: 'cc',
+        left: [[4,2,5],[4,6,3],[5,8,9],[4,5,2],[4,6,3],[5,8,9],[4,3,5]],
+        right: [[8,6,6],[2,3,8],[4,6,8],[4,9,8],[2,5,9],[4,5,3],[4,9,6]],
+        options: {
+            labelsAbove: true,
+            labelsAboveUnitsPost: 'Kg',
+            labelsAboveSize: 18,
+            gutterTop: 50,
+            gutterLeft: 50,
+            gutterRight: 50,
+            xaxis: false,
+            yaxisLabels: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            yaxisTextBold: true,
+            yaxisTextItalic: true,
+            yaxisTextSize: 18,
+            vmargin: 10,
+            colors: [
+                'Gradient(red:white:red)',
+                'Gradient(green:#faa:green)',
+                'Gradient(yellow:#faa:yellow)'
+            ],
+            grouping: 'stacked',
+            title: 'A basic Bipolar example chart',
+            titleSubtitle: 'A subtitle to go along with the title'
+        }
+    }).wave();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

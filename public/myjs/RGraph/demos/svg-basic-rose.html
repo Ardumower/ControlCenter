@@ -1,0 +1,102 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.tooltips.js" ></script>
+    <script src="../libraries/RGraph.svg.rose.js" ></script>
+    
+
+    <title>RGraph demo: A basic SVG Rose chart</title>
+    
+    
+    <meta name="description" content="A basic SVG Rose chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>A basic SVG Rose chart</h1>
+    <p>Here's a basic Rose chart demo using a title, subtitle and which also has tooltips. The Rose chart can be in 4 main modes which allow you to show a variety of data: They can be regular, stacked and also non-equi-angular and stacked non-equi-angular. So they're quite good at showing a variety of data.</p>
+
+    
+    <div style="width: 500px; height: 500px" id="chart-container"></div>
+
+
+
+    <script>
+        rose = new RGraph.SVG.Rose({
+            id: 'chart-container',
+            data: [8,6,4,3,9,4,5],
+            options: {
+                scaleUnitsPost: '%',
+                scaleDecimals: 1,
+                colors: ['red'],
+                linewidth: 2,
+                backgroundGridColor: '#aaa',
+                backgroundGridRadialsCount: 0,
+                margin: 0.05,
+                //margin: '5deg',
+                strokestyle: 'transparent',
+                tooltips: ['Alf','Bertie','Charlie','Doug','Edgar','Frankie','Gary'],
+                title: 'Bobs Day at the races',
+                titleY: 35,
+                titleSubtitle: 'A chart showing winners of the individual races',
+                gutterTop: 50
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.rose.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 500px; height: 500px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    rose = new RGraph.SVG.Rose({
+        id: 'chart-container',
+        data: [8,6,4,3,9,1,5],
+        options: {
+            scaleUnitsPost: '%',
+            scaleDecimals: 1,
+            colors: ['red'],
+            linewidth: 2,
+            backgroundGridColor: '#aaa',
+            backgroundGridRadialsCount: 0,
+            margin: 0.05,
+            //margin: '5deg',
+            strokestyle: 'transparent',
+            tooltips: ['Alf','Bertie','Charlie','Doug','Edgar','Frankie','Gary'],
+            title: 'Bobs Day at the races',
+            titleY: 35,
+            titleSubtitle: 'A chart showing winners of the individual races',
+            gutterTop: 50
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

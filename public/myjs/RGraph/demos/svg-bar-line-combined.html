@@ -1,0 +1,144 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.bar.js" ></script>
+    <script src="../libraries/RGraph.svg.line.js" ></script>
+    
+
+    <title>RGraph demo: A combined Bar and Line chart</title>
+    
+    
+    <meta name="description" content="A combined Bar and Line chart" />
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>A combined Bar and Line chart</h1>
+    <p>A demonstration of how you can combine the RGraph chart types on to a single SVG tag. Here a Bar chart is being combined with a filled Line chart - a common combination. Both charts are using the labelsAbove option. and they both too have a center X axis.</p>
+
+    
+
+    <div style="width: 650px; height: 300px" id="chart-container"></div>
+
+
+
+
+
+    <script>
+        new RGraph.SVG.Bar({
+            id: 'chart-container',
+            data: [[-43,14],[57,-44],[-64,-16],[56,-36],[21,-89],[-39,-41],[-78,-10]],
+            options: {
+                yaxisTextSize: 10,
+                yaxisLabelsCount: 10,
+                yaxisMin: -100,
+                yaxisMax: 100,
+                hmargin: 10,
+                colors: ['rgba(255,0,0,0.2)','rgba(0,200,200,0.2)'],
+                gutterLeft: 50,
+                labelsAbove: true,
+                labelsAboveSize: 8
+            }
+        }).draw();
+
+
+        new RGraph.SVG.Line({
+            id: 'chart-container',
+            data: [19,-88,71,66,93,-96,55],
+            options: {
+                spline: true,
+                backgroundGrid: false,
+                gutterLeft: 50,
+                yaxisMax: 100,
+                yaxisMin: -100,
+                yaxis:false,
+                yaxisScale: false,
+                xaxis: false,
+                hmargin: 40,
+                filled: true,
+                filledColors: ['rgba(0,200,200,0.25)'],
+                colors: ['#0bb'],
+                linewidth: 3,
+                tickmarksStyle: 'filledcircle',
+                labelsAbove: true,
+                labelsAboveSize: 8
+            }
+        }).draw();
+    </script>
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.bar.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.line.js"&gt;&lt;/script&gt;
+</pre>,
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 650px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    new RGraph.SVG.Bar({
+        id: 'chart-container',
+        data: [[-43,14],[57,-44],[-64,-16],[56,-36],[21,-89],[-39,-41],[-78,-10]],
+        options: {
+            yaxisTextSize: 10,
+            yaxisLabelsCount: 10,
+            yaxisMin: -100,
+            yaxisMax: 100,
+            hmargin: 10,
+            colors: ['rgba(255,0,0,0.2)','rgba(0,200,200,0.2)'],
+            gutterLeft: 50,
+            labelsAbove: true,
+            labelsAboveSize: 8
+        }
+    }).draw();
+
+
+    new RGraph.SVG.Line({
+        id: 'chart-container',
+        data: [19,-88,71,66,93,-96,55],
+        options: {
+            spline: true,
+            backgroundGrid: false,
+            gutterLeft: 50,
+            yaxisMax: 100,
+            yaxisMin: -100,
+            yaxis:false,
+            yaxisScale: false,
+            xaxis: false,
+            hmargin: 40,
+            filled: true,
+            filledColors: ['rgba(0,200,200,0.25)'],
+            colors: ['#0bb'],
+            linewidth: 3,
+            tickmarksStyle: 'filledcircle',
+            labelsAbove: true,
+            labelsAboveSize: 8
+        }
+    }).draw();
+&lt;/script&gt;
+</pre>
+
+
+
+    
+    
+
+
+
+</body>
+</html>

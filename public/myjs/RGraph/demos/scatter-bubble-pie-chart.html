@@ -1,0 +1,220 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+
+    <script src="../libraries/RGraph.common.core.js" ></script>
+    <script src="../libraries/RGraph.common.key.js" ></script>
+    <script src="../libraries/RGraph.scatter.js" ></script>
+    <script src="../libraries/RGraph.pie.js" ></script>
+    
+    <title>RGraph demo: A Scatter/Bubble/Pie combo chart</title>
+    
+    
+    
+    <meta name="description" content="" />
+     
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+    
+
+    <h1>A Scatter/Bubble/Pie combo chart</h1>
+
+    <canvas id="cvs" width="600" height="200">[No canvas support]</canvas>
+    
+    <script>
+        // Color of the bubbles. The Pie charts will go over these
+        color = 'rgba(0,0,0,0)';
+    
+        // The various data arrays
+        tooltips     = ['Bob', 'Hal','Craig','Olga','Fred','Peter','Lucy','Jerry'];
+        scatter_data = [ [30,15,color], [60,5,color], [90,8,color], [120,19,color], [150,14,color], [50,12,color], [180,20,color], [250,21,color] ];
+        bubble_data  = [50,60,70,80,90,84,86,100];
+        pie_data     = [[4,8,6],[4,3,5],[9,5,6],[1,5,5],[5,3,8],[7,4,1],[4,6,5],[3,2,9]];
+        
+        // The maximum X value
+        xmax = 365;
+        
+        // Labels for the Scatter
+        labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        
+        // Colors for the Pie charts
+        pie_colors = ['red', 'pink','blue'];
+
+
+
+
+
+
+        // Create and configure the Scatter chart
+        var scatter = new RGraph.Scatter({
+            id: 'cvs',
+            data: scatter_data,
+            options: {
+                xmax: xmax,
+                labels: labels,
+                textSize: 12,
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                colorsBubbleGraduated: false,
+                noxaxis: true,
+                key: ['Hal','Rod','Bob'],
+                keyPosition: 'gutter',
+                keyColors: pie_colors
+            }
+        }).draw();
+
+
+
+
+
+        var bubble = new RGraph.Scatter.Bubble(
+            scatter,
+            0,          // Minimum
+            100,        // Maximum
+            25,         // Max width
+            bubble_data // bubble_data array from above
+        ).draw();
+
+
+
+
+
+
+        // Go through the bubble chart coordinates adding the Pie charts
+        for (i=0; i<bubble.coords.length; ++i) {
+        
+            var x = bubble.coords[i][0],
+                y = bubble.coords[i][1],
+                r = bubble.coords[i][2];
+        
+            new RGraph.Pie({
+                id: 'cvs',
+                data: pie_data[i],
+                options: {
+                    centerx: x,
+                    centery: y,
+                    radius: r,
+                    shadow: false,
+                    linewidth: 0,
+                    strokestyle: 'white',
+                    colors: pie_colors,
+                }
+            }).roundRobin({frames: 20});
+        }
+    </script>
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.common.key.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.pie.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.scatter.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;canvas id="cvs" width="600" height="200"&gt;
+    [No canvas support]
+&lt;/canvas&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    <span>// Color of the bubbles. The Pie charts will go over these</span>
+    color = 'rgba(0,0,0,0)';
+
+    <span>// The various data arrays</span>
+    tooltips     = ['Bob', 'Hal','Craig','Olga','Fred','Peter','Lucy','Jerry'];
+    scatter_data = [ [30,15,color], [60,5,color], [90,8,color], [120,19,color], [150,14,color], [50,12,color], [180,20,color], [250,21,color] ];
+    bubble_data  = [50,60,70,80,90,84,86,100];
+    pie_data     = [[4,8,6],[4,3,5],[9,5,6],[1,5,5],[5,3,8],[7,4,1],[4,6,5],[3,2,9]];
+    
+    <span>// The maximum X value</span>
+    xmax = 365;
+    
+    <span>// Labels for the Scatter</span>
+    labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    
+    <span>// Colors for the Pie charts</span>
+    pie_colors = ['red', 'pink','blue'];
+
+
+
+
+
+
+    <span>// Create and configure the Scatter chart</span>
+    var scatter = new RGraph.Scatter({
+        id: 'cvs',
+        data: scatter_data,
+        options: {
+            xmax: xmax,
+            labels: labels,
+            textSize: 12,
+            backgroundGridVlines: false,
+            backgroundGridBorder: false,
+            colorsBubbleGraduated: false,
+            noxaxis: true,
+            key: ['Hal','Rod','Bob'],
+            keyPosition: 'gutter',
+            keyColors: pie_colors
+        }
+    }).draw();
+
+
+
+
+
+    var bubble = new RGraph.Scatter.Bubble(
+        scatter,
+        0,          // Minimum
+        100,        // Maximum
+        25,         // Max width
+        bubble_data // bubble_data array from above
+    ).draw();
+
+
+
+
+
+
+    <span>// Go through the bubble chart coordinates adding the Pie charts</span>
+    for (i=0; i&lt;bubble.coords.length; ++i) {
+    
+        var x = bubble.coords[i][0],
+            y = bubble.coords[i][1],
+            r = bubble.coords[i][2];
+    
+        new RGraph.Pie({
+            id: 'cvs',
+            data: pie_data[i],
+            options: {
+                centerx: x,
+                centery: y,
+                radius: r,
+                shadow: false,
+                linewidth: 0,
+                strokestyle: 'white',
+                colors: pie_colors,
+            }
+        }).roundRobin({frames: 20});
+    }
+&lt;/script&gt;
+</pre>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+    
+    <script src="../libraries/RGraph.svg.common.core.js" ></script>
+    <script src="../libraries/RGraph.svg.common.ajax.js" ></script>
+    <script src="../libraries/RGraph.svg.line.js" ></script>
+    
+    <title>RGraph demo: An SVG Line chart using the AJAX functions</title>
+
+    
+    <meta name="description" content="An SVG Line chart using the AJAX functions" />
+    
+    <meta name="robots" content="noindex" />
+
+</head>
+<body>
+
+
+
+    <h1>An SVG Line chart using the AJAX functions</h1>
+    <p>This is a simple demonstration of the RGraph.SVG.AJAX.getJSON AJAX function. To prevent the scale from changing it has been set at 100.</p>
+
+    <div style="background-color: #ffc; border: 2px solid #cc0; border-radius: 5px; padding: 5px;">
+        <b>Note:</b>
+        For browser security reasons the AJAX demos don't work offline.
+        You can view the demos on the RGraph website here:
+        <a href="https://www.rgraph.net/demos/index.html#svg" target="_blank" rel="nofollow">
+            https://www.rgraph.net/demos/index.html#svg
+        </a>
+    </div>
+
+    <div style="width: 750px; height: 300px" id="chart-container"></div>
+    
+        
+    <script>
+        RGraph.SVG.AJAX.getJSON('/getdata.html?json', function (json)
+        {
+            new RGraph.SVG.Line({
+                id: 'chart-container',
+                data: json.data,
+                options: {
+                    xaxisLabels: json.labels,
+                    gutterLeft: 50,
+                    yaxisMax: 100,
+                    yaxis: false,
+                    linewidth: 3,
+                    shadow: true,
+                    shadowOpacity: 0.25
+                }
+            }).trace();
+        });
+    </script>
+
+
+
+
+
+
+
+    <p></p>
+
+    This goes in the documents header:
+    <pre class="code">
+&lt;script src="RGraph.svg.common.core.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.common.ajax.js"&gt;&lt;/script&gt;
+&lt;script src="RGraph.svg.line.js"&gt;&lt;/script&gt;
+</pre>
+    
+    Put this where you want the chart to show up:
+    <pre class="code">
+&lt;div style="width: 750px; height: 300px" id="chart-container"&gt;&lt;/div&gt;
+</pre>
+
+    This is the code that generates the chart:
+    <pre class="code">
+&lt;script&gt;
+    RGraph.SVG.AJAX.getJSON('/getdata.html?json', function (json)
+    {
+        new RGraph.SVG.Line({
+            id: 'chart-container',
+            data: json.data,
+            options: {
+                xaxisLabels: json.labels,
+                gutterLeft: 50,
+                yaxisMax: 100,
+                yaxis: false,
+                linewidth: 3,
+                shadow: true,
+                shadowOpacity: 0.25
+            }
+        }).trace();
+    });
+&lt;/script&gt;
+</pre>
+
+
+
+    
+
+
+
+</body>
+</html>

@@ -25,7 +25,7 @@ Ardumower (www.ardumower.de)
 <br>Copyright (c) 2013-2015 by Sven Gennat
 <br>Copyright (c) 2013-2017 by Alexander Grau
 <br>Copyright (c) 2014 by Maxime Carpentieri
-<br>Copyright (c) 2015-2017 by Juergen Lange    
+<br>Copyright (c) 2015-2017 by Juergen Lange
 <br>Copyright (c) 2018 by Patrick Weber  
 
 Private-use only! (you need to ask for a commercial-use)

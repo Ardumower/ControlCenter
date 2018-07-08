@@ -790,6 +790,25 @@
      "file": "/home/pi/.node-red/node_modules/node-red-contrib-contextbrowser/contextbrowser.js"
     }
    }
+  },
+  "node-red-contrib-web-worldmap": {
+   "name": "node-red-contrib-web-worldmap",
+   "version": "1.3.1",
+   "local": true,
+   "nodes": {
+    "worldmap": {
+     "name": "worldmap",
+     "types": [
+      "worldmap",
+      "worldmap in",
+      "worldmap-tracks"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-web-worldmap",
+     "file": "/home/pi/.node-red/node_modules/node-red-contrib-web-worldmap/worldmap.js"
+    }
+   }
   }
  },
  "_credentialSecret": "2645911320224f7eaf2e6a7c19ec0caace86cbf14e78c0f18db8a5e9140d5d76",

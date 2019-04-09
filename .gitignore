@@ -1,0 +1,8 @@
+# MAKE SURE ALL ADDITIONS HERE ARE MIRRORED INTO THE .npmignore AS WELL
+build/
+node_modules
+npm-debug.log
+coverage
+.mailmap
+package-lock.json
+.idea
